@@ -114,33 +114,63 @@ function addTilt(card) {
 }
 
 // ---- project filters ----
-function initFilters(languages) {
+const PICK_COUNT = 6;
+let pickedNames = new Set();
+
+function applyFilter(key) {
+  document.querySelectorAll('#project-grid .project-card').forEach(card => {
+    const match = key === 'all'
+      || (key === 'pick' ? card.dataset.pick === '1' : card.dataset.lang === key);
+    card.classList.toggle('is-hidden', !match);
+  });
+  // picks are ordered by data-order; languages keep push order
+  const grid = document.getElementById('project-grid');
+  const cards = [...grid.querySelectorAll('.project-card')];
+  cards.sort((x, y) => key === 'pick'
+    ? Number(x.dataset.pickOrder || 999) - Number(y.dataset.pickOrder || 999)
+    : Number(x.dataset.order) - Number(y.dataset.order));
+  cards.forEach(card => grid.appendChild(card));
+}
+
+function initFilters(groups, totalCount) {
   const bar = document.getElementById('project-filters');
   bar.innerHTML = '';
-  const allBtn = document.createElement('button');
-  allBtn.className = 'filter-pill is-active';
-  allBtn.dataset.lang = 'all';
-  allBtn.textContent = 'All';
-  bar.appendChild(allBtn);
-  languages.forEach(lang => {
+  const addPill = (key, label, count, active = false) => {
     const btn = document.createElement('button');
-    btn.className = 'filter-pill';
-    btn.dataset.lang = lang.toLowerCase();
-    btn.textContent = lang;
+    btn.className = `filter-pill${active ? ' is-active' : ''}`;
+    btn.dataset.lang = key;
+    btn.innerHTML = `${escapeHtml(label)}${count != null ? ` <span class="pill-count">${count}</span>` : ''}`;
+    if (key === 'pick') btn.title = '다시 누르면 새로 섞어요';
     bar.appendChild(btn);
-  });
+  };
+  addPill('pick', '✨ 추천', null, true);
+  groups.forEach(g => addPill(g.key, g.label, g.count));
 
-  bar.addEventListener('click', (e) => {
+  bar.onclick = (e) => {
     const btn = e.target.closest('.filter-pill');
     if (!btn) return;
+    const key = btn.dataset.lang;
+    if (key === 'pick' && btn.classList.contains('is-active') && window.__projectRepos) {
+      renderProjects(window.__projectRepos, true); // reshuffle the random part
+      return;
+    }
     bar.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('is-active'));
     btn.classList.add('is-active');
-    const lang = btn.dataset.lang;
-    document.querySelectorAll('#project-grid .project-card').forEach(card => {
-      const match = lang === 'all' || card.dataset.lang === lang;
-      card.classList.toggle('is-hidden', !match);
-    });
-  });
+    applyFilter(key);
+  };
+  const more = document.getElementById('projects-more');
+  if (more) more.innerHTML = `공개 저장소 <strong>${totalCount}개</strong>를 언어별로 모두 볼 수 있어요. 원본은 <a href="https://github.com/${GH_USER}?tab=repositories" target="_blank" rel="noopener">GitHub 프로필</a>에서도 확인할 수 있어요.`;
+}
+
+function pickRecommended(repos) {
+  const hasDemo = r => demoLink(r) !== '';
+  const self = r => r.name === `${GH_USER}.github.io`;
+  const demos = repos.filter(r => hasDemo(r) && !self(r));
+  const rest = repos.filter(r => !hasDemo(r) && !self(r));
+  // prefer described repos, then shuffle
+  const shuffled = rest.map(r => ({ r, k: Math.random() + (r.description ? 0 : 1) }))
+    .sort((x, y) => x.k - y.k).map(x => x.r);
+  return [...demos, ...shuffled].slice(0, Math.max(PICK_COUNT, demos.length));
 }
 
 function initProjectCards() {
@@ -180,21 +210,25 @@ function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 }
 
-function renderProjects(repos) {
+function renderProjects(repos, reshuffle = false) {
+  window.__projectRepos = repos;
   const grid = document.getElementById('project-grid');
-  const top = repos.slice(0, 8);
-  grid.innerHTML = top.map(repo => {
-    const langKey = (repo.language || 'default').toLowerCase();
+  const picks = pickRecommended(repos);
+  const pickOrder = new Map(picks.map((r, i) => [r.name, i]));
+  grid.innerHTML = repos.map((repo, order) => {
+    const langKey = repo.language ? repo.language.toLowerCase() : 'etc';
     const meta = LANG_META[langKey] || LANG_META.default;
     const desc = repo.description || `${repo.language || '실험적인'} 프로젝트`;
+    const picked = pickOrder.has(repo.name);
     return `
-      <article class="project-card" data-lang="${repo.language ? langKey : 'public'}">
+      <article class="project-card${picked ? '' : ' is-hidden'}" data-lang="${langKey}" data-order="${order}"${picked ? ` data-pick="1" data-pick-order="${pickOrder.get(repo.name)}"` : ''}>
         <div class="project-thumb" style="--c1:${meta.c1};--c2:${meta.c2};">${meta.emoji}</div>
         <div class="project-body">
-          <h3>${repo.name}</h3>
-          <p>${desc}</p>
+          <h3>${escapeHtml(repo.name)}</h3>
+          <p>${escapeHtml(desc)}</p>
           <div class="tags">
-            <span>${repo.language || 'Public'}</span>
+            <span>${escapeHtml(repo.language || '기타')}</span>
+            ${demoLink(repo) ? '<span class="tag-demo">Live</span>' : ''}
             ${repo.stargazers_count > 0 ? `<span>⭐ ${repo.stargazers_count}</span>` : ''}
           </div>
           <div class="project-links">
@@ -203,9 +237,20 @@ function renderProjects(repos) {
         </div>
       </article>`;
   }).join('');
+  applyFilter('pick');
 
-  const languages = [...new Set(top.map(r => r.language).filter(Boolean))];
-  initFilters(languages);
+  if (!reshuffle) {
+    const counts = new Map();
+    repos.forEach(r => {
+      const key = r.language ? r.language.toLowerCase() : 'etc';
+      const label = r.language || '기타';
+      const g = counts.get(key) || { key, label, count: 0 };
+      g.count++;
+      counts.set(key, g);
+    });
+    const groups = [...counts.values()].sort((x, y) => (x.key === 'etc') - (y.key === 'etc') || y.count - x.count || x.label.localeCompare(y.label));
+    initFilters(groups, repos.length);
+  }
   initProjectCards();
 }
 

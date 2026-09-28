@@ -636,3 +636,10 @@ svg{ width: 20px; height: 20px; }
   .news-card{ padding: 24px 20px; }
   .news-list li{ padding-left: 34px; }
 }
+
+/* ---------- project filters ---------- */
+.project-filters{ flex-wrap: wrap; }
+.pill-count{ margin-left: 4px; font-size: .72em; opacity: .65; font-variant-numeric: tabular-nums; }
+.filter-pill.is-active .pill-count{ opacity: .9; }
+.tags span.tag-demo{ color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 14%, transparent); }
+.projects-more strong{ color: var(--text); }
