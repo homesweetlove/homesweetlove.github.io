@@ -227,7 +227,7 @@ function documentText() {
     }
     text = parts.join('\n\n');
   }
-  state.text = text.replace(/\r\n?/g, '\n').trim();
+  state.text = text.replace(/\r\n?/g, '\n').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
   return state.text;
 }
 
@@ -267,7 +267,7 @@ async function open(file) {
     const bytes = new Uint8Array(await file.arrayBuffer());
     freeDoc();
     say('문서를 해석하는 중입니다…');
-    await new Promise(requestAnimationFrame);
+    await new Promise(resolve => setTimeout(resolve, 0));
     const doc = new mod.HwpDocument(bytes);
     const info = parseJson(safe(() => doc.getDocumentInfo()), {}) || {};
     if (info.encrypted) {
