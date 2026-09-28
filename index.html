@@ -173,7 +173,6 @@
             <p>Neo Kinpaku 스타일 웹메일 UI 프로토타입</p>
             <div class="tags"><span>TypeScript</span></div>
             <div class="project-links">
-              <a class="demo-link" href="https://web-mail-plan.vercel.app" target="_blank" rel="noopener">Demo ↗</a>
               <a href="https://github.com/homesweetlove/open_web_mail" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
           </div>
@@ -186,7 +185,6 @@
             <p>조교·강사 근태 기반 급여 자동 계산 · 명세서 출력</p>
             <div class="tags"><span>TypeScript</span></div>
             <div class="project-links">
-              <a class="demo-link" href="https://jokeing.vercel.app" target="_blank" rel="noopener">Demo ↗</a>
               <a href="https://github.com/homesweetlove/payroll-manager" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
           </div>
@@ -293,10 +291,34 @@
     </div>
   </section>
 
-  <!-- ACTIVITY -->
-  <section id="activity" class="section section-alt">
+  <!-- DAILY IT NEWS -->
+  <section id="news" class="section section-alt">
     <div class="section-inner">
-      <p class="section-tag">05 · Activity</p>
+      <p class="section-tag">05 · News <span class="live-badge" id="news-badge"><span class="live-dot"></span>매일 아침 자동 업데이트</span></p>
+      <h2 class="section-title">오늘의 IT·보안 뉴스</h2>
+      <article class="news-card" id="news-card">
+        <header class="news-head">
+          <span class="news-date" id="news-date">2026.09.27</span>
+          <span class="news-sub">한눈에 보는 핵심 요약</span>
+        </header>
+        <ul class="news-list" id="news-list">
+          <li>미국과 중국이 AI의 위험·편익을 논의하고 AI 관련 사고에 대응할 상시 연락 채널을 만들기로 합의했습니다.</li>
+          <li>미국 배심원단이 Apple의 햅틱 기술 특허 침해를 인정해 57억 달러가 넘는 배상 평결을 내렸으며, Apple은 항소 방침을 밝혔습니다.</li>
+          <li>ShinyHunters가 Oracle PeopleSoft 취약점 CVE-2026-35273을 다시 대규모 악용하고 있습니다. 단순 WAF 차단 규칙을 우회하므로 패치가 필수입니다.</li>
+          <li>악성 코드가 남아 있던 GitHub Actions 저장소 두 곳이 다시 활성화되면서, 가변 태그를 사용한 워크플로가 기존 악성 페이로드를 다시 실행하는 공급망 사고가 발생했습니다.</li>
+        </ul>
+        <footer class="news-actions">
+          <a class="btn btn-primary" id="news-link" href="https://github.com/homesweetlove/Daily_IT_News/blob/main/news/2026-09-27.md" target="_blank" rel="noopener">전체 브리핑 읽기 ↗</a>
+          <a class="news-archive" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news" target="_blank" rel="noopener">지난 뉴스 아카이브 →</a>
+        </footer>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACTIVITY -->
+  <section id="activity" class="section">
+    <div class="section-inner">
+      <p class="section-tag">06 · Activity</p>
       <h2 class="section-title">최근 업데이트</h2>
       <div class="blog-list" id="activity-list">
         <a href="https://github.com/homesweetlove/antigravity-korean-langpack" class="blog-item" target="_blank" rel="noopener">
@@ -316,30 +338,6 @@
         </a>
 
       </div>
-    </div>
-  </section>
-
-  <!-- DAILY IT NEWS -->
-  <section id="news" class="section">
-    <div class="section-inner">
-      <p class="section-tag">06 · News <span class="live-badge" id="news-badge"><span class="live-dot"></span>매일 아침 자동 업데이트</span></p>
-      <h2 class="section-title">오늘의 IT·보안 뉴스</h2>
-      <article class="news-card" id="news-card">
-        <header class="news-head">
-          <span class="news-date" id="news-date">2026.09.27</span>
-          <span class="news-sub">한눈에 보는 핵심 요약</span>
-        </header>
-        <ul class="news-list" id="news-list">
-          <li>미국과 중국이 AI의 위험·편익을 논의하고 AI 관련 사고에 대응할 상시 연락 채널을 만들기로 합의했습니다.</li>
-          <li>미국 배심원단이 Apple의 햅틱 기술 특허 침해를 인정해 57억 달러가 넘는 배상 평결을 내렸으며, Apple은 항소 방침을 밝혔습니다.</li>
-          <li>ShinyHunters가 Oracle PeopleSoft 취약점 CVE-2026-35273을 다시 대규모 악용하고 있습니다. 단순 WAF 차단 규칙을 우회하므로 패치가 필수입니다.</li>
-          <li>악성 코드가 남아 있던 GitHub Actions 저장소 두 곳이 다시 활성화되면서, 가변 태그를 사용한 워크플로가 기존 악성 페이로드를 다시 실행하는 공급망 사고가 발생했습니다.</li>
-        </ul>
-        <footer class="news-actions">
-          <a class="btn btn-primary" id="news-link" href="https://github.com/homesweetlove/Daily_IT_News/blob/main/news/2026-09-27.md" target="_blank" rel="noopener">전체 브리핑 읽기 ↗</a>
-          <a class="news-archive" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news" target="_blank" rel="noopener">지난 뉴스 아카이브 →</a>
-        </footer>
-      </article>
     </div>
   </section>
 
@@ -365,6 +363,6 @@
   </div>
 </footer>
 
-<script src="assets/script.js?v=7"></script>
+<script src="assets/script.js?v=8"></script>
 </body>
 </html>

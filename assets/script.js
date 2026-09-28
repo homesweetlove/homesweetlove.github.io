@@ -199,7 +199,12 @@ function fmtDate(iso) {
   return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 }
 
+// Repos whose Website field points at a deployment that is currently broken.
+// Remove a name here once its demo works again.
+const DEMO_HIDDEN = new Set(['payroll-manager', 'open_web_mail']);
+
 function demoLink(repo) {
+  if (DEMO_HIDDEN.has(repo.name)) return '';
   const url = (repo.homepage || '').trim();
   if (!/^https:\/\//i.test(url)) return '';
   if (repo.name === `${GH_USER}.github.io` || url.replace(/\/+$/, '') === location.origin) return ''; // this site itself
