@@ -18,7 +18,6 @@
 - 🐙 GitHub: [github.com/homesweetlove](https://github.com/homesweetlove)
 - 📅 GitHub 가입: 2025년 9월
 - 💻 주 사용 언어: TypeScript, Python, HTML, Java
-- 📦 Public Repos: 16개
 
 ### 🛠️ Tech Stack
 
