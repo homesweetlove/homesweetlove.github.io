@@ -75,6 +75,51 @@
     print(`실시간 급여는 ${link('tools.html#payday', '퇴근 · 급여 카운터', false)}에서 확인하세요${s ? '' : ' (기본 설정 09:00~18:00 기준)'}.`, 'term-dim');
   }
 
+
+  // ---- mac skin (only switchable from here) ----
+  const SKIN_KEY = 'skin';
+  let clockTimer = null;
+  function buildMacChrome() {
+    if (!document.querySelector('.mac-clock')) {
+      const clock = document.createElement('span');
+      clock.className = 'mac-clock';
+      document.querySelector('.nav-actions')?.appendChild(clock);
+      const tickClock = () => {
+        clock.textContent = new Date().toLocaleString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short', hour: 'numeric', minute: '2-digit' });
+      };
+      tickClock();
+      clockTimer = setInterval(tickClock, 15000);
+    }
+    if (!document.querySelector('.mac-dock')) {
+      const items = [
+        ['#home', '🏠', '홈'], ['#about', '🙋', 'About'], ['#projects', '📦', 'Projects'], ['#skills', '🛠️', 'Skills'],
+        ['#contributions', '🌱', '잔디밭'], ['#news', '📰', 'IT 뉴스'], ['#activity', '🕒', '최근 업데이트'], ['#contact', '✉️', 'Contact'],
+        'sep', ['tools.html', '🧰', '업무 도구'], ['hwp-editor.html', '📝', 'HWP 편집기'], ['https://github.com/' + USER, '🐙', 'GitHub'],
+      ];
+      const dock = document.createElement('nav');
+      dock.className = 'mac-dock';
+      dock.setAttribute('aria-label', 'Dock');
+      dock.innerHTML = items.map(item => item === 'sep'
+        ? '<span class="dock-sep" aria-hidden="true"></span>'
+        : `<a href="${item[0]}" data-label="${esc(item[2])}" aria-label="${esc(item[2])}"${item[0].startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${item[1]}</a>`).join('')
+        + '<span class="dock-sep" aria-hidden="true"></span><button class="dock-term" type="button" data-label="터미널" aria-label="터미널">&gt;_</button>';
+      dock.querySelector('.dock-term').addEventListener('click', () => open());
+      document.body.appendChild(dock);
+    }
+  }
+  function removeMacChrome() {
+    clearInterval(clockTimer);
+    document.querySelector('.mac-clock')?.remove();
+    document.querySelector('.mac-dock')?.remove();
+  }
+  function setSkin(name) {
+    const root = document.documentElement;
+    if (name === 'mac') { root.dataset.skin = 'mac'; buildMacChrome(); }
+    else { delete root.dataset.skin; removeMacChrome(); }
+    try { name === 'mac' ? localStorage.setItem(SKIN_KEY, 'mac') : localStorage.removeItem(SKIN_KEY); } catch { /* ignore */ }
+  }
+  if (document.documentElement.dataset.skin === 'mac') buildMacChrome();
+
   // ---- commands ----
   const history = [];
   let historyIndex = 0;
@@ -84,7 +129,7 @@
       const rows = [
         ['whoami', '나는 누구인가'], ['neofetch', '시스템 정보 (자랑용)'], ['ls [projects]', '둘러보기 · 프로젝트 목록'],
         ['cat about', '자기소개'], ['open <이름>', '프로젝트·페이지 열기 (예: open wading, open tools)'],
-        ['news', '오늘의 IT·보안 뉴스'], ['퇴근', '퇴근까지 남은 시간'], ['theme [dark|light]', '테마 바꾸기'],
+        ['news', '오늘의 IT·보안 뉴스'], ['퇴근', '퇴근까지 남은 시간'], ['theme [dark|light|mac]', '테마 바꾸기 (mac은 여기서만!)'],
         ['history · clear · exit', '기록 · 화면 지우기 · 닫기'],
       ];
       print('사용할 수 있는 명령어:', 'term-head');
@@ -131,7 +176,7 @@
     cat(args) {
       const what = (args[0] || '').replace(/^\.\//, '');
       if (what === 'about') return print(esc(text('#about .about-text') || text('#about')));
-      if (what === '.secret') return print('🤫 비밀: 사실 이 사이트의 절반은 퇴근하고 싶어서 만들어졌다.', 'term-ok');
+      if (what === '.secret') { print('🤫 비밀: 사실 이 사이트의 절반은 퇴근하고 싶어서 만들어졌다.', 'term-ok'); return print('P.S. <span class="term-cmd">theme mac</span> 도 한번 쳐보세요.', 'term-dim'); }
       if (what === 'news') return commands.news();
       if (!what) return print('cat: 파일 이름을 적어주세요 (예: cat about)', 'term-err');
       print(`cat: ${esc(what)}: 그런 파일이 없어요`, 'term-err');
@@ -163,12 +208,25 @@
     },
     퇴근: leaveWork,
     theme(args) {
+      const want = (args[0] || '').toLowerCase();
+      if (want === 'mac' || want === 'macos') {
+        if (document.documentElement.dataset.skin === 'mac') return print('이미 mac 테마예요. 되돌리려면 <span class="term-cmd">theme default</span>', 'term-dim');
+        setSkin('mac');
+        print('💻 mac 테마를 켰어요. 위쪽 메뉴 막대와 아래 Dock을 확인해 보세요.', 'term-ok');
+        return print('되돌리려면 <span class="term-cmd">theme default</span> · 이 테마는 터미널에서만 바꿀 수 있어요.', 'term-dim');
+      }
+      if (want === 'default' || want === 'reset' || want === 'original' || want === '기본') {
+        if (document.documentElement.dataset.skin !== 'mac') return print('이미 기본 테마예요.', 'term-dim');
+        setSkin('default');
+        return print('기본 테마로 돌아왔어요.', 'term-ok');
+      }
       const root = document.documentElement;
       const current = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      const next = args[0] === 'dark' || args[0] === 'light' ? args[0] : current === 'dark' ? 'light' : 'dark';
+      if (want && want !== 'dark' && want !== 'light') return print(`theme: '${esc(want)}' 는 없는 테마예요. dark · light · mac · default 중에 골라주세요.`, 'term-err');
+      const next = want || (current === 'dark' ? 'light' : 'dark');
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch { /* ignore */ }
-      print(`테마를 ${next === 'dark' ? '다크' : '라이트'} 모드로 바꿨어요.`, 'term-ok');
+      print(`${next === 'dark' ? '다크' : '라이트'} 모드로 바꿨어요.`, 'term-ok');
     },
     date() { print(new Date().toLocaleString('ko-KR', { dateStyle: 'full', timeStyle: 'medium' })); },
     echo(args) { print(esc(args.join(' '))); },
@@ -188,7 +246,7 @@
     pwd() { print(`/home/${USER}/sweet/home`); },
     vim() { print('vim에 들어왔어요. 나가는 법은… 행운을 빌어요. (:q! 는 여기선 안 돼요 😇)', 'term-dim'); },
   };
-  const aliases = { '?': 'help', 'ㅎ': 'help', '도움말': 'help', '안녕': 'hello', hi: 'hello', cls: 'clear', q: 'exit', quit: 'exit', 집에가고싶다: '퇴근', 퇴근언제: '퇴근', dir: 'ls', 'ls -la': 'ls', 'git': 'open' };
+  const aliases = { mac: 'theme mac', macos: 'theme mac', '?': 'help', 'ㅎ': 'help', '도움말': 'help', '안녕': 'hello', hi: 'hello', cls: 'clear', q: 'exit', quit: 'exit', 집에가고싶다: '퇴근', 퇴근언제: '퇴근', dir: 'ls', 'ls -la': 'ls', 'git': 'open' };
 
   function run(raw) {
     const line = raw.trim();
@@ -196,8 +254,9 @@
     if (!line) return;
     history.push(line);
     historyIndex = history.length;
-    const [first, ...rest] = line.split(/\s+/);
-    const name = aliases[line] || aliases[first] || first;
+    const expanded = aliases[line] && aliases[line].includes(' ') ? aliases[line] : line;
+    const [first, ...rest] = expanded.split(/\s+/);
+    const name = expanded !== line ? first : (aliases[line] || aliases[first] || first);
     const args = aliases[first] === 'open' ? ['github', ...rest] : rest;
     const fn = commands[name] || commands[name.toLowerCase()];
     if (fn) fn(args);
