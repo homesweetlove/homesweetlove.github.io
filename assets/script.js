@@ -95,24 +95,8 @@ function revealize(el) {
 }
 
 document.querySelectorAll(
-  '.stat-card, .skill-group, .contrib-card, .about-text, .bio-quote'
+  '.stat-card, .skill-group, .contrib-card, .news-card, .about-text, .bio-quote'
 ).forEach(revealize);
-
-// ---- contribution graph fallback (also covers a slow/hanging third-party service) ----
-const contribImg = document.getElementById('contrib-graph');
-const contribFallback = document.getElementById('contrib-fallback');
-if (contribImg && contribFallback) {
-  let contribSettled = false;
-  const showContribFallback = () => {
-    if (contribSettled) return;
-    contribSettled = true;
-    contribImg.hidden = true;
-    contribFallback.hidden = false;
-  };
-  contribImg.addEventListener('error', showContribFallback, { once: true });
-  contribImg.addEventListener('load', () => { contribSettled = true; }, { once: true });
-  setTimeout(() => { if (!contribImg.complete) showContribFallback(); }, 6000);
-}
 
 // ---- project card tilt ----
 function addTilt(card) {
@@ -185,6 +169,17 @@ function fmtDate(iso) {
   return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 }
 
+function demoLink(repo) {
+  const url = (repo.homepage || '').trim();
+  if (!/^https:\/\//i.test(url)) return '';
+  if (repo.name === `${GH_USER}.github.io` || url.replace(/\/+$/, '') === location.origin) return ''; // this site itself
+  return `<a class="demo-link" href="${escapeHtml(url)}" target="_blank" rel="noopener">Demo ↗</a>`;
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
+
 function renderProjects(repos) {
   const grid = document.getElementById('project-grid');
   const top = repos.slice(0, 8);
@@ -203,7 +198,7 @@ function renderProjects(repos) {
             ${repo.stargazers_count > 0 ? `<span>⭐ ${repo.stargazers_count}</span>` : ''}
           </div>
           <div class="project-links">
-            <a href="${repo.html_url}" target="_blank" rel="noopener">GitHub ↗</a>
+            ${demoLink(repo)}<a href="${repo.html_url}" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </div>
       </article>`;
@@ -269,3 +264,143 @@ async function loadGitHubData() {
   }
 }
 loadGitHubData();
+
+// ---- daily IT news (from homesweetlove/Daily_IT_News) ----
+const NEWS_REPO = 'homesweetlove/Daily_IT_News';
+const NEWS_RAW = `https://raw.githubusercontent.com/${NEWS_REPO}/main/news`;
+
+function inlineMarkdown(text) {
+  return escapeHtml(text)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+
+function extractSummary(md) {
+  const lines = md.split(/\r?\n/);
+  const start = lines.findIndex(line => /^##\s+.*핵심\s*요약/.test(line));
+  const from = start >= 0 ? start + 1 : 0;
+  const bullets = [];
+  for (let i = from; i < lines.length; i++) {
+    const line = lines[i];
+    if (start >= 0 && /^##\s/.test(line)) break;
+    const m = line.match(/^\s*[-*]\s+(.+)/);
+    if (m) bullets.push(m[1].trim());
+    if (start < 0 && bullets.length >= 5) break;
+  }
+  return bullets;
+}
+
+async function latestNewsFile() {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${NEWS_REPO}/contents/news`);
+    if (res.ok) {
+      const names = (await res.json()).map(f => f.name).filter(n => /^\d{4}-\d{2}-\d{2}\.md$/.test(n)).sort();
+      if (names.length) return names[names.length - 1];
+    }
+  } catch { /* fall through to probing */ }
+  // API unavailable (rate limit etc.): probe the last 10 days directly.
+  const today = new Date(Date.now() + 9 * 3600 * 1000); // KST
+  for (let back = 0; back < 10; back++) {
+    const d = new Date(today.getTime() - back * 86400000).toISOString().slice(0, 10);
+    try {
+      const res = await fetch(`${NEWS_RAW}/${d}.md`, { method: 'HEAD' });
+      if (res.ok) return `${d}.md`;
+    } catch { /* keep probing */ }
+  }
+  return null;
+}
+
+async function loadNews() {
+  const list = document.getElementById('news-list');
+  if (!list) return;
+  try {
+    const file = await latestNewsFile();
+    if (!file) throw new Error('no news file');
+    const md = await fetch(`${NEWS_RAW}/${file}`).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); });
+    const bullets = extractSummary(md).slice(0, 5);
+    if (!bullets.length) throw new Error('empty summary');
+    const date = file.replace('.md', '');
+    document.getElementById('news-date').textContent = date.replace(/-/g, '.');
+    document.getElementById('news-link').href = `https://github.com/${NEWS_REPO}/blob/main/news/${file}`;
+    list.innerHTML = bullets.map(b => `<li>${inlineMarkdown(b)}</li>`).join('');
+    document.getElementById('news-badge')?.classList.add('is-live');
+  } catch (err) {
+    console.warn('[homesweetlove.dev] news unavailable, showing static fallback.', err);
+  }
+}
+loadNews();
+
+// ---- contribution graph (own renderer, data: github-contributions-api.jogruber.de) ----
+function contribStats(days) {
+  const total = days.reduce((sum, d) => sum + d.count, 0);
+  let longest = 0, run = 0;
+  days.forEach(d => { run = d.count > 0 ? run + 1 : 0; longest = Math.max(longest, run); });
+  let current = 0;
+  for (let i = days.length - 1; i >= 0; i--) {
+    if (days[i].count > 0) current++;
+    else if (i === days.length - 1) continue; // today may be empty so far
+    else break;
+  }
+  const best = days.reduce((a, d) => (d.count > a.count ? d : a), { count: 0, date: '' });
+  return { total, longest, current, best };
+}
+
+function renderContribGraph(days) {
+  const grid = document.getElementById('contrib-grid');
+  const CELL = 11, GAP = 3, STEP = CELL + GAP, LEFT = 26, TOP = 18;
+  const first = new Date(days[0].date + 'T00:00:00');
+  const offset = first.getDay(); // Sunday = 0 (GitHub layout)
+  const weeks = Math.ceil((days.length + offset) / 7);
+  const width = LEFT + weeks * STEP;
+  const height = TOP + 7 * STEP;
+  const cells = [];
+  const months = [];
+  let lastMonth = -1;
+  days.forEach((d, i) => {
+    const idx = i + offset;
+    const w = Math.floor(idx / 7), dow = idx % 7;
+    const x = LEFT + w * STEP, y = TOP + dow * STEP;
+    const date = new Date(d.date + 'T00:00:00');
+    if (dow === 0 || i === 0) {
+      const m = date.getMonth();
+      if (m !== lastMonth && (date.getDate() <= 7 || i === 0)) {
+        months.push({ x, text: `${m + 1}월` });
+        lastMonth = m;
+      }
+    }
+    const label = `${d.date} · ${d.count ? `기여 ${d.count}회` : '기여 없음'}`;
+    cells.push(`<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2.5" class="lv${Math.min(4, d.level)}"><title>${label}</title></rect>`);
+  });
+  const monthLabels = months
+    .filter((mo, i) => !months[i + 1] || months[i + 1].x - mo.x >= STEP * 3)
+    .map(mo => `<text x="${mo.x}" y="11" class="contrib-label">${mo.text}</text>`);
+  const dows = [[1, '월'], [3, '수'], [5, '금']].map(([r, t]) => `<text x="0" y="${TOP + r * STEP + 9}" class="contrib-label">${t}</text>`);
+  grid.innerHTML = `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">${monthLabels.join('')}${dows.join('')}${cells.join('')}</svg>`;
+  const scroller = document.getElementById('contrib-scroll');
+  if (scroller) scroller.scrollLeft = scroller.scrollWidth; // show the most recent weeks first on small screens
+}
+
+async function loadContributions() {
+  const grid = document.getElementById('contrib-grid');
+  if (!grid) return;
+  try {
+    const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${GH_USER}?y=last`);
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    const days = (data.contributions || []).filter(d => d && d.date).sort((a, b) => a.date.localeCompare(b.date));
+    if (!days.length) throw new Error('no data');
+    renderContribGraph(days);
+    const s = contribStats(days);
+    const total = data.total?.lastYear ?? s.total;
+    document.getElementById('contrib-total').textContent = `${total.toLocaleString('ko-KR')}회`;
+    document.getElementById('contrib-current').textContent = `${s.current}일`;
+    document.getElementById('contrib-longest').textContent = `${s.longest}일`;
+    document.getElementById('contrib-best').textContent = s.best.count ? `${s.best.date.slice(5).replace('-', '.')} · ${s.best.count}회` : '—';
+  } catch (err) {
+    console.warn('[homesweetlove.dev] contribution data unavailable.', err);
+    grid.closest('.contrib-card')?.querySelectorAll('.contrib-stats, .contrib-scroll, .contrib-legend').forEach(el => { el.hidden = true; });
+    document.getElementById('contrib-fallback').hidden = false;
+  }
+}
+loadContributions();

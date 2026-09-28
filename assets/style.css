@@ -542,3 +542,97 @@ svg{ width: 20px; height: 20px; }
   font-size: 0.85rem;
   color: var(--text-faint);
 }
+
+/* ---------- demo links ---------- */
+.project-links a.demo-link{ color: var(--accent); }
+.project-links a.demo-link:hover{ color: var(--accent-2); }
+
+/* ---------- contribution graph ---------- */
+.contrib-stats{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.contrib-stats > div{
+  display:flex; flex-direction: column; gap: 2px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-alt);
+}
+.contrib-stats strong{
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 600;
+  background: var(--accent-grad);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.contrib-stats span{ font-size: 0.78rem; color: var(--text-faint); }
+.contrib-scroll{ overflow-x: auto; padding-bottom: 4px; }
+.contrib-grid svg{ display:block; width: 100%; min-width: 720px; max-width: none; height: auto; }
+.contrib-grid rect{ transition: transform .15s ease; transform-box: fill-box; transform-origin: center; }
+.contrib-grid rect:hover{ transform: scale(1.35); }
+.contrib-label{ font: 500 9px 'JetBrains Mono', monospace; fill: var(--text-faint); }
+.lv0{ fill: color-mix(in srgb, var(--text-faint) 16%, transparent); background: color-mix(in srgb, var(--text-faint) 16%, transparent); }
+.lv1{ fill: color-mix(in srgb, var(--accent) 35%, var(--bg-alt)); background: color-mix(in srgb, var(--accent) 35%, var(--bg-alt)); }
+.lv2{ fill: color-mix(in srgb, var(--accent) 65%, var(--bg-alt)); background: color-mix(in srgb, var(--accent) 65%, var(--bg-alt)); }
+.lv3{ fill: var(--accent); background: var(--accent); }
+.lv4{ fill: var(--accent-2); background: var(--accent-2); }
+.contrib-legend{
+  display:flex; align-items:center; justify-content:flex-end; gap: 4px;
+  margin-top: 12px;
+  font-size: 0.72rem; color: var(--text-faint);
+}
+.contrib-legend span{ margin: 0 4px; }
+.contrib-legend i{ width: 11px; height: 11px; border-radius: 2.5px; display:inline-block; }
+.contrib-stats[hidden], .contrib-scroll[hidden], .contrib-legend[hidden]{ display:none; }
+@media (max-width: 760px){
+  .contrib-stats{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contrib-stats strong{ font-size: 0.98rem; white-space: nowrap; }
+  .contrib-card{ padding: 20px; }
+}
+
+/* ---------- daily IT news ---------- */
+.news-card{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px 32px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.news-card::before{
+  content:""; position:absolute; inset: 0 0 auto 0; height: 3px;
+  background: var(--accent-grad);
+}
+.news-head{ display:flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+.news-date{ font: 600 1.05rem 'JetBrains Mono', monospace; color: var(--text); }
+.news-sub{ font-size: 0.82rem; color: var(--text-faint); }
+.news-list{ margin: 0; padding: 0; list-style: none; counter-reset: news; }
+.news-list li{
+  counter-increment: news;
+  position: relative;
+  padding: 14px 0 14px 42px;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+.news-list li:first-child{ border-top: 0; }
+.news-list li::before{
+  content: counter(news, decimal-leading-zero);
+  position:absolute; left: 0; top: 14px;
+  font: 600 0.82rem 'JetBrains Mono', monospace;
+  color: var(--accent);
+}
+.news-list strong{ color: var(--text); }
+.news-list code{ font-family: 'JetBrains Mono', monospace; font-size: .85em; padding: 1px 5px; border-radius: 5px; background: var(--bg-alt); }
+.news-list a{ color: var(--accent); }
+.news-actions{ display:flex; align-items:center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+.news-archive{ font-size: 0.88rem; font-weight: 600; color: var(--text-dim); }
+.news-archive:hover{ color: var(--accent); }
+@media (max-width: 760px){
+  .news-card{ padding: 24px 20px; }
+  .news-list li{ padding-left: 34px; }
+}
