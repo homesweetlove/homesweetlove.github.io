@@ -15,15 +15,15 @@
 <meta property="og:url" content="https://homesweetlove.github.io/tools.html">
 <meta property="og:title" content="업무 도구 | homesweetlove.dev">
 <meta property="og:description" content="HWP·HWPX 뷰어, 문서 작성, JSON 정리, 텍스트·시간 변환, 집중 타이머. 서버 전송 없이 브라우저에서 바로 쓰는 업무 도구.">
-<meta property="og:image" content="https://avatars.githubusercontent.com/u/232012965?v=6&amp;s=400">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=400">
 <meta property="og:image:width" content="400">
 <meta property="og:image:height" content="400">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/232012965?v=6&amp;s=400">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=400">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/tools.css?v=6">
+<link rel="stylesheet" href="assets/tools.css?v=7">
 <script type="importmap">{"imports":{"fs":"data:text/javascript,export default {}"}}</script>
 </head>
 <body>
@@ -33,6 +33,7 @@
     <nav aria-label="주요 메뉴">
       <a href="index.html">포트폴리오</a>
       <a class="nav-current" href="tools.html" aria-current="page">업무 도구</a>
+      <a href="hwp-editor.html">HWP 편집기</a>
       <button class="theme-button" id="theme-toggle" type="button" aria-label="테마 전환">☼</button>
     </nav>
   </div>
@@ -51,10 +52,11 @@
       <p class="nav-label">TOOLS</p>
       <button class="tool-tab is-active" data-tool="document" type="button"><span class="tool-index">01</span><span><strong>문서 스튜디오</strong><small>작성 · Word · PDF</small></span></button>
       <button class="tool-tab" data-tool="hwp" type="button"><span class="tool-index">02</span><span><strong>HWP 뷰어</strong><small>HWP · HWPX 열기 · 변환</small></span></button>
-      <button class="tool-tab" data-tool="json" type="button"><span class="tool-index">03</span><span><strong>JSON 정리</strong><small>검증 · 포맷 · 압축</small></span></button>
-      <button class="tool-tab" data-tool="text" type="button"><span class="tool-index">04</span><span><strong>텍스트 작업대</strong><small>공백 · 줄바꿈 · 글자 수</small></span></button>
-      <button class="tool-tab" data-tool="timestamp" type="button"><span class="tool-index">05</span><span><strong>시간 변환</strong><small>Unix timestamp · 날짜</small></span></button>
-      <button class="tool-tab" data-tool="focus" type="button"><span class="tool-index">06</span><span><strong>집중 타이머</strong><small>25분 집중 · 5분 휴식</small></span></button>
+      <a class="tool-tab tool-link" href="hwp-editor.html"><span class="tool-index">03</span><span><strong>HWP 편집기 ↗</strong><small>원본 그대로 고치고 저장</small></span></a>
+      <button class="tool-tab" data-tool="json" type="button"><span class="tool-index">04</span><span><strong>JSON 정리</strong><small>검증 · 포맷 · 압축</small></span></button>
+      <button class="tool-tab" data-tool="text" type="button"><span class="tool-index">05</span><span><strong>텍스트 작업대</strong><small>공백 · 줄바꿈 · 글자 수</small></span></button>
+      <button class="tool-tab" data-tool="timestamp" type="button"><span class="tool-index">06</span><span><strong>시간 변환</strong><small>Unix timestamp · 날짜</small></span></button>
+      <button class="tool-tab" data-tool="focus" type="button"><span class="tool-index">07</span><span><strong>집중 타이머</strong><small>25분 집중 · 5분 휴식</small></span></button>
     </aside>
 
     <div class="tool-panels">
@@ -87,7 +89,7 @@
           <div id="hwp-viewer" class="hwp-viewer" tabindex="0"><div id="hwp-pages" class="hwp-pages"></div></div>
           <div class="hwp-text-pane" id="hwp-text-pane" hidden><textarea id="hwp-text" class="text-input" readonly aria-label="추출한 문서 텍스트"></textarea></div>
           <div class="hwp-actions">
-            <div class="action-row"><button class="primary-button" id="hwp-print" type="button">PDF로 저장 · 인쇄</button><button class="secondary-button" id="hwp-to-studio" type="button">문서 스튜디오로 가져오기</button><button class="secondary-button" id="hwp-text-toggle" type="button" aria-pressed="false">텍스트 보기</button></div>
+            <div class="action-row"><button class="primary-button" id="hwp-edit" type="button">편집기에서 열기 ↗</button><button class="secondary-button" id="hwp-print" type="button">PDF로 저장 · 인쇄</button><button class="secondary-button" id="hwp-to-studio" type="button">문서 스튜디오로 가져오기</button><button class="secondary-button" id="hwp-text-toggle" type="button" aria-pressed="false">텍스트 보기</button></div>
             <div class="action-row"><button class="text-button" id="hwp-copy-text" type="button">텍스트 복사</button><button class="text-button" id="hwp-save-txt" type="button">TXT</button><button class="text-button" id="hwp-save-hwp" type="button">HWP로 저장</button><button class="text-button" id="hwp-save-hwpx" type="button">HWPX로 저장</button></div>
           </div>
         </div>
@@ -127,7 +129,7 @@
   </section>
 </main>
 <footer class="tools-footer"><span>homesweetlove.dev / work desk</span><span>입력 데이터는 저장되지 않습니다.</span></footer>
-<script src="assets/tools.js?v=6"></script>
-<script type="module" src="assets/hwp-viewer.js?v=6"></script>
+<script src="assets/tools.js?v=7"></script>
+<script type="module" src="assets/hwp-viewer.js?v=7"></script>
 </body>
 </html>

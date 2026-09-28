@@ -1,5 +1,6 @@
 // HWP / HWPX viewer powered by rhwp (https://github.com/edwardkim/rhwp, MIT).
 // Everything runs in the browser: the file never leaves this page.
+import { stashDocument } from './hwp-handoff.js';
 
 const RHWP_RANGE = '0.8';
 const CDN = `https://cdn.jsdelivr.net/npm/@rhwp/core@${RHWP_RANGE}`;
@@ -34,6 +35,7 @@ const els = {
   toStudio: $('hwp-to-studio'),
   saveHwp: $('hwp-save-hwp'),
   saveHwpx: $('hwp-save-hwpx'),
+  edit: $('hwp-edit'),
   print: $('hwp-print'),
   close: $('close-hwp'),
   message: $('hwp-message'),
@@ -55,6 +57,7 @@ const state = {
   text: null,
   current: 0,
   autoFit: true,
+  bytes: null,
   search: { query: '', hits: [], index: -1 },
 };
 
@@ -246,6 +249,7 @@ function freeDoc() {
   state.observer = null;
   safe(() => state.doc?.free());
   state.doc = null;
+  state.bytes = null;
   state.svgCache.clear();
   state.text = null;
   state.sizes = [];
@@ -288,6 +292,7 @@ async function open(file) {
     }
     state.doc = doc;
     state.name = file.name;
+    state.bytes = bytes;
     state.pageCount = doc.pageCount();
     state.sizes = Array.from({ length: state.pageCount }, (_, i) => pageSize(i));
 
@@ -438,6 +443,14 @@ els.toStudio.addEventListener('click', () => {
 els.saveHwp.addEventListener('click', () => exportAs('hwp'));
 els.saveHwpx.addEventListener('click', () => exportAs('hwpx'));
 els.print.addEventListener('click', printDocument);
+els.edit.addEventListener('click', () => {
+  if (!state.bytes) return;
+  // open the tab synchronously (inside the click) so popup blockers allow it
+  const tab = window.open('hwp-editor.html', '_blank');
+  stashDocument(state.name, state.bytes)
+    .then(() => say(tab ? '새 탭의 편집기에서 문서를 여는 중입니다.' : '팝업이 막혔어요. 주소창의 팝업 허용 후 다시 눌러주세요.', !tab))
+    .catch(() => say('편집기로 문서를 넘기지 못했습니다. 편집기에서 파일을 직접 열어주세요.', true));
+});
 els.close.addEventListener('click', closeViewer);
 
 // ---- in-document search ----

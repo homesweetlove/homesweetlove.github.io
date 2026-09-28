@@ -7,7 +7,7 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
   localStorage.setItem('theme', next);
 });
 
-const tabs = document.querySelectorAll('.tool-tab');
+const tabs = document.querySelectorAll('.tool-tab[data-tool]');
 const panels = document.querySelectorAll('.tool-panel');
 function openTool(name) {
   tabs.forEach(tab => tab.classList.toggle('is-active', tab.dataset.tool === name));
