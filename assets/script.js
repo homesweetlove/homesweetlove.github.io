@@ -265,7 +265,7 @@ async function loadGitHubData() {
     const badge = document.getElementById('live-badge');
     if (badge) badge.classList.add('is-live');
   } catch (err) {
-    console.warn('[my_dev.io] GitHub live data unavailable, showing static fallback.', err);
+    console.warn('[homesweetlove.dev] GitHub live data unavailable, showing static fallback.', err);
   }
 }
 loadGitHubData();
