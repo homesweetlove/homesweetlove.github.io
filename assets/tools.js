@@ -39,10 +39,6 @@ function copyText(value, messageElement) {
 const documentEditor = document.getElementById('document-editor');
 const documentTitle = document.getElementById('document-title');
 const documentMessage = document.getElementById('document-message');
-const hwpViewerShell = document.getElementById('hwp-viewer-shell');
-const hwpViewerContainer = document.getElementById('hwp-viewer');
-const hwpMessage = document.getElementById('hwp-message');
-let hwpViewerInstance = null;
 const saveState = document.getElementById('save-state');
 const documentStats = document.getElementById('document-stats');
 const documentStorageKey = 'my-dev-document';
@@ -91,49 +87,23 @@ document.getElementById('clear-document').addEventListener('click', () => {
   documentMessage.textContent = '새 문서를 만들었습니다.';
 });
 document.getElementById('load-document').addEventListener('click', () => document.getElementById('file-input').click());
-async function openHwpFile(file) {
-  documentMessage.textContent = 'HWP 뷰어를 준비하는 중입니다. 파일은 외부로 전송되지 않습니다.';
-  hwpMessage.textContent = 'HWP 뷰어를 준비하는 중입니다. 파일은 외부로 전송되지 않습니다.';
-  hwpMessage.classList.remove('error');
-  try {
-    const { Viewer } = await import('https://cdn.jsdelivr.net/npm/hwp.js@0.0.3/build/esm.js');
-    const bytes = new Uint8Array(await file.arrayBuffer());
-    let binary = '';
-    const chunkSize = 0x8000;
-    for (let index = 0; index < bytes.length; index += chunkSize) {
-      binary += String.fromCharCode(...bytes.subarray(index, index + chunkSize));
-    }
-    hwpViewerContainer.replaceChildren();
-    hwpViewerInstance?.distory();
-    hwpViewerInstance = new Viewer(hwpViewerContainer, binary, { type: 'binary' });
-    documentEditor.hidden = true;
-    hwpViewerShell.hidden = false;
-    document.getElementById('hwp-file-name').textContent = file.name;
-    documentMessage.textContent = 'HWP 문서를 브라우저에서 열었습니다. 읽기 전용 미리보기입니다.';
-    hwpMessage.textContent = 'HWP 문서를 브라우저에서 열었습니다. 읽기 전용 미리보기입니다.';
-    openTool('hwp');
-  } catch (error) {
-    documentMessage.textContent = '이 HWP 파일은 지원되지 않는 버전이거나 뷰어를 불러오지 못했습니다. HWP 5.0/5.1 파일을 사용해주세요.';
-    documentMessage.classList.add('error');
-    hwpMessage.textContent = '이 HWP 파일은 지원되지 않는 버전이거나 뷰어를 불러오지 못했습니다. HWP 5.0/5.1 파일을 사용해주세요.';
-    hwpMessage.classList.add('error');
-  }
-}
-document.getElementById('hwp-load').addEventListener('click', () => document.getElementById('file-input').click());
-document.getElementById('close-hwp').addEventListener('click', () => {
-  hwpViewerInstance?.distory();
-  hwpViewerInstance = null;
-  hwpViewerContainer.replaceChildren();
-  hwpViewerShell.hidden = true;
-  documentEditor.hidden = false;
-  documentMessage.textContent = '편집기로 돌아왔습니다.';
-  hwpMessage.textContent = 'HWP 파일을 선택하면 미리보기가 이곳에 표시됩니다.';
+// HWP / HWPX files are handled by assets/hwp-viewer.js (rhwp engine).
+window.addEventListener('hwp:to-studio', event => {
+  const { title, text } = event.detail;
+  const escape = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const paragraphs = text.split(/\n{2,}|\n/).map(line => line.trim()).filter(Boolean);
+  documentTitle.value = title;
+  documentEditor.innerHTML = `<h1>${escape(title)}</h1>` + paragraphs.map(line => `<p>${escape(line)}</p>`).join('');
+  saveDocument();
+  openTool('document');
+  documentMessage.textContent = 'HWP 문서의 텍스트를 가져왔습니다. 서식은 기본 스타일로 바뀝니다.';
+  documentMessage.classList.remove('error');
 });
 document.getElementById('file-input').addEventListener('change', event => {
   const file = event.target.files[0];
   if (!file) return;
-  if (file.name.toLowerCase().endsWith('.hwp')) {
-    openHwpFile(file);
+  if (/\.(hwpx?|hml)$/i.test(file.name)) {
+    window.hwpViewer?.open(file);
     event.target.value = '';
     return;
   }
