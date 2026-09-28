@@ -6,7 +6,7 @@
 
 "오타쿠가 세상을 지배한다!"
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-6c5ce7?style=for-the-badge&logo=googlechrome&logoColor=white)](https://homesweetlove.github.io/my_dev.io/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-6c5ce7?style=for-the-badge&logo=googlechrome&logoColor=white)](https://homesweetlove.github.io/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/homesweetlove)
 
 </div>
@@ -50,5 +50,5 @@
 ---
 
 <div align="center">
-<sub>이 프로필은 <a href="https://homesweetlove.github.io/my_dev.io/">my_dev.io</a> 포트폴리오와 함께 관리됩니다.</sub>
+<sub>이 프로필은 <a href="https://homesweetlove.github.io/">homesweetlove.github.io</a> 포트폴리오와 함께 관리됩니다.</sub>
 </div>

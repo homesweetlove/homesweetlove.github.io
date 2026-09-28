@@ -1,6 +1,8 @@
-# my_dev.io
+# homesweetlove.github.io
 
 개인 포트폴리오 / 홈페이지 (GitHub Pages)
+
+**사이트 주소: https://homesweetlove.github.io**
 
 ## 미리보기
 
@@ -8,9 +10,13 @@
 
 ## GitHub Pages 배포 방법
 
+이 저장소는 `<아이디>.github.io` 형식의 **사용자 사이트 저장소**라서 하위 경로 없이 루트 주소로 배포됩니다.
+
 1. 이 저장소의 **Settings → Pages**로 이동합니다.
-2. **Source**를 `main` 브랜치(혹은 사용 중인 기본 브랜치), 폴더는 `/ (root)`로 설정합니다.
-3. 저장하면 `https://homesweetlove.github.io/my_dev.io/` 주소로 사이트가 배포됩니다.
+2. **Source**를 `main` 브랜치, 폴더는 `/ (root)`로 설정합니다.
+3. `main`에 푸시하면 몇 분 안에 `https://homesweetlove.github.io`에 반영됩니다.
+
+> 예전 주소 `https://homesweetlove.github.io/my_dev.io/`는 저장소 이름 변경 후 더 이상 사용되지 않습니다.
 
 ## 최신 상태
 
@@ -49,14 +55,8 @@ GitHub API 요청이 실패하거나(오프라인, API rate limit 등) 느릴 �
 
 ## GitHub 프로필 README
 
-`PROFILE_README.md` 파일은 GitHub 프로필 페이지(예: `github.com/homesweetlove`)에 표시되는
-소개 카드용 템플릿입니다. 적용하려면:
-
-1. `homesweetlove/homesweetlove`라는 이름의 새 저장소를 만듭니다 (본인의 GitHub 아이디와 동일한 이름, public).
-2. `PROFILE_README.md`의 내용을 그 저장소의 `README.md`로 붙여넣습니다.
-3. 커밋하면 프로필 페이지 상단에 자동으로 표시됩니다.
-
-원하시면 이 저장소도 대신 만들어 드릴 수 있습니다.
+이 사이트가 메인 소개 페이지이며, 별도의 프로필 README 저장소(`homesweetlove/homesweetlove`)는 사용하지 않습니다.
+`PROFILE_README.md`는 필요할 때 프로필 README로 옮겨 쓸 수 있도록 남겨 둔 템플릿입니다.
 
 ## 디자인 / 인터랙션
 
