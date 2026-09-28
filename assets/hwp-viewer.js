@@ -37,6 +37,11 @@ const els = {
   print: $('hwp-print'),
   close: $('close-hwp'),
   message: $('hwp-message'),
+  searchBox: $('hwp-search-group'),
+  search: $('hwp-search'),
+  searchCount: $('hwp-search-count'),
+  searchPrev: $('hwp-search-prev'),
+  searchNext: $('hwp-search-next'),
 };
 
 const state = {
@@ -50,6 +55,7 @@ const state = {
   text: null,
   current: 0,
   autoFit: true,
+  search: { query: '', hits: [], index: -1 },
 };
 
 let enginePromise = null;
@@ -138,6 +144,7 @@ function paintPage(el) {
   try {
     el.innerHTML = renderSvg(index);
     el.dataset.rendered = '1';
+    drawHighlights(el);
   } catch (error) {
     el.innerHTML = `<span class="hwp-page-error">${index + 1}쪽을 그리지 못했습니다</span>`;
     el.dataset.rendered = '1';
@@ -244,6 +251,7 @@ function freeDoc() {
   state.sizes = [];
   state.pageCount = 0;
   state.current = 0;
+  resetSearch();
 }
 
 function closeViewer() {
@@ -291,6 +299,7 @@ async function open(file) {
     els.meta.textContent = bits.join(' · ');
     els.pageTotal.textContent = String(state.pageCount);
     els.pageInput.max = String(state.pageCount);
+    els.searchBox.hidden = typeof doc.searchAllText !== 'function' || typeof doc.getSelectionRects !== 'function';
     els.saveHwp.hidden = typeof doc.exportHwp !== 'function';
     els.saveHwpx.hidden = typeof doc.exportHwpx !== 'function';
     els.textPane.hidden = true;
@@ -430,6 +439,131 @@ els.saveHwp.addEventListener('click', () => exportAs('hwp'));
 els.saveHwpx.addEventListener('click', () => exportAs('hwpx'));
 els.print.addEventListener('click', printDocument);
 els.close.addEventListener('click', closeViewer);
+
+// ---- in-document search ----
+const MAX_HITS = 1000;
+
+function resetSearch() {
+  state.search = { query: '', hits: [], index: -1 };
+  if (els.search) els.search.value = '';
+  updateSearchUi();
+  els.pages?.querySelectorAll('.hwp-hl-layer').forEach(layer => layer.remove());
+}
+
+function hitRects(hit) {
+  const end = hit.charOffset + (hit.length || 1);
+  let raw = null;
+  const cell = hit.cellContext;
+  if (cell) {
+    raw = safe(() => state.doc.getSelectionRectsInCell(hit.sec ?? 0, cell.parentPara, cell.ctrlIdx, cell.cellIdx, cell.cellPara, hit.charOffset, cell.cellPara, end));
+  } else {
+    raw = safe(() => state.doc.getSelectionRects(hit.sec ?? 0, hit.para, hit.charOffset, hit.para, end));
+  }
+  const rects = parseJson(raw, []);
+  return Array.isArray(rects) ? rects.filter(r => Number.isFinite(r.pageIndex) && r.width > 0) : [];
+}
+
+function runSearch(query) {
+  const q = query.trim();
+  els.pages.querySelectorAll('.hwp-hl-layer').forEach(layer => layer.remove());
+  if (!q || !state.doc) {
+    state.search = { query: '', hits: [], index: -1 };
+    updateSearchUi();
+    return;
+  }
+  const raw = parseJson(safe(() => state.doc.searchAllText(q, false, true)), []);
+  const found = Array.isArray(raw) ? raw : [];
+  const hits = [];
+  for (const hit of found.slice(0, MAX_HITS)) {
+    const rects = hitRects(hit);
+    if (rects.length) hits.push({ page: rects[0].pageIndex, rects });
+  }
+  hits.sort((a, b) => a.page - b.page || a.rects[0].y - b.rects[0].y || a.rects[0].x - b.rects[0].x);
+  // start from the first hit at or after the page being read
+  const startAt = hits.findIndex(h => h.page >= state.current);
+  state.search = { query: q, hits, index: hits.length ? Math.max(0, startAt) : -1, truncated: found.length > MAX_HITS };
+  els.pages.querySelectorAll('.hwp-page[data-rendered]').forEach(drawHighlights);
+  updateSearchUi();
+  if (hits.length) focusHit(state.search.index);
+}
+
+function drawHighlights(pageEl) {
+  pageEl.querySelector('.hwp-hl-layer')?.remove();
+  const { hits, index } = state.search;
+  if (!hits.length) return;
+  const pageIndex = Number(pageEl.dataset.index);
+  const { width, height } = state.sizes[pageIndex];
+  const marks = [];
+  hits.forEach((hit, i) => {
+    hit.rects.forEach(r => {
+      if (r.pageIndex !== pageIndex) return;
+      const style = `left:${(r.x / width) * 100}%;top:${(r.y / height) * 100}%;width:${(r.width / width) * 100}%;height:${(r.height / height) * 100}%`;
+      marks.push(`<span class="hwp-hl${i === index ? ' is-current' : ''}" data-hit="${i}" style="${style}"></span>`);
+    });
+  });
+  if (!marks.length) return;
+  const layer = document.createElement('div');
+  layer.className = 'hwp-hl-layer';
+  layer.innerHTML = marks.join('');
+  pageEl.appendChild(layer);
+}
+
+function focusHit(i) {
+  const { hits } = state.search;
+  if (!hits.length) return;
+  const index = (i + hits.length) % hits.length;
+  state.search.index = index;
+  els.pages.querySelectorAll('.hwp-hl.is-current').forEach(m => m.classList.remove('is-current'));
+  els.pages.querySelectorAll(`.hwp-hl[data-hit="${index}"]`).forEach(m => m.classList.add('is-current'));
+  const hit = hits[index];
+  const pageEl = els.pages.children[hit.page];
+  if (pageEl) {
+    const rect = hit.rects[0];
+    const y = pageEl.offsetTop + (rect.y / state.sizes[hit.page].height) * pageEl.offsetHeight;
+    const x = pageEl.offsetLeft + (rect.x / state.sizes[hit.page].width) * pageEl.offsetWidth;
+    els.scroller.scrollTo({ top: Math.max(0, y - els.scroller.clientHeight / 3), left: Math.max(0, x - els.scroller.clientWidth / 2), behavior: 'smooth' });
+    setCurrent(hit.page);
+  }
+  updateSearchUi();
+}
+
+function updateSearchUi() {
+  if (!els.searchCount) return;
+  const { query, hits, index, truncated } = state.search;
+  const has = hits.length > 0;
+  els.searchCount.textContent = !query ? '' : has ? `${index + 1}/${hits.length}${truncated ? '+' : ''}` : '없음';
+  els.searchCount.classList.toggle('is-empty', Boolean(query) && !has);
+  els.searchPrev.disabled = !has;
+  els.searchNext.disabled = !has;
+}
+
+let searchTimer = null;
+els.search.addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => runSearch(els.search.value), 250);
+});
+els.search.addEventListener('keydown', event => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    clearTimeout(searchTimer);
+    if (els.search.value.trim() !== state.search.query) runSearch(els.search.value);
+    else focusHit(state.search.index + (event.shiftKey ? -1 : 1));
+  } else if (event.key === 'Escape') {
+    resetSearch();
+    els.scroller.focus();
+  }
+});
+els.searchPrev.addEventListener('click', () => focusHit(state.search.index - 1));
+els.searchNext.addEventListener('click', () => focusHit(state.search.index + 1));
+
+// Ctrl/Cmd+F searches inside the open HWP document instead of the raw page.
+document.addEventListener('keydown', event => {
+  if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'f') return;
+  if (!state.doc || els.shell.hidden || !els.panel.classList.contains('is-active') || els.searchBox.hidden) return;
+  event.preventDefault();
+  els.search.focus();
+  els.search.select();
+});
 
 let lastWidth = 0;
 new ResizeObserver(() => {
