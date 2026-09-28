@@ -87,23 +87,16 @@ document.getElementById('clear-document').addEventListener('click', () => {
   documentMessage.textContent = '새 문서를 만들었습니다.';
 });
 document.getElementById('load-document').addEventListener('click', () => document.getElementById('file-input').click());
-// HWP / HWPX files are handled by assets/hwp-viewer.js (rhwp engine).
-window.addEventListener('hwp:to-studio', event => {
-  const { title, text } = event.detail;
-  const escape = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  const paragraphs = text.split(/\n{2,}|\n/).map(line => line.trim()).filter(Boolean);
-  documentTitle.value = title;
-  documentEditor.innerHTML = `<h1>${escape(title)}</h1>` + paragraphs.map(line => `<p>${escape(line)}</p>`).join('');
-  saveDocument();
-  openTool('document');
-  documentMessage.textContent = 'HWP 문서의 텍스트를 가져왔습니다. 서식은 기본 스타일로 바뀝니다.';
-  documentMessage.classList.remove('error');
-});
 document.getElementById('file-input').addEventListener('change', event => {
   const file = event.target.files[0];
   if (!file) return;
   if (/\.(hwpx?|hml)$/i.test(file.name)) {
-    window.hwpViewer?.open(file);
+    // HWP files open in the HWP editor page (keeps the original layout).
+    const tab = window.open('hwp-editor.html', '_blank');
+    file.arrayBuffer()
+      .then(buffer => import(new URL('assets/hwp-handoff.js', location.href).href).then(m => m.stashDocument(file.name, new Uint8Array(buffer))))
+      .then(() => { documentMessage.textContent = tab ? 'HWP 문서는 새 탭의 HWP 편집기에서 열립니다.' : '팝업이 막혔어요. 팝업을 허용한 뒤 다시 시도해주세요.'; })
+      .catch(() => { documentMessage.textContent = 'HWP 편집기로 문서를 넘기지 못했습니다. 편집기에서 직접 열어주세요.'; });
     event.target.value = '';
     return;
   }

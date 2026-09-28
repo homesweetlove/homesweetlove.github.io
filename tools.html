@@ -7,14 +7,14 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="HWP·HWPX 뷰어, 문서 작성, JSON 정리, 텍스트·시간 변환, 집중 타이머. 서버 전송 없이 브라우저에서 바로 쓰는 업무 도구.">
+<meta name="description" content="문서 작성, JSON 정리, 텍스트·시간 변환, 집중 타이머. 서버 전송 없이 브라우저에서 바로 쓰는 업무 도구.">
 <link rel="canonical" href="https://homesweetlove.github.io/tools.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="homesweetlove.dev">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://homesweetlove.github.io/tools.html">
 <meta property="og:title" content="업무 도구 | homesweetlove.dev">
-<meta property="og:description" content="HWP·HWPX 뷰어, 문서 작성, JSON 정리, 텍스트·시간 변환, 집중 타이머. 서버 전송 없이 브라우저에서 바로 쓰는 업무 도구.">
+<meta property="og:description" content="문서 작성, JSON 정리, 텍스트·시간 변환, 집중 타이머. 서버 전송 없이 브라우저에서 바로 쓰는 업무 도구.">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=400">
 <meta property="og:image:width" content="400">
 <meta property="og:image:height" content="400">
@@ -51,11 +51,10 @@
     <aside class="tool-nav" aria-label="도구 선택">
       <p class="nav-label">TOOLS</p>
       <button class="tool-tab is-active" data-tool="document" type="button"><span class="tool-index">01</span><span><strong>문서 스튜디오</strong><small>작성 · Word · PDF</small></span></button>
-      <button class="tool-tab" data-tool="hwp" type="button"><span class="tool-index">02</span><span><strong>HWP 뷰어</strong><small>HWP · HWPX 열기 · 변환</small></span></button>
-      <button class="tool-tab" data-tool="json" type="button"><span class="tool-index">03</span><span><strong>JSON 정리</strong><small>검증 · 포맷 · 압축</small></span></button>
-      <button class="tool-tab" data-tool="text" type="button"><span class="tool-index">04</span><span><strong>텍스트 작업대</strong><small>공백 · 줄바꿈 · 글자 수</small></span></button>
-      <button class="tool-tab" data-tool="timestamp" type="button"><span class="tool-index">05</span><span><strong>시간 변환</strong><small>Unix timestamp · 날짜</small></span></button>
-      <button class="tool-tab" data-tool="focus" type="button"><span class="tool-index">06</span><span><strong>집중 타이머</strong><small>25분 집중 · 5분 휴식</small></span></button>
+      <button class="tool-tab" data-tool="json" type="button"><span class="tool-index">02</span><span><strong>JSON 정리</strong><small>검증 · 포맷 · 압축</small></span></button>
+      <button class="tool-tab" data-tool="text" type="button"><span class="tool-index">03</span><span><strong>텍스트 작업대</strong><small>공백 · 줄바꿈 · 글자 수</small></span></button>
+      <button class="tool-tab" data-tool="timestamp" type="button"><span class="tool-index">04</span><span><strong>시간 변환</strong><small>Unix timestamp · 날짜</small></span></button>
+      <button class="tool-tab" data-tool="focus" type="button"><span class="tool-index">05</span><span><strong>집중 타이머</strong><small>25분 집중 · 5분 휴식</small></span></button>
     </aside>
 
     <div class="tool-panels">
@@ -68,32 +67,8 @@
         </div>
         <div class="document-meta"><input id="document-title" value="주간 업무 보고서" aria-label="문서 제목"><span id="document-stats">0자 · 0단어</span></div>
         <article class="document-paper" id="document-editor" contenteditable="true" spellcheck="true"><h1>주간 업무 보고서</h1><p><strong>작성일:</strong> 2026년 9월 22일</p><h2>이번 주 요약</h2><p>이번 주에 진행한 업무와 다음 액션을 정리해보세요.</p><ul><li>완료한 업무를 기록합니다.</li><li>다음 주 우선순위를 정합니다.</li></ul><h2>메모</h2><p>이 문서는 브라우저 안에만 저장됩니다.</p></article>
-        <div class="document-actions"><div class="action-row"><button class="primary-button" id="download-doc" type="button">한글·Word 호환 저장</button><button class="secondary-button" id="print-pdf" type="button">PDF로 저장</button><button class="secondary-button" id="download-html" type="button">HTML 저장</button><button class="text-button" id="download-md" type="button">Markdown</button><button class="text-button" id="download-txt" type="button">TXT</button></div><div class="document-tools"><button class="mini-button" id="load-document" type="button">문서/HWP 열기</button><button class="mini-button" id="clear-document" type="button">새 문서</button><input id="file-input" type="file" accept=".hwp,.hwpx,.html,.htm,.txt,.md,.markdown" hidden></div></div>
+        <div class="document-actions"><div class="action-row"><button class="primary-button" id="download-doc" type="button">한글·Word 호환 저장</button><button class="secondary-button" id="print-pdf" type="button">PDF로 저장</button><button class="secondary-button" id="download-html" type="button">HTML 저장</button><button class="text-button" id="download-md" type="button">Markdown</button><button class="text-button" id="download-txt" type="button">TXT</button></div><div class="document-tools"><button class="mini-button" id="load-document" type="button">문서 열기</button><button class="mini-button" id="clear-document" type="button">새 문서</button><input id="file-input" type="file" accept=".hwp,.hwpx,.html,.htm,.txt,.md,.markdown" hidden></div></div>
         <p class="tool-message" id="document-message" role="status">입력 내용은 이 브라우저에 자동 저장됩니다.</p>
-      </section>
-
-      <section class="tool-panel" id="tool-hwp" data-panel="hwp">
-        <div class="panel-heading"><div><p class="panel-kicker">HWP VIEWER</p><h2>HWP 뷰어</h2><p>한글 문서를 서버에 올리지 않고 이 브라우저에서 원본 레이아웃 그대로 봅니다. 텍스트 추출, HWP·HWPX 변환, PDF 저장까지 됩니다.</p></div><span class="shortcut">HWP · HWPX</span></div>
-        <div class="hwp-dropzone" id="hwp-dropzone"><div class="hwp-drop-icon">한</div><strong>HWP·HWPX 파일을 선택하거나 끌어다 놓으세요</strong><p>파일은 외부로 전송되지 않습니다. 표 · 이미지 · 수식 · 다단 · 머리말/꼬리말까지 렌더링합니다.</p><button class="primary-button" id="hwp-load" type="button">파일 선택</button><input id="hwp-file-input" type="file" accept=".hwp,.hwpx,.hml" hidden></div>
-        <div class="hwp-viewer-shell" id="hwp-viewer-shell" hidden>
-          <div class="hwp-viewer-heading">
-            <div class="hwp-title"><strong id="hwp-file-name">HWP 미리보기</strong><span id="hwp-meta"></span></div>
-            <div class="hwp-controls" role="toolbar" aria-label="보기 도구">
-              <div class="hwp-group"><button class="mini-button" id="hwp-prev" type="button" title="이전 쪽" aria-label="이전 쪽">‹</button><label class="hwp-page-field"><input id="hwp-page-input" type="number" min="1" value="1" aria-label="쪽 번호"><span>/ <span id="hwp-page-total">1</span></span></label><button class="mini-button" id="hwp-next" type="button" title="다음 쪽" aria-label="다음 쪽">›</button></div>
-              <div class="hwp-group hwp-search" id="hwp-search-group"><input id="hwp-search" type="search" placeholder="문서에서 찾기" aria-label="문서에서 찾기" autocomplete="off"><span class="hwp-search-count" id="hwp-search-count" aria-live="polite"></span><button class="mini-button" id="hwp-search-prev" type="button" title="이전 결과 (Shift+Enter)" aria-label="이전 결과" disabled>↑</button><button class="mini-button" id="hwp-search-next" type="button" title="다음 결과 (Enter)" aria-label="다음 결과" disabled>↓</button></div>
-              <div class="hwp-group"><button class="mini-button" id="hwp-zoom-out" type="button" title="축소" aria-label="축소">−</button><span class="hwp-zoom" id="hwp-zoom-label">100%</span><button class="mini-button" id="hwp-zoom-in" type="button" title="확대" aria-label="확대">+</button><button class="mini-button" id="hwp-fit" type="button" title="폭 맞춤">폭 맞춤</button></div>
-              <button class="mini-button" id="close-hwp" type="button">닫기</button>
-            </div>
-          </div>
-          <div id="hwp-viewer" class="hwp-viewer" tabindex="0"><div id="hwp-pages" class="hwp-pages"></div></div>
-          <div class="hwp-text-pane" id="hwp-text-pane" hidden><textarea id="hwp-text" class="text-input" readonly aria-label="추출한 문서 텍스트"></textarea></div>
-          <div class="hwp-actions">
-            <div class="action-row"><button class="primary-button" id="hwp-edit" type="button">편집기에서 열기 ↗</button><button class="secondary-button" id="hwp-print" type="button">PDF로 저장 · 인쇄</button><button class="secondary-button" id="hwp-to-studio" type="button">문서 스튜디오로 가져오기</button><button class="secondary-button" id="hwp-text-toggle" type="button" aria-pressed="false">텍스트 보기</button></div>
-            <div class="action-row"><button class="text-button" id="hwp-copy-text" type="button">텍스트 복사</button><button class="text-button" id="hwp-save-txt" type="button">TXT</button><button class="text-button" id="hwp-save-hwp" type="button">HWP로 저장</button><button class="text-button" id="hwp-save-hwpx" type="button">HWPX로 저장</button></div>
-          </div>
-        </div>
-        <p class="tool-message" id="hwp-message" role="status">HWP·HWPX 파일을 선택하거나 이곳에 끌어다 놓으세요.</p>
-        <p class="hwp-credit">렌더링 엔진: <a href="https://github.com/edwardkim/rhwp" target="_blank" rel="noopener">rhwp</a> (MIT) · 처음 열 때 엔진을 한 번 내려받습니다.</p>
       </section>
 
       <section class="tool-panel" id="tool-json" data-panel="json">
@@ -128,7 +103,6 @@
   </section>
 </main>
 <footer class="tools-footer"><span>homesweetlove.dev / work desk</span><span>입력 데이터는 저장되지 않습니다.</span></footer>
-<script src="assets/tools.js?v=7"></script>
-<script type="module" src="assets/hwp-viewer.js?v=7"></script>
+<script src="assets/tools.js?v=8"></script>
 </body>
 </html>
