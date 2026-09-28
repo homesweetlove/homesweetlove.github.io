@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/tools.css?v=7">
+<link rel="stylesheet" href="assets/tools.css?v=8">
 <script type="importmap">{"imports":{"fs":"data:text/javascript,export default {}"}}</script>
 </head>
 <body>
@@ -55,6 +55,7 @@
       <button class="tool-tab" data-tool="text" type="button"><span class="tool-index">03</span><span><strong>텍스트 작업대</strong><small>공백 · 줄바꿈 · 글자 수</small></span></button>
       <button class="tool-tab" data-tool="timestamp" type="button"><span class="tool-index">04</span><span><strong>시간 변환</strong><small>Unix timestamp · 날짜</small></span></button>
       <button class="tool-tab" data-tool="focus" type="button"><span class="tool-index">05</span><span><strong>집중 타이머</strong><small>25분 집중 · 5분 휴식</small></span></button>
+      <button class="tool-tab" data-tool="payday" type="button"><span class="tool-index">06</span><span><strong>퇴근 · 급여 카운터</strong><small>실시간 급여 · 퇴근까지 남은 시간</small></span></button>
     </aside>
 
     <div class="tool-panels">
@@ -99,10 +100,41 @@
         <div class="panel-heading"><div><p class="panel-kicker">FOCUS MODE</p><h2>집중 타이머</h2><p>지금 할 일 하나만 정하고, 짧게 몰입하세요.</p></div><span class="shortcut">Pomodoro</span></div>
         <div class="timer-wrap"><p class="timer-label" id="timer-label">집중할 시간</p><div class="timer-display" id="timer-display">25:00</div><div class="timer-progress"><span id="timer-progress"></span></div><div class="timer-actions"><button class="primary-button" id="timer-start" type="button">시작</button><button class="secondary-button" id="timer-reset" type="button">초기화</button></div><div class="timer-presets"><button class="preset is-active" data-minutes="25" type="button">25분 집중</button><button class="preset" data-minutes="5" type="button">5분 휴식</button><button class="preset" data-minutes="15" type="button">15분 휴식</button></div></div>
       </section>
+      <section class="tool-panel" id="tool-payday" data-panel="payday">
+        <div class="panel-heading"><div><p class="panel-kicker">PAYDAY COUNTER</p><h2>퇴근 · 급여 카운터</h2><p>오늘 번 돈이 실시간으로 올라가요. 퇴근까지 몇 초 남았는지도요.</p></div><span class="shortcut" id="pay-status">계산 중…</span></div>
+        <div class="payday-hero">
+          <p class="payday-caption">오늘 번 돈 <small>(세전)</small></p>
+          <div class="payday-earned" id="pay-earned">₩0.00</div>
+          <div class="payday-remain"><span id="pay-remain-label">퇴근까지</span> <strong id="pay-remain">--:--:--</strong></div>
+          <div class="timer-progress payday-progress"><span id="pay-bar"></span></div>
+          <div class="payday-progress-label"><span>출근</span><span id="pay-bar-label">0%</span><span>퇴근</span></div>
+        </div>
+        <div class="payday-stats">
+          <div><span>시급 환산</span><strong id="pay-hourly">₩0</strong></div>
+          <div><span>1분마다</span><strong id="pay-minute">₩0</strong></div>
+          <div><span>1초마다</span><strong id="pay-second">₩0</strong></div>
+          <div><span>오늘 하루치</span><strong id="pay-day-total">₩0</strong></div>
+        </div>
+        <details class="payday-settings" open>
+          <summary>내 근무 설정</summary>
+          <div class="payday-grid">
+            <div class="field-group"><label for="pay-type">급여 기준</label><select id="pay-type"><option value="monthly">월급</option><option value="yearly">연봉</option><option value="hourly">시급</option></select></div>
+            <div class="field-group"><label for="pay-amount" id="pay-amount-hint">월급 (원, 세전)</label><input id="pay-amount" type="number" min="0" step="10000" inputmode="numeric"></div>
+            <div class="field-group"><label for="pay-start">출근</label><input id="pay-start" type="time"></div>
+            <div class="field-group"><label for="pay-end">퇴근</label><input id="pay-end" type="time"></div>
+            <div class="field-group"><label for="pay-lunch-start">점심 시작</label><input id="pay-lunch-start" type="time"></div>
+            <div class="field-group"><label for="pay-lunch">점심 시간</label><select id="pay-lunch"><option value="0">없음</option><option value="30">30분</option><option value="60">1시간</option><option value="90">1시간 30분</option></select></div>
+          </div>
+          <div class="payday-days" id="pay-days" aria-label="근무 요일"><label><input type="checkbox" value="1"><span>월</span></label><label><input type="checkbox" value="2"><span>화</span></label><label><input type="checkbox" value="3"><span>수</span></label><label><input type="checkbox" value="4"><span>목</span></label><label><input type="checkbox" value="5"><span>금</span></label><label><input type="checkbox" value="6"><span>토</span></label><label><input type="checkbox" value="0"><span>일</span></label></div>
+          <div class="action-row payday-actions"><button class="secondary-button" id="pay-celebrate" type="button">🎉 미리 퇴근 기분 내기</button><button class="text-button" id="pay-reset" type="button">기본값으로</button></div>
+          <p class="payday-note">월급·연봉은 월 209시간(주 40시간 + 주휴) 기준으로 시급을 환산해요. 설정은 이 브라우저에만 저장돼요.</p>
+        </details>
+      </section>
     </div>
   </section>
 </main>
 <footer class="tools-footer"><span>homesweetlove.dev / work desk</span><span>입력 데이터는 저장되지 않습니다.</span></footer>
 <script src="assets/tools.js?v=8"></script>
+<script src="assets/payday.js?v=1"></script>
 </body>
 </html>

@@ -28,3 +28,23 @@
 .hwp-hl-layer{position:absolute;inset:0;pointer-events:none}.hwp-hl{position:absolute;background:rgba(255,214,0,.42);mix-blend-mode:multiply;border-radius:2px}.hwp-hl.is-current{background:rgba(255,138,0,.6);box-shadow:0 0 0 2px rgba(255,120,0,.9)}
 @media (max-width:720px){.hwp-search{order:-1;flex:1 1 100%}.hwp-search input{flex:1;width:auto}}
 .tool-link{text-decoration:none}.tool-link strong{color:var(--ink)}
+.payday-hero{text-align:center;padding:26px 20px 22px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 50% 0%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 62%),var(--surface-solid)}
+.payday-caption{margin:0;color:var(--muted);font-size:.85rem}.payday-caption small{font-size:.75rem}
+.payday-earned{margin:6px 0 10px;font:600 clamp(2.4rem,7vw,4.4rem)/1.05 'IBM Plex Mono',monospace;letter-spacing:-.05em;background:linear-gradient(110deg,var(--accent),var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.payday-remain{color:var(--muted);font-size:.92rem}.payday-remain strong{color:var(--ink);font:600 1.3rem 'IBM Plex Mono',monospace;margin-left:4px;font-variant-numeric:tabular-nums}
+.payday-progress{margin:16px auto 6px;max-width:520px;height:9px}.payday-progress span{transition:width .1s linear}
+.payday-progress-label{display:flex;justify-content:space-between;max-width:520px;margin:0 auto;color:var(--muted);font:500 .7rem 'IBM Plex Mono',monospace}
+.payday-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0 20px}
+.payday-stats div{padding:13px 14px;border:1px solid var(--line);border-radius:15px;background:var(--surface-solid)}
+.payday-stats span{display:block;color:var(--muted);font-size:.72rem}.payday-stats strong{display:block;margin-top:2px;font:600 .98rem 'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.payday-settings{border:1px solid var(--line);border-radius:18px;padding:4px 16px 16px;background:var(--surface-solid)}
+.payday-settings summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:.9rem}
+.payday-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.payday-grid select{width:100%;border:1px solid var(--line);border-radius:13px;background:var(--surface-solid);color:var(--ink);padding:11px 12px;outline:none}
+.payday-days{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}.payday-days label{cursor:pointer}.payday-days input{position:absolute;opacity:0;pointer-events:none}
+.payday-days span{display:grid;place-items:center;width:38px;height:34px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:.82rem;transition:all .15s ease}
+.payday-days input:checked+span{background:color-mix(in srgb,var(--accent) 15%,transparent);border-color:var(--accent);color:var(--accent-strong);font-weight:600}
+.payday-days input:focus-visible+span{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.payday-actions{margin-top:12px}.payday-note{margin:10px 0 0;color:var(--muted);font-size:.74rem}
+.payday-confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+@media (max-width:720px){.payday-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.payday-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
