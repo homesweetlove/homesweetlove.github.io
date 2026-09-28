@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>i_so_free (@homesweetlove)</title>
-<meta name="description" content="이것저것 만들고 실험하는 개발자 i_so_free(@homesweetlove)의 포트폴리오. 프로젝트, 매일 IT 뉴스, 브라우저 업무 도구.">
+<meta name="description" content="이것저것 만들고 실험하는 개발자 i_so_free(@homesweetlove)의 포트폴리오. 프로젝트, 매일 IT 뉴스, 브라우저 업무 도구." data-en-content="Portfolio of i_so_free (@homesweetlove), a developer who likes building and experimenting. Projects, a daily IT briefing and in-browser work tools.">
 <link rel="canonical" href="https://homesweetlove.github.io/">
 <meta name="theme-color" content="#0b0c14">
 <meta property="og:type" content="website">
@@ -12,14 +12,14 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://homesweetlove.github.io/">
 <meta property="og:title" content="i_so_free (@homesweetlove)">
-<meta property="og:description" content="이것저것 만들고 실험하는 개발자 i_so_free(@homesweetlove)의 포트폴리오. 프로젝트, 매일 IT 뉴스, 브라우저 업무 도구.">
+<meta property="og:description" content="이것저것 만들고 실험하는 개발자 i_so_free(@homesweetlove)의 포트폴리오. 프로젝트, 매일 IT 뉴스, 브라우저 업무 도구." data-en-content="Portfolio of i_so_free (@homesweetlove), a developer who likes building and experimenting. Projects, a daily IT briefing and in-browser work tools.">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=400">
 <meta property="og:image:width" content="400">
 <meta property="og:image:height" content="400">
-<meta property="og:image:alt" content="homesweetlove GitHub 프로필 사진">
+<meta property="og:image:alt" content="homesweetlove GitHub 프로필 사진" data-en-content="homesweetlove GitHub profile picture">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="i_so_free (@homesweetlove)">
-<meta name="twitter:description" content="이것저것 만들고 실험하는 개발자 i_so_free(@homesweetlove)의 포트폴리오. 프로젝트, 매일 IT 뉴스, 브라우저 업무 도구.">
+<meta name="twitter:description" content="이것저것 만들고 실험하는 개발자 i_so_free(@homesweetlove)의 포트폴리오. 프로젝트, 매일 IT 뉴스, 브라우저 업무 도구." data-en-content="Portfolio of i_so_free (@homesweetlove), a developer who likes building and experimenting. Projects, a daily IT briefing and in-browser work tools.">
 <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=400">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -27,7 +27,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=9">
+<link rel="stylesheet" href="assets/style.css?v=10">
+<script src="assets/i18n.js?v=1"></script>
 <script>try{if(localStorage.getItem('skin')==='mac')document.documentElement.dataset.skin='mac'}catch(e){}</script>
 </head>
 <body>
@@ -36,23 +37,24 @@
   <div class="nav-inner">
     <a href="#home" class="nav-logo">homesweetlove<span class="dot">.</span>dev</a>
     <ul class="nav-links">
-      <li><a href="tools.html">업무 도구</a></li>
-      <li><a href="hwp-editor.html">HWP 편집기</a></li>
+      <li><a href="tools.html" data-en="Work tools">업무 도구</a></li>
+      <li><a href="hwp-editor.html" data-en="HWP editor">HWP 편집기</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <button id="theme-toggle" class="icon-btn" aria-label="테마 전환">
+      <button class="icon-btn lang-toggle" type="button">EN</button>
+      <button id="theme-toggle" class="icon-btn" aria-label="테마 전환" data-en-aria-label="Toggle theme">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
-      <button id="nav-toggle" class="icon-btn nav-burger" aria-label="메뉴">
+      <button id="nav-toggle" class="icon-btn nav-burger" aria-label="메뉴" data-en-aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
   </div>
   <ul class="nav-links-mobile" id="nav-links-mobile">
-    <li><a href="tools.html">업무 도구</a></li>
-      <li><a href="hwp-editor.html">HWP 편집기</a></li>
+    <li><a href="tools.html" data-en="Work tools">업무 도구</a></li>
+      <li><a href="hwp-editor.html" data-en="HWP editor">HWP 편집기</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -64,20 +66,20 @@
     <div class="hero-glow"></div>
     <div class="section-inner hero-inner">
       <img class="hero-avatar" src="https://avatars.githubusercontent.com/u/232012965?v=4" alt="homesweetlove avatar">
-      <p class="eyebrow">👋 안녕하세요, 저는</p>
+      <p class="eyebrow" data-en="👋 Hi, I'm">👋 안녕하세요, 저는</p>
       <h1 class="hero-title">i_so_free<span class="accent">.</span></h1>
       <a class="hero-handle" href="https://github.com/homesweetlove" target="_blank" rel="noopener">@homesweetlove</a>
       <h2 class="hero-role">
         <span class="type-target" id="type-target"></span><span class="cursor">|</span>
       </h2>
-      <p class="hero-desc">
+      <p class="hero-desc" data-en="I love building and experimenting with all sorts of things on GitHub.&lt;br&gt;I&#x27;d rather let the code do the talking.">
         GitHub에 이것저것 만들고 실험하는 걸 좋아합니다.<br>
         코드로 이야기하는 편이 더 편해요.
       </p>
       <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
-        <a href="tools.html" class="btn btn-ghost">업무 도구 열기</a>
-        <a href="https://github.com/homesweetlove" target="_blank" rel="noopener" class="btn btn-ghost">GitHub 방문하기</a>
+        <a href="#projects" class="btn btn-primary" data-en="See projects">프로젝트 보기</a>
+        <a href="tools.html" class="btn btn-ghost" data-en="Open work tools">업무 도구 열기</a>
+        <a href="https://github.com/homesweetlove" target="_blank" rel="noopener" class="btn btn-ghost" data-en="Visit GitHub">GitHub 방문하기</a>
       </div>
       <div class="hero-social">
         <a href="https://github.com/homesweetlove" target="_blank" rel="noopener" aria-label="GitHub">
@@ -85,7 +87,7 @@
         </a>
       </div>
     </div>
-    <a href="#about" class="scroll-cue" aria-label="아래로 스크롤">
+    <a href="#about" class="scroll-cue" aria-label="아래로 스크롤" data-en-aria-label="Scroll down">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </a>
   </section>
@@ -94,18 +96,18 @@
   <section id="about" class="section">
     <div class="section-inner">
       <p class="section-tag">01 · About</p>
-      <h2 class="section-title">GitHub로 저를 소개합니다</h2>
+      <h2 class="section-title" data-en="Let GitHub introduce me">GitHub로 저를 소개합니다</h2>
       <div class="about-grid">
         <div class="about-text">
-          <blockquote class="bio-quote">“오타쿠가 세상을 지배한다!”</blockquote>
-          <p>
+          <blockquote class="bio-quote" data-en="“Otaku will rule the world!”">“오타쿠가 세상을 지배한다!”</blockquote>
+          <p data-en="I&#x27;m &lt;a href=&quot;https://github.com/homesweetlove&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;@homesweetlove&lt;/a&gt;. Always looking for a faster way home, I build all kinds of things, mostly in TypeScript and Python.">
             <a href="https://github.com/homesweetlove" target="_blank" rel="noopener">@homesweetlove</a>
             입니다. 집에 빨리 가는 방법을 고민하며, TypeScript와 Python을 중심으로 이것저것 만들어보고 있어요.
           </p>
           <ul class="about-facts">
             <li><span>🐙</span> GitHub: <a href="https://github.com/homesweetlove" target="_blank" rel="noopener">github.com/homesweetlove</a></li>
-            <li><span>📅</span> GitHub 가입: 2025년 9월</li>
-            <li><span>💻</span> 주 사용 언어: TypeScript, Python, HTML, Java</li>
+            <li data-en="&lt;span&gt;📅&lt;/span&gt; Joined GitHub: September 2025"><span>📅</span> GitHub 가입: 2025년 9월</li>
+            <li data-en="&lt;span&gt;💻&lt;/span&gt; Main languages: TypeScript, Python, HTML, Java"><span>💻</span> 주 사용 언어: TypeScript, Python, HTML, Java</li>
           </ul>
         </div>
         <div class="about-stats">
@@ -123,7 +125,7 @@
           </div>
           <div class="stat-card">
             <span class="stat-num" data-count="100">0</span>
-            <span class="stat-label">오덕력 지수 📈</span>
+            <span class="stat-label" data-en="Otaku Power 📈">오덕력 지수 📈</span>
           </div>
         </div>
       </div>
@@ -134,10 +136,10 @@
   <section id="projects" class="section section-alt">
     <div class="section-inner">
       <p class="section-tag">02 · Projects <span class="live-badge" id="live-badge"><span class="live-dot"></span>Live from GitHub</span></p>
-      <h2 class="section-title">GitHub 저장소</h2>
+      <h2 class="section-title" data-en="GitHub repositories">GitHub 저장소</h2>
 
       <div class="project-filters" id="project-filters">
-        <button class="filter-pill is-active" data-lang="all">✨ 추천</button>
+        <button class="filter-pill is-active" data-lang="all" data-en="✨ Picks">✨ 추천</button>
       </div>
 
       <div class="project-grid" id="project-grid">
@@ -147,7 +149,7 @@
           <div class="project-thumb" style="--c1:#f7df1e;--c2:#ffa66c;">⚡</div>
           <div class="project-body">
             <h3>antigravity-korean-langpack</h3>
-            <p>Antigravity IDE 한국어 언어팩 · UI 번역 패처</p>
+            <p data-en="Korean language pack &amp; UI translation patcher for Antigravity IDE">Antigravity IDE 한국어 언어팩 · UI 번역 패처</p>
             <div class="tags"><span>JavaScript</span></div>
             <div class="project-links">
               <a href="https://github.com/homesweetlove/antigravity-korean-langpack" target="_blank" rel="noopener">GitHub ↗</a>
@@ -159,7 +161,7 @@
           <div class="project-thumb" style="--c1:#3776ab;--c2:#ffd43b;">🐍</div>
           <div class="project-body">
             <h3>ClaudeCodexUsageWidget</h3>
-            <p>Claude Code / Codex 사용량을 보여주는 데스크톱 위젯</p>
+            <p data-en="Desktop widget showing Claude Code / Codex usage">Claude Code / Codex 사용량을 보여주는 데스크톱 위젯</p>
             <div class="tags"><span>Python</span></div>
             <div class="project-links">
               <a href="https://github.com/homesweetlove/ClaudeCodexUsageWidget" target="_blank" rel="noopener">GitHub ↗</a>
@@ -171,7 +173,7 @@
           <div class="project-thumb" style="--c1:#3178c6;--c2:#00d4ff;">🧩</div>
           <div class="project-body">
             <h3>open_web_mail</h3>
-            <p>Neo Kinpaku 스타일 웹메일 UI 프로토타입</p>
+            <p data-en="Webmail UI prototype in a Neo Kinpaku style">Neo Kinpaku 스타일 웹메일 UI 프로토타입</p>
             <div class="tags"><span>TypeScript</span></div>
             <div class="project-links">
               <a href="https://github.com/homesweetlove/open_web_mail" target="_blank" rel="noopener">GitHub ↗</a>
@@ -183,7 +185,7 @@
           <div class="project-thumb" style="--c1:#3178c6;--c2:#00d4ff;">🧩</div>
           <div class="project-body">
             <h3>payroll-manager</h3>
-            <p>조교·강사 근태 기반 급여 자동 계산 · 명세서 출력</p>
+            <p data-en="Payroll calculator from attendance logs, with pay slips">조교·강사 근태 기반 급여 자동 계산 · 명세서 출력</p>
             <div class="tags"><span>TypeScript</span></div>
             <div class="project-links">
               <a href="https://github.com/homesweetlove/payroll-manager" target="_blank" rel="noopener">GitHub ↗</a>
@@ -195,7 +197,7 @@
           <div class="project-thumb" style="--c1:#3776ab;--c2:#ffd43b;">🐍</div>
           <div class="project-body">
             <h3>paper-assistant</h3>
-            <p>오프라인 한국어 논문·보고서 문장 점검 도구</p>
+            <p data-en="Offline writing checker for Korean papers and reports">오프라인 한국어 논문·보고서 문장 점검 도구</p>
             <div class="tags"><span>Python</span></div>
             <div class="project-links">
               <a href="https://github.com/homesweetlove/paper-assistant" target="_blank" rel="noopener">GitHub ↗</a>
@@ -207,7 +209,7 @@
           <div class="project-thumb" style="--c1:#3178c6;--c2:#00d4ff;">🧩</div>
           <div class="project-body">
             <h3>wading</h3>
-            <p>테마별로 다른 경험을 주는 디지털 청첩장</p>
+            <p data-en="Digital wedding invitation with a different experience per theme">테마별로 다른 경험을 주는 디지털 청첩장</p>
             <div class="tags"><span>TypeScript</span></div>
             <div class="project-links">
               <a class="demo-link" href="https://wading.vercel.app" target="_blank" rel="noopener">Demo ↗</a>
@@ -217,7 +219,7 @@
         </article>
 
       </div>
-      <p class="projects-more" id="projects-more">
+      <p class="projects-more" id="projects-more" data-en="See more repositories on my &lt;a href=&quot;https://github.com/homesweetlove?tab=repositories&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub profile&lt;/a&gt;.">
         더 많은 저장소는 <a href="https://github.com/homesweetlove?tab=repositories" target="_blank" rel="noopener">GitHub 프로필</a>에서 확인하세요.
       </p>
     </div>
@@ -227,11 +229,11 @@
   <section id="skills" class="section">
     <div class="section-inner">
       <p class="section-tag">03 · Skills</p>
-      <h2 class="section-title">기술 스택</h2>
+      <h2 class="section-title" data-en="Tech stack">기술 스택</h2>
       <div class="skills-grid">
 
         <div class="skill-group">
-          <h3>Languages <span class="skill-live-note">(저장소 기반 자동 집계)</span></h3>
+          <h3>Languages <span class="skill-live-note" data-en="(auto-counted from repos)">(저장소 기반 자동 집계)</span></h3>
           <div class="skill-pills" id="lang-pills">
             <span>TypeScript</span><span>Python</span><span>JavaScript</span><span>Java</span><span>C</span><span>HTML</span>
           </div>
@@ -273,19 +275,19 @@
   <section id="contributions" class="section">
     <div class="section-inner">
       <p class="section-tag">04 · Contributions</p>
-      <h2 class="section-title">잔디밭</h2>
+      <h2 class="section-title" data-en="Contribution garden">잔디밭</h2>
       <div class="contrib-card">
         <div class="contrib-stats">
-          <div><strong id="contrib-total">—</strong><span>지난 1년 기여</span></div>
-          <div><strong id="contrib-current">—</strong><span>현재 연속</span></div>
-          <div><strong id="contrib-longest">—</strong><span>최장 연속</span></div>
-          <div><strong id="contrib-best">—</strong><span>가장 바빴던 날</span></div>
+          <div><strong id="contrib-total">—</strong><span data-en="Contributions, last year">지난 1년 기여</span></div>
+          <div><strong id="contrib-current">—</strong><span data-en="Current streak">현재 연속</span></div>
+          <div><strong id="contrib-longest">—</strong><span data-en="Longest streak">최장 연속</span></div>
+          <div><strong id="contrib-best">—</strong><span data-en="Busiest day">가장 바빴던 날</span></div>
         </div>
         <div class="contrib-scroll" id="contrib-scroll">
-          <div class="contrib-grid" id="contrib-grid" role="img" aria-label="지난 1년간 GitHub 기여 그래프"></div>
+          <div class="contrib-grid" id="contrib-grid" role="img" aria-label="지난 1년간 GitHub 기여 그래프" data-en-aria-label="GitHub contributions over the last year"></div>
         </div>
-        <div class="contrib-legend" aria-hidden="true"><span>적음</span><i class="lv0"></i><i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i><span>많음</span></div>
-        <p class="contrib-fallback" id="contrib-fallback" hidden>
+        <div class="contrib-legend" aria-hidden="true"><span data-en="Less">적음</span><i class="lv0"></i><i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i><span data-en="More">많음</span></div>
+        <p class="contrib-fallback" id="contrib-fallback" hidden data-en="Couldn&#x27;t load contribution data. Check my &lt;a href=&quot;https://github.com/homesweetlove&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub profile&lt;/a&gt;.">
           잔디 데이터를 불러오지 못했어요. <a href="https://github.com/homesweetlove" target="_blank" rel="noopener">GitHub 프로필</a>에서 확인해보세요.
         </p>
       </div>
@@ -295,12 +297,12 @@
   <!-- DAILY IT NEWS -->
   <section id="news" class="section section-alt">
     <div class="section-inner">
-      <p class="section-tag">05 · News <span class="live-badge" id="news-badge"><span class="live-dot"></span>매일 아침 자동 업데이트</span></p>
-      <h2 class="section-title">오늘의 IT·보안 뉴스</h2>
+      <p class="section-tag">05 · News <span class="live-badge" id="news-badge"><span class="live-dot"></span><span data-en="Auto-updated every morning">매일 아침 자동 업데이트</span></span></p>
+      <h2 class="section-title" data-en="Today's IT &amp; security news">오늘의 IT·보안 뉴스</h2>
       <article class="news-card" id="news-card">
         <header class="news-head">
           <span class="news-date" id="news-date">2026.09.27</span>
-          <span class="news-sub">한눈에 보는 핵심 요약</span>
+          <span class="news-sub" data-en="Key points at a glance · written in Korean">한눈에 보는 핵심 요약</span>
         </header>
         <ul class="news-list" id="news-list">
           <li>미국과 중국이 AI의 위험·편익을 논의하고 AI 관련 사고에 대응할 상시 연락 채널을 만들기로 합의했습니다.</li>
@@ -309,8 +311,8 @@
           <li>악성 코드가 남아 있던 GitHub Actions 저장소 두 곳이 다시 활성화되면서, 가변 태그를 사용한 워크플로가 기존 악성 페이로드를 다시 실행하는 공급망 사고가 발생했습니다.</li>
         </ul>
         <footer class="news-actions">
-          <a class="btn btn-primary" id="news-link" href="https://github.com/homesweetlove/Daily_IT_News/blob/main/news/2026-09-27.md" target="_blank" rel="noopener">전체 브리핑 읽기 ↗</a>
-          <a class="news-archive" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news" target="_blank" rel="noopener">지난 뉴스 아카이브 →</a>
+          <a class="btn btn-primary" id="news-link" href="https://github.com/homesweetlove/Daily_IT_News/blob/main/news/2026-09-27.md" target="_blank" rel="noopener" data-en="Read the full briefing ↗">전체 브리핑 읽기 ↗</a>
+          <a class="news-archive" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news" target="_blank" rel="noopener" data-en="News archive →">지난 뉴스 아카이브 →</a>
         </footer>
       </article>
     </div>
@@ -320,21 +322,21 @@
   <section id="activity" class="section">
     <div class="section-inner">
       <p class="section-tag">06 · Activity</p>
-      <h2 class="section-title">최근 업데이트</h2>
+      <h2 class="section-title" data-en="Recent updates">최근 업데이트</h2>
       <div class="blog-list" id="activity-list">
         <a href="https://github.com/homesweetlove/antigravity-korean-langpack" class="blog-item" target="_blank" rel="noopener">
           <span class="blog-date">2026.09.28</span>
-          <span class="blog-title">antigravity-korean-langpack 저장소 업데이트</span>
+          <span class="blog-title" data-en="Updated antigravity-korean-langpack">antigravity-korean-langpack 저장소 업데이트</span>
           <span class="blog-arrow">→</span>
         </a>
         <a href="https://github.com/homesweetlove/Daily_IT_News" class="blog-item" target="_blank" rel="noopener">
           <span class="blog-date">2026.09.27</span>
-          <span class="blog-title">Daily_IT_News 저장소 업데이트</span>
+          <span class="blog-title" data-en="Updated Daily_IT_News">Daily_IT_News 저장소 업데이트</span>
           <span class="blog-arrow">→</span>
         </a>
         <a href="https://github.com/homesweetlove/happyday" class="blog-item" target="_blank" rel="noopener">
           <span class="blog-date">2026.09.21</span>
-          <span class="blog-title">happyday 저장소 업데이트</span>
+          <span class="blog-title" data-en="Updated happyday">happyday 저장소 업데이트</span>
           <span class="blog-arrow">→</span>
         </a>
 
@@ -346,8 +348,8 @@
   <section id="contact" class="section section-alt contact">
     <div class="section-inner">
       <p class="section-tag">07 · Contact</p>
-      <h2 class="section-title">GitHub에서 만나요</h2>
-      <p class="contact-desc">
+      <h2 class="section-title" data-en="Let's meet on GitHub">GitHub에서 만나요</h2>
+      <p class="contact-desc" data-en="GitHub is the surest way to reach me.&lt;br&gt;Code, issues, PRs — all welcome.">
         가장 확실한 연락 방법은 GitHub입니다.<br>
         코드, 이슈, PR — 어디서든 환영합니다.
       </p>
@@ -360,11 +362,12 @@
 <footer class="footer">
   <div class="section-inner footer-inner">
     <span>© <span id="year"></span> homesweetlove. All rights reserved.</span>
-    <button class="footer-term" type="button" data-open-terminal title="터미널 열기">&gt;_ <kbd>`</kbd></button>
+    <button class="footer-term" type="button" data-open-terminal title="터미널 열기" data-en-title="Open terminal">&gt;_ <kbd>`</kbd></button>
   </div>
 </footer>
 
-<script src="assets/script.js?v=8"></script>
-<script src="assets/terminal.js?v=2"></script>
+<script>i18n.apply()</script>
+<script src="assets/script.js?v=9"></script>
+<script src="assets/terminal.js?v=4"></script>
 </body>
 </html>

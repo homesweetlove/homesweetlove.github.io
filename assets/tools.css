@@ -48,3 +48,4 @@
 .payday-actions{margin-top:12px}.payday-note{margin:10px 0 0;color:var(--muted);font-size:.74rem}
 .payday-confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
 @media (max-width:720px){.payday-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.payday-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.lang-toggle{font:700 .72rem 'IBM Plex Mono',monospace;letter-spacing:.02em}

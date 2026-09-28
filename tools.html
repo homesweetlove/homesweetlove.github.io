@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>문서 스튜디오 | homesweetlove.dev</title>
+<title data-en="Work tools | homesweetlove.dev">문서 스튜디오 | homesweetlove.dev</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="문서 작성, JSON 정리, 텍스트·시간 변환, 집중 타이머. 서버 전송 없이 브라우저에서 바로 쓰는 업무 도구.">
+<meta name="description" content="문서 작성, JSON 정리, 텍스트·시간 변환, 집중 타이머. 서버 전송 없이 브라우저에서 바로 쓰는 업무 도구." data-en-content="Document writing, JSON tidy, text &amp; time conversion, focus timer, payday counter. Work tools that run right in your browser, no uploads.">
 <link rel="canonical" href="https://homesweetlove.github.io/tools.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="homesweetlove.dev">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://homesweetlove.github.io/tools.html">
-<meta property="og:title" content="업무 도구 | homesweetlove.dev">
-<meta property="og:description" content="문서 작성, JSON 정리, 텍스트·시간 변환, 집중 타이머. 서버 전송 없이 브라우저에서 바로 쓰는 업무 도구.">
+<meta property="og:title" content="업무 도구 | homesweetlove.dev" data-en-content="Work tools | homesweetlove.dev">
+<meta property="og:description" content="문서 작성, JSON 정리, 텍스트·시간 변환, 집중 타이머. 서버 전송 없이 브라우저에서 바로 쓰는 업무 도구." data-en-content="Document writing, JSON tidy, text &amp; time conversion, focus timer, payday counter. Work tools that run right in your browser, no uploads.">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=400">
 <meta property="og:image:width" content="400">
 <meta property="og:image:height" content="400">
@@ -23,18 +23,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/tools.css?v=8">
+<link rel="stylesheet" href="assets/tools.css?v=10">
+<script src="assets/i18n.js?v=1"></script>
 <script type="importmap">{"imports":{"fs":"data:text/javascript,export default {}"}}</script>
 </head>
 <body>
 <header class="tools-header">
   <div class="header-inner">
     <a class="brand" href="index.html">homesweetlove<span>.dev</span></a>
-    <nav aria-label="주요 메뉴">
-      <a href="index.html">포트폴리오</a>
-      <a class="nav-current" href="tools.html" aria-current="page">업무 도구</a>
-      <a href="hwp-editor.html">HWP 편집기</a>
-      <button class="theme-button" id="theme-toggle" type="button" aria-label="테마 전환">☼</button>
+    <nav aria-label="주요 메뉴" data-en-aria-label="Main menu">
+      <a href="index.html" data-en="Portfolio">포트폴리오</a>
+      <a class="nav-current" href="tools.html" aria-current="page" data-en="Work tools">업무 도구</a>
+      <a href="hwp-editor.html" data-en="HWP editor">HWP 편집기</a>
+      <button class="theme-button lang-toggle" type="button">EN</button>
+      <button class="theme-button" id="theme-toggle" type="button" aria-label="테마 전환" data-en-aria-label="Toggle theme">☼</button>
     </nav>
   </div>
 </header>
@@ -42,99 +44,103 @@
 <main class="tools-main">
   <section class="tools-hero">
     <p class="kicker">WORK DESK / 01</p>
-    <h1>일하다 막히는 순간,<br><em>바로 꺼내 쓰는 도구.</em></h1>
-    <p class="hero-copy">복사하고 붙여넣고, 결과를 바로 가져가세요.<br>입력한 데이터는 이 브라우저 안에서만 처리됩니다.</p>
-    <div class="trust-row"><span class="status-dot"></span> 서버 전송 없음 <span class="divider">·</span> GitHub Pages 전용 <span class="divider">·</span> 무료</div>
+    <h1 data-en="When you get stuck at work,&lt;br&gt;&lt;em&gt;grab a tool and go.&lt;/em&gt;">일하다 막히는 순간,<br><em>바로 꺼내 쓰는 도구.</em></h1>
+    <p class="hero-copy" data-en="Copy, paste and take the result with you.&lt;br&gt;Everything you enter is processed only in this browser.">복사하고 붙여넣고, 결과를 바로 가져가세요.<br>입력한 데이터는 이 브라우저 안에서만 처리됩니다.</p>
+    <div class="trust-row" data-en="&lt;span class=&quot;status-dot&quot;&gt;&lt;/span&gt; No uploads &lt;span class=&quot;divider&quot;&gt;·&lt;/span&gt; Runs on GitHub Pages &lt;span class=&quot;divider&quot;&gt;·&lt;/span&gt; Free"><span class="status-dot"></span> 서버 전송 없음 <span class="divider">·</span> GitHub Pages 전용 <span class="divider">·</span> 무료</div>
   </section>
 
-  <section class="tool-layout" aria-label="업무 도구">
-    <aside class="tool-nav" aria-label="도구 선택">
+  <section class="tool-layout" aria-label="업무 도구" data-en-aria-label="Work tools">
+    <aside class="tool-nav" aria-label="도구 선택" data-en-aria-label="Choose a tool">
       <p class="nav-label">TOOLS</p>
-      <button class="tool-tab is-active" data-tool="document" type="button"><span class="tool-index">01</span><span><strong>문서 스튜디오</strong><small>작성 · Word · PDF</small></span></button>
-      <button class="tool-tab" data-tool="json" type="button"><span class="tool-index">02</span><span><strong>JSON 정리</strong><small>검증 · 포맷 · 압축</small></span></button>
-      <button class="tool-tab" data-tool="text" type="button"><span class="tool-index">03</span><span><strong>텍스트 작업대</strong><small>공백 · 줄바꿈 · 글자 수</small></span></button>
-      <button class="tool-tab" data-tool="timestamp" type="button"><span class="tool-index">04</span><span><strong>시간 변환</strong><small>Unix timestamp · 날짜</small></span></button>
-      <button class="tool-tab" data-tool="focus" type="button"><span class="tool-index">05</span><span><strong>집중 타이머</strong><small>25분 집중 · 5분 휴식</small></span></button>
-      <button class="tool-tab" data-tool="payday" type="button"><span class="tool-index">06</span><span><strong>퇴근 · 급여 카운터</strong><small>실시간 급여 · 퇴근까지 남은 시간</small></span></button>
+      <button class="tool-tab is-active" data-tool="document" type="button"><span class="tool-index">01</span><span><strong data-en="Document studio">문서 스튜디오</strong><small data-en="Write · Word · PDF">작성 · Word · PDF</small></span></button>
+      <button class="tool-tab" data-tool="json" type="button"><span class="tool-index">02</span><span><strong data-en="JSON tidy">JSON 정리</strong><small data-en="Validate · format · minify">검증 · 포맷 · 압축</small></span></button>
+      <button class="tool-tab" data-tool="text" type="button"><span class="tool-index">03</span><span><strong data-en="Text bench">텍스트 작업대</strong><small data-en="Spaces · line breaks · counts">공백 · 줄바꿈 · 글자 수</small></span></button>
+      <button class="tool-tab" data-tool="timestamp" type="button"><span class="tool-index">04</span><span><strong data-en="Time converter">시간 변환</strong><small data-en="Unix timestamp · date">Unix timestamp · 날짜</small></span></button>
+      <button class="tool-tab" data-tool="focus" type="button"><span class="tool-index">05</span><span><strong data-en="Focus timer">집중 타이머</strong><small data-en="25 min focus · 5 min break">25분 집중 · 5분 휴식</small></span></button>
+      <button class="tool-tab" data-tool="payday" type="button"><span class="tool-index">06</span><span><strong data-en="Payday counter">퇴근 · 급여 카운터</strong><small data-en="Live pay · time until you clock out">실시간 급여 · 퇴근까지 남은 시간</small></span></button>
     </aside>
 
     <div class="tool-panels">
       <section class="tool-panel is-active" id="tool-document" data-panel="document">
-        <div class="panel-heading"><div><p class="panel-kicker">DOCUMENT STUDIO</p><h2>문서 스튜디오</h2><p>회의록, 기획서, 보고서를 작성하고 PDF와 Word 호환 파일로 내보내세요.</p></div><span class="shortcut" id="save-state">자동 저장 준비</span></div>
-        <div class="document-toolbar" role="toolbar" aria-label="문서 서식 도구">
-          <button class="format-button" data-command="bold" type="button" title="굵게"><strong>B</strong></button><button class="format-button" data-command="italic" type="button" title="기울임"><em>I</em></button><button class="format-button" data-command="underline" type="button" title="밑줄"><u>U</u></button>
-          <span class="toolbar-separator"></span><select id="block-format" aria-label="문단 스타일"><option value="p">본문</option><option value="h1">제목 1</option><option value="h2">제목 2</option><option value="h3">제목 3</option><option value="blockquote">인용</option></select><select id="font-size" aria-label="글자 크기"><option value="3">보통</option><option value="4">큼</option><option value="5">더 크게</option></select>
-          <span class="toolbar-separator"></span><button class="format-button" data-command="justifyLeft" type="button" title="왼쪽 정렬">≡</button><button class="format-button" data-command="justifyCenter" type="button" title="가운데 정렬">≡</button><button class="format-button" data-command="insertUnorderedList" type="button" title="목록">☷</button><button class="format-button" data-command="insertHorizontalRule" type="button" title="구분선">―</button>
+        <div class="panel-heading"><div><p class="panel-kicker">DOCUMENT STUDIO</p><h2 data-en="Document studio">문서 스튜디오</h2><p data-en="Write meeting notes, plans and reports, then export to PDF or Word-compatible files.">회의록, 기획서, 보고서를 작성하고 PDF와 Word 호환 파일로 내보내세요.</p></div><span class="shortcut" id="save-state" data-en="Autosave ready">자동 저장 준비</span></div>
+        <div class="document-toolbar" role="toolbar" aria-label="문서 서식 도구" data-en-aria-label="Formatting tools">
+          <button class="format-button" data-command="bold" type="button" title="굵게" data-en-title="Bold"><strong>B</strong></button><button class="format-button" data-command="italic" type="button" title="기울임" data-en-title="Italic"><em>I</em></button><button class="format-button" data-command="underline" type="button" title="밑줄" data-en-title="Underline"><u>U</u></button>
+          <span class="toolbar-separator"></span><select id="block-format" aria-label="문단 스타일" data-en-aria-label="Paragraph style"><option value="p" data-en="Body">본문</option><option value="h1" data-en="Heading 1">제목 1</option><option value="h2" data-en="Heading 2">제목 2</option><option value="h3" data-en="Heading 3">제목 3</option><option value="blockquote" data-en="Quote">인용</option></select><select id="font-size" aria-label="글자 크기" data-en-aria-label="Font size"><option value="3" data-en="Normal">보통</option><option value="4" data-en="Large">큼</option><option value="5" data-en="Larger">더 크게</option></select>
+          <span class="toolbar-separator"></span><button class="format-button" data-command="justifyLeft" type="button" title="왼쪽 정렬" data-en-title="Align left">≡</button><button class="format-button" data-command="justifyCenter" type="button" title="가운데 정렬" data-en-title="Center">≡</button><button class="format-button" data-command="insertUnorderedList" type="button" title="목록" data-en-title="List">☷</button><button class="format-button" data-command="insertHorizontalRule" type="button" title="구분선" data-en-title="Divider">―</button>
         </div>
-        <div class="document-meta"><input id="document-title" value="주간 업무 보고서" aria-label="문서 제목"><span id="document-stats">0자 · 0단어</span></div>
-        <article class="document-paper" id="document-editor" contenteditable="true" spellcheck="true"><h1>주간 업무 보고서</h1><p><strong>작성일:</strong> 2026년 9월 22일</p><h2>이번 주 요약</h2><p>이번 주에 진행한 업무와 다음 액션을 정리해보세요.</p><ul><li>완료한 업무를 기록합니다.</li><li>다음 주 우선순위를 정합니다.</li></ul><h2>메모</h2><p>이 문서는 브라우저 안에만 저장됩니다.</p></article>
-        <div class="document-actions"><div class="action-row"><button class="primary-button" id="download-doc" type="button">한글·Word 호환 저장</button><button class="secondary-button" id="print-pdf" type="button">PDF로 저장</button><button class="secondary-button" id="download-html" type="button">HTML 저장</button><button class="text-button" id="download-md" type="button">Markdown</button><button class="text-button" id="download-txt" type="button">TXT</button></div><div class="document-tools"><button class="mini-button" id="load-document" type="button">문서 열기</button><button class="mini-button" id="clear-document" type="button">새 문서</button><input id="file-input" type="file" accept=".hwp,.hwpx,.html,.htm,.txt,.md,.markdown" hidden></div></div>
-        <p class="tool-message" id="document-message" role="status">입력 내용은 이 브라우저에 자동 저장됩니다.</p>
+        <div class="document-meta"><input id="document-title" value="주간 업무 보고서" data-en-value="Weekly status report" aria-label="문서 제목" data-en-aria-label="Document title"><span id="document-stats" data-en="0 chars · 0 words">0자 · 0단어</span></div>
+        <article class="document-paper" id="document-editor" contenteditable="true" spellcheck="true" data-en="&lt;h1&gt;Weekly status report&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Date:&lt;/strong&gt; September 22, 2026&lt;/p&gt;&lt;h2&gt;This week&lt;/h2&gt;&lt;p&gt;Sum up what you worked on this week and what comes next.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Log the work you finished.&lt;/li&gt;&lt;li&gt;Set priorities for next week.&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Notes&lt;/h2&gt;&lt;p&gt;This document is stored only in your browser.&lt;/p&gt;"><h1>주간 업무 보고서</h1><p><strong>작성일:</strong> 2026년 9월 22일</p><h2>이번 주 요약</h2><p>이번 주에 진행한 업무와 다음 액션을 정리해보세요.</p><ul><li>완료한 업무를 기록합니다.</li><li>다음 주 우선순위를 정합니다.</li></ul><h2>메모</h2><p>이 문서는 브라우저 안에만 저장됩니다.</p></article>
+        <div class="document-actions"><div class="action-row"><button class="primary-button" id="download-doc" type="button" data-en="Save for Hangul/Word">한글·Word 호환 저장</button><button class="secondary-button" id="print-pdf" type="button" data-en="Save as PDF">PDF로 저장</button><button class="secondary-button" id="download-html" type="button" data-en="Save HTML">HTML 저장</button><button class="text-button" id="download-md" type="button">Markdown</button><button class="text-button" id="download-txt" type="button">TXT</button></div><div class="document-tools"><button class="mini-button" id="load-document" type="button" data-en="Open file">문서 열기</button><button class="mini-button" id="clear-document" type="button" data-en="New document">새 문서</button><input id="file-input" type="file" accept=".hwp,.hwpx,.html,.htm,.txt,.md,.markdown" hidden></div></div>
+        <p class="tool-message" id="document-message" role="status" data-en="What you type is saved automatically in this browser.">입력 내용은 이 브라우저에 자동 저장됩니다.</p>
       </section>
 
       <section class="tool-panel" id="tool-json" data-panel="json">
-        <div class="panel-heading"><div><p class="panel-kicker">JSON WORKBENCH</p><h2>JSON 정리</h2><p>API 응답이나 설정 파일을 읽기 좋게 정리하고, 문법 오류를 빠르게 찾습니다.</p></div><span class="shortcut">Ctrl + Enter</span></div>
+        <div class="panel-heading"><div><p class="panel-kicker">JSON WORKBENCH</p><h2 data-en="JSON tidy">JSON 정리</h2><p data-en="Pretty-print API responses or config files and spot syntax errors fast.">API 응답이나 설정 파일을 읽기 좋게 정리하고, 문법 오류를 빠르게 찾습니다.</p></div><span class="shortcut">Ctrl + Enter</span></div>
         <textarea id="json-input" class="code-input" spellcheck="false" placeholder='{"name":"homesweetlove.dev","ready":true}'>{"name":"homesweetlove.dev","tools":["json","text","time"],"ready":true}</textarea>
-        <div class="action-row"><button class="primary-button" id="json-format" type="button">읽기 좋게 정리</button><button class="secondary-button" id="json-minify" type="button">한 줄로 압축</button><button class="text-button" id="json-copy" type="button">결과 복사</button></div>
+        <div class="action-row"><button class="primary-button" id="json-format" type="button" data-en="Format">읽기 좋게 정리</button><button class="secondary-button" id="json-minify" type="button" data-en="Minify">한 줄로 압축</button><button class="text-button" id="json-copy" type="button" data-en="Copy result">결과 복사</button></div>
         <p class="tool-message" id="json-message" role="status"></p>
         <pre class="code-output" id="json-output" aria-live="polite"></pre>
       </section>
 
       <section class="tool-panel" id="tool-text" data-panel="text">
-        <div class="panel-heading"><div><p class="panel-kicker">TEXT WORKBENCH</p><h2>텍스트 작업대</h2><p>회의록, 메일, 로그에서 불필요한 공백과 빈 줄을 정리합니다.</p></div><span class="shortcut">로컬 처리</span></div>
-          <textarea id="text-input" class="text-input" placeholder="텍스트를 붙여넣으세요.">안녕하세요.    회의 일정 공유드립니다.
+        <div class="panel-heading"><div><p class="panel-kicker">TEXT WORKBENCH</p><h2 data-en="Text bench">텍스트 작업대</h2><p data-en="Clean up stray spaces and blank lines in notes, emails and logs.">회의록, 메일, 로그에서 불필요한 공백과 빈 줄을 정리합니다.</p></div><span class="shortcut" data-en="Runs locally">로컬 처리</span></div>
+          <textarea id="text-input" class="text-input" placeholder="텍스트를 붙여넣으세요." data-en-placeholder="Paste your text here." data-en="Hello.    Sharing the meeting schedule.
+
+
+        - Please check the schedule.  ">안녕하세요.    회의 일정 공유드립니다.
 
         - 일정 확인 부탁드립니다.  </textarea>
-        <div class="text-stats"><span><strong id="char-count">0</strong> 글자</span><span><strong id="word-count">0</strong> 단어</span><span><strong id="line-count">0</strong> 줄</span></div>
-        <div class="action-row"><button class="primary-button" id="text-clean" type="button">공백 정리</button><button class="secondary-button" id="text-lines" type="button">빈 줄 제거</button><button class="text-button" id="text-copy" type="button">결과 복사</button></div>
+        <div class="text-stats"><span><strong id="char-count">0</strong> <span data-en="chars">글자</span></span><span><strong id="word-count">0</strong> <span data-en="words">단어</span></span><span><strong id="line-count">0</strong> <span data-en="lines">줄</span></span></div>
+        <div class="action-row"><button class="primary-button" id="text-clean" type="button" data-en="Tidy spaces">공백 정리</button><button class="secondary-button" id="text-lines" type="button" data-en="Remove blank lines">빈 줄 제거</button><button class="text-button" id="text-copy" type="button" data-en="Copy result">결과 복사</button></div>
         <p class="tool-message" id="text-message" role="status"></p>
       </section>
 
       <section class="tool-panel" id="tool-timestamp" data-panel="timestamp">
-        <div class="panel-heading"><div><p class="panel-kicker">TIME CONVERTER</p><h2>시간 변환</h2><p>로그의 Unix timestamp를 날짜로, 회의 시간을 Unix timestamp로 바꿉니다.</p></div><span class="shortcut">KST 기준</span></div>
-        <div class="converter-grid"><div class="field-group"><label for="timestamp-input">Unix timestamp</label><input id="timestamp-input" inputmode="numeric" placeholder="예: 1780051200"><button class="secondary-button full-button" id="timestamp-to-date" type="button">날짜로 변환</button></div><div class="field-group"><label for="date-input">날짜와 시간</label><input id="date-input" type="datetime-local"><button class="primary-button full-button" id="date-to-timestamp" type="button">timestamp로 변환</button></div></div>
-        <div class="conversion-result" id="timestamp-result" role="status">변환 결과가 여기에 표시됩니다.</div>
+        <div class="panel-heading"><div><p class="panel-kicker">TIME CONVERTER</p><h2 data-en="Time converter">시간 변환</h2><p data-en="Turn Unix timestamps from logs into dates, and meeting times into timestamps.">로그의 Unix timestamp를 날짜로, 회의 시간을 Unix timestamp로 바꿉니다.</p></div><span class="shortcut" data-en="KST (UTC+9)">KST 기준</span></div>
+        <div class="converter-grid"><div class="field-group"><label for="timestamp-input">Unix timestamp</label><input id="timestamp-input" inputmode="numeric" placeholder="예: 1780051200" data-en-placeholder="e.g. 1780051200"><button class="secondary-button full-button" id="timestamp-to-date" type="button" data-en="To date">날짜로 변환</button></div><div class="field-group"><label for="date-input" data-en="Date and time">날짜와 시간</label><input id="date-input" type="datetime-local"><button class="primary-button full-button" id="date-to-timestamp" type="button" data-en="To timestamp">timestamp로 변환</button></div></div>
+        <div class="conversion-result" id="timestamp-result" role="status" data-en="The result will appear here.">변환 결과가 여기에 표시됩니다.</div>
       </section>
 
       <section class="tool-panel" id="tool-focus" data-panel="focus">
-        <div class="panel-heading"><div><p class="panel-kicker">FOCUS MODE</p><h2>집중 타이머</h2><p>지금 할 일 하나만 정하고, 짧게 몰입하세요.</p></div><span class="shortcut">Pomodoro</span></div>
-        <div class="timer-wrap"><p class="timer-label" id="timer-label">집중할 시간</p><div class="timer-display" id="timer-display">25:00</div><div class="timer-progress"><span id="timer-progress"></span></div><div class="timer-actions"><button class="primary-button" id="timer-start" type="button">시작</button><button class="secondary-button" id="timer-reset" type="button">초기화</button></div><div class="timer-presets"><button class="preset is-active" data-minutes="25" type="button">25분 집중</button><button class="preset" data-minutes="5" type="button">5분 휴식</button><button class="preset" data-minutes="15" type="button">15분 휴식</button></div></div>
+        <div class="panel-heading"><div><p class="panel-kicker">FOCUS MODE</p><h2 data-en="Focus timer">집중 타이머</h2><p data-en="Pick one thing to do and focus for a short sprint.">지금 할 일 하나만 정하고, 짧게 몰입하세요.</p></div><span class="shortcut">Pomodoro</span></div>
+        <div class="timer-wrap"><p class="timer-label" id="timer-label" data-en="Time to focus">집중할 시간</p><div class="timer-display" id="timer-display">25:00</div><div class="timer-progress"><span id="timer-progress"></span></div><div class="timer-actions"><button class="primary-button" id="timer-start" type="button" data-en="Start">시작</button><button class="secondary-button" id="timer-reset" type="button" data-en="Reset">초기화</button></div><div class="timer-presets"><button class="preset is-active" data-minutes="25" type="button" data-en="25 min focus">25분 집중</button><button class="preset" data-minutes="5" type="button" data-en="5 min break">5분 휴식</button><button class="preset" data-minutes="15" type="button" data-en="15 min break">15분 휴식</button></div></div>
       </section>
       <section class="tool-panel" id="tool-payday" data-panel="payday">
-        <div class="panel-heading"><div><p class="panel-kicker">PAYDAY COUNTER</p><h2>퇴근 · 급여 카운터</h2><p>오늘 번 돈이 실시간으로 올라가요. 퇴근까지 몇 초 남았는지도요.</p></div><span class="shortcut" id="pay-status">계산 중…</span></div>
+        <div class="panel-heading"><div><p class="panel-kicker">PAYDAY COUNTER</p><h2 data-en="Payday counter">퇴근 · 급여 카운터</h2><p data-en="Watch today&#x27;s pay tick up in real time — and the seconds until you clock out.">오늘 번 돈이 실시간으로 올라가요. 퇴근까지 몇 초 남았는지도요.</p></div><span class="shortcut" id="pay-status" data-en="Calculating…">계산 중…</span></div>
         <div class="payday-hero">
-          <p class="payday-caption">오늘 번 돈 <small>(세전)</small></p>
+          <p class="payday-caption" data-en="Earned today &lt;small&gt;(gross)&lt;/small&gt;">오늘 번 돈 <small>(세전)</small></p>
           <div class="payday-earned" id="pay-earned">₩0.00</div>
-          <div class="payday-remain"><span id="pay-remain-label">퇴근까지</span> <strong id="pay-remain">--:--:--</strong></div>
+          <div class="payday-remain"><span id="pay-remain-label" data-en="Until clock-out">퇴근까지</span> <strong id="pay-remain">--:--:--</strong></div>
           <div class="timer-progress payday-progress"><span id="pay-bar"></span></div>
-          <div class="payday-progress-label"><span>출근</span><span id="pay-bar-label">0%</span><span>퇴근</span></div>
+          <div class="payday-progress-label"><span data-en="Clock in">출근</span><span id="pay-bar-label">0%</span><span data-en="Clock out">퇴근</span></div>
         </div>
         <div class="payday-stats">
-          <div><span>시급 환산</span><strong id="pay-hourly">₩0</strong></div>
-          <div><span>1분마다</span><strong id="pay-minute">₩0</strong></div>
-          <div><span>1초마다</span><strong id="pay-second">₩0</strong></div>
-          <div><span>오늘 하루치</span><strong id="pay-day-total">₩0</strong></div>
+          <div><span data-en="Hourly rate">시급 환산</span><strong id="pay-hourly">₩0</strong></div>
+          <div><span data-en="Per minute">1분마다</span><strong id="pay-minute">₩0</strong></div>
+          <div><span data-en="Per second">1초마다</span><strong id="pay-second">₩0</strong></div>
+          <div><span data-en="Full day">오늘 하루치</span><strong id="pay-day-total">₩0</strong></div>
         </div>
         <details class="payday-settings" open>
-          <summary>내 근무 설정</summary>
+          <summary data-en="My work settings">내 근무 설정</summary>
           <div class="payday-grid">
-            <div class="field-group"><label for="pay-type">급여 기준</label><select id="pay-type"><option value="monthly">월급</option><option value="yearly">연봉</option><option value="hourly">시급</option></select></div>
-            <div class="field-group"><label for="pay-amount" id="pay-amount-hint">월급 (원, 세전)</label><input id="pay-amount" type="number" min="0" step="10000" inputmode="numeric"></div>
-            <div class="field-group"><label for="pay-start">출근</label><input id="pay-start" type="time"></div>
-            <div class="field-group"><label for="pay-end">퇴근</label><input id="pay-end" type="time"></div>
-            <div class="field-group"><label for="pay-lunch-start">점심 시작</label><input id="pay-lunch-start" type="time"></div>
-            <div class="field-group"><label for="pay-lunch">점심 시간</label><select id="pay-lunch"><option value="0">없음</option><option value="30">30분</option><option value="60">1시간</option><option value="90">1시간 30분</option></select></div>
+            <div class="field-group"><label for="pay-type" data-en="Pay basis">급여 기준</label><select id="pay-type"><option value="monthly" data-en="Monthly salary">월급</option><option value="yearly" data-en="Annual salary">연봉</option><option value="hourly" data-en="Hourly wage">시급</option></select></div>
+            <div class="field-group"><label for="pay-amount" id="pay-amount-hint" data-en="Monthly salary (KRW, gross)">월급 (원, 세전)</label><input id="pay-amount" type="number" min="0" step="10000" inputmode="numeric"></div>
+            <div class="field-group"><label for="pay-start" data-en="Clock in">출근</label><input id="pay-start" type="time"></div>
+            <div class="field-group"><label for="pay-end" data-en="Clock out">퇴근</label><input id="pay-end" type="time"></div>
+            <div class="field-group"><label for="pay-lunch-start" data-en="Lunch starts">점심 시작</label><input id="pay-lunch-start" type="time"></div>
+            <div class="field-group"><label for="pay-lunch" data-en="Lunch break">점심 시간</label><select id="pay-lunch"><option value="0" data-en="None">없음</option><option value="30" data-en="30 min">30분</option><option value="60" data-en="1 hour">1시간</option><option value="90" data-en="1 h 30 min">1시간 30분</option></select></div>
           </div>
-          <div class="payday-days" id="pay-days" aria-label="근무 요일"><label><input type="checkbox" value="1"><span>월</span></label><label><input type="checkbox" value="2"><span>화</span></label><label><input type="checkbox" value="3"><span>수</span></label><label><input type="checkbox" value="4"><span>목</span></label><label><input type="checkbox" value="5"><span>금</span></label><label><input type="checkbox" value="6"><span>토</span></label><label><input type="checkbox" value="0"><span>일</span></label></div>
-          <div class="action-row payday-actions"><button class="secondary-button" id="pay-celebrate" type="button">🎉 미리 퇴근 기분 내기</button><button class="text-button" id="pay-reset" type="button">기본값으로</button></div>
-          <p class="payday-note">월급·연봉은 월 209시간(주 40시간 + 주휴) 기준으로 시급을 환산해요. 설정은 이 브라우저에만 저장돼요.</p>
+          <div class="payday-days" id="pay-days" aria-label="근무 요일" data-en-aria-label="Workdays"><label><input type="checkbox" value="1"><span data-en="Mon">월</span></label><label><input type="checkbox" value="2"><span data-en="Tue">화</span></label><label><input type="checkbox" value="3"><span data-en="Wed">수</span></label><label><input type="checkbox" value="4"><span data-en="Thu">목</span></label><label><input type="checkbox" value="5"><span data-en="Fri">금</span></label><label><input type="checkbox" value="6"><span data-en="Sat">토</span></label><label><input type="checkbox" value="0"><span data-en="Sun">일</span></label></div>
+          <div class="action-row payday-actions"><button class="secondary-button" id="pay-celebrate" type="button" data-en="🎉 Celebrate early">🎉 미리 퇴근 기분 내기</button><button class="text-button" id="pay-reset" type="button" data-en="Reset to defaults">기본값으로</button></div>
+          <p class="payday-note" data-en="Monthly/annual pay is converted to an hourly rate using the Korean 209-hour month (40 h/week + paid weekly rest). Settings stay in this browser.">월급·연봉은 월 209시간(주 40시간 + 주휴) 기준으로 시급을 환산해요. 설정은 이 브라우저에만 저장돼요.</p>
         </details>
       </section>
     </div>
   </section>
 </main>
-<footer class="tools-footer"><span>homesweetlove.dev / work desk</span><span>입력 데이터는 저장되지 않습니다.</span></footer>
-<script src="assets/tools.js?v=8"></script>
-<script src="assets/payday.js?v=1"></script>
+<footer class="tools-footer"><span>homesweetlove.dev / work desk</span><span data-en="Nothing you enter leaves your browser.">입력 데이터는 저장되지 않습니다.</span></footer>
+<script>i18n.apply()</script>
+<script src="assets/tools.js?v=9"></script>
+<script src="assets/payday.js?v=2"></script>
 </body>
 </html>

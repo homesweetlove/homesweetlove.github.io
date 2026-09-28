@@ -1,6 +1,21 @@
 // HWP editor page: embeds rhwp-studio (https://github.com/edwardkim/rhwp, MIT) through @rhwp/editor.
 import { takeDocument } from './hwp-handoff.js';
 
+const T = (ko, vars) => (window.i18n ? window.i18n.t(ko, vars) : ko);
+window.i18n && window.i18n.add({
+  "문서": "document",
+  "HWP, HWPX 파일만 열 수 있습니다.": "Only HWP and HWPX files can be opened.",
+  "{name} 여는 중…": "Opening {name}…",
+  "HWP 편집기": "HWP editor",
+  "{name}을(를) 열었습니다. 편집한 뒤 저장 버튼을 누르세요.": "Opened {name}. Edit away, then hit a save button.",
+  "이 파일을 열지 못했습니다. 손상되었거나 지원하지 않는 형식일 수 있습니다.": "Couldn't open this file. It may be damaged or in an unsupported format.",
+  "{kind}로 저장하는 중…": "Saving as {kind}…",
+  "{name} 파일로 저장했습니다.": "Saved {name}.",
+  "{kind}로 저장하지 못했습니다.": "Couldn't save as {kind}.",
+  "이 편집기는 https 주소에서만 동작합니다.": "This editor only works over https.",
+  "편집기가 준비됐어요. \"파일 열기\"를 누르거나 문서를 끌어다 놓으세요. 새 문서는 바로 작성하면 됩니다.": "The editor is ready. Click \"Open file\" or drop a document here — or just start writing a new one."
+});
+
 const SDK = 'https://cdn.jsdelivr.net/npm/@rhwp/editor@0.8/index.js';
 
 const $ = id => document.getElementById(id);
@@ -28,7 +43,7 @@ function say(text, isError = false) {
 }
 
 function baseName(name) {
-  return (name || '').replace(/\.(hwpx?|hml)$/i, '') || '문서';
+  return (name || '').replace(/\.(hwpx?|hml)$/i, '') || T('문서');
 }
 
 function download(filename, bytes, type) {
@@ -49,20 +64,20 @@ function setReady(ready) {
 async function loadBytes(bytes, name) {
   if (!editor || busy) return;
   if (!/\.(hwpx?|hml)$/i.test(name)) {
-    say('HWP, HWPX 파일만 열 수 있습니다.', true);
+    say(T('HWP, HWPX 파일만 열 수 있습니다.'), true);
     return;
   }
   busy = true;
-  say(`${name} 여는 중…`);
+  say(T('{name} 여는 중…', { name }));
   try {
     await editor.loadFile(bytes, name, { skipUnsavedGuard: true });
     docName = name;
     els.name.textContent = name;
-    document.title = `${baseName(name)} · HWP 편집기`;
-    say(`${name}을(를) 열었습니다. 편집한 뒤 저장 버튼을 누르세요.`);
+    document.title = `${baseName(name)} · ${T('HWP 편집기')}`;
+    say(T('{name}을(를) 열었습니다. 편집한 뒤 저장 버튼을 누르세요.', { name }));
   } catch (error) {
     console.error('[hwp-editor] load failed', error);
-    say('이 파일을 열지 못했습니다. 손상되었거나 지원하지 않는 형식일 수 있습니다.', true);
+    say(T('이 파일을 열지 못했습니다. 손상되었거나 지원하지 않는 형식일 수 있습니다.'), true);
   } finally {
     busy = false;
   }
@@ -76,16 +91,16 @@ async function openFile(file) {
 async function save(kind) {
   if (!editor || busy) return;
   busy = true;
-  say(`${kind.toUpperCase()}로 저장하는 중…`);
+  say(T('{kind}로 저장하는 중…', { kind: kind.toUpperCase() }));
   try {
     const bytes = kind === 'hwpx' ? await editor.exportHwpx() : await editor.exportHwp();
     const name = `${baseName(docName)}.${kind}`;
     download(name, bytes, kind === 'hwpx' ? 'application/hwp+zip' : 'application/x-hwp');
     try { await editor.notifySaved?.(name); } catch { /* older studio: ignore */ }
-    say(`${name} 파일로 저장했습니다.`);
+    say(T('{name} 파일로 저장했습니다.', { name }));
   } catch (error) {
     console.error('[hwp-editor] export failed', error);
-    say(`${kind.toUpperCase()}로 저장하지 못했습니다.`, true);
+    say(T('{kind}로 저장하지 못했습니다.', { kind: kind.toUpperCase() }), true);
   } finally {
     busy = false;
   }
@@ -100,7 +115,7 @@ function showError(message) {
 
 async function boot() {
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
-    showError('이 편집기는 https 주소에서만 동작합니다.');
+    showError(T('이 편집기는 https 주소에서만 동작합니다.'));
     return;
   }
   try {
@@ -118,7 +133,7 @@ async function boot() {
   if (handoff) {
     await loadBytes(handoff.bytes, handoff.name);
   } else {
-    say('편집기가 준비됐어요. "파일 열기"를 누르거나 문서를 끌어다 놓으세요. 새 문서는 바로 작성하면 됩니다.');
+    say(T('편집기가 준비됐어요. "파일 열기"를 누르거나 문서를 끌어다 놓으세요. 새 문서는 바로 작성하면 됩니다.'));
   }
 }
 

@@ -801,3 +801,6 @@ svg{ width: 20px; height: 20px; }
   .mac-dock a:hover, .mac-dock button:hover{ transform: none; }
 }
 @media (prefers-reduced-motion: reduce){ .mac-dock a, .mac-dock button{ transition: none; } }
+
+/* language toggle */
+.lang-toggle{ font: 700 .72rem 'JetBrains Mono', monospace; letter-spacing: .02em; }

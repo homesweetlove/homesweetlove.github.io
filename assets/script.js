@@ -1,3 +1,42 @@
+// ---- i18n ----
+const t = (ko, vars) => (window.i18n ? window.i18n.t(ko, vars) : ko);
+const IS_EN = window.i18n && window.i18n.lang === 'en';
+window.i18n && window.i18n.add({
+  '오타쿠가 세상을 지배한다': 'Otaku will rule the world',
+  '다시 누르면 새로 섞어요': 'Click again to reshuffle',
+  '✨ 추천': '✨ Picks',
+  '기타': 'Other',
+  '실험적인': 'Experimental',
+  '{lang} 프로젝트': '{lang} project',
+  '{name} 저장소 업데이트': 'Updated {name}',
+  '공개 저장소 <strong>{n}개</strong>를 언어별로 모두 볼 수 있어요. 원본은 <a href="{url}" target="_blank" rel="noopener">GitHub 프로필</a>에서도 확인할 수 있어요.':
+    'Browse all <strong>{n}</strong> public repositories by language right here, or on my <a href="{url}" target="_blank" rel="noopener">GitHub profile</a>.',
+  '{m}월': '{mon}',
+  '기여 {n}회': '{n} contributions',
+  '기여 없음': 'No contributions',
+  '월': 'Mon', '수': 'Wed', '금': 'Fri',
+  '{n}회': '{n}',
+  '{n}일': '{n} days',
+  '{date} · {n}회': '{date} · {n}',
+});
+// English descriptions for repos whose GitHub description is Korean or empty.
+const REPO_EN = {
+  'antigravity-korean-langpack': 'Korean language pack & UI translation patcher for Antigravity IDE',
+  'ClaudeCodexUsageWidget': 'Desktop widget showing Claude Code / Codex usage',
+  'open_web_mail': 'Webmail UI prototype in a Neo Kinpaku style',
+  'payroll-manager': 'Payroll calculator from attendance logs, with pay slips',
+  'paper-assistant': 'Offline writing checker for Korean papers and reports',
+  'wading': 'Digital wedding invitation with a different experience per theme',
+  'happyday': 'Mobile birthday greeting site with a surprise gift',
+  'Daily_IT_News': 'Daily IT & security news briefings (in Korean)',
+  'dcu_community_crawling': 'Notice-board crawler for a university website',
+  'java_archive': 'Java desktop app that suggests random class timetables',
+  'macos_dis': 'macOS-inspired Rainmeter desktop skin for Windows',
+  'syspro': 'Systems programming course labs',
+  'homesweetlove.github.io': 'This site — portfolio, work tools and an HWP editor',
+};
+const MONTHS_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 // ---- theme toggle ----
 const root = document.documentElement;
 const themeToggle = document.getElementById('theme-toggle');
@@ -23,7 +62,7 @@ navLinksMobile.querySelectorAll('a').forEach(a =>
 );
 
 // ---- typing effect ----
-const roles = ['TypeScript Developer', 'Java', 'GitHub Explorer', '오타쿠가 세상을 지배한다'];
+const roles = ['TypeScript Developer', 'Java', 'GitHub Explorer', t('오타쿠가 세상을 지배한다')];
 const typeTarget = document.getElementById('type-target');
 let roleIndex = 0, charIndex = 0, deleting = false;
 
@@ -140,10 +179,10 @@ function initFilters(groups, totalCount) {
     btn.className = `filter-pill${active ? ' is-active' : ''}`;
     btn.dataset.lang = key;
     btn.innerHTML = `${escapeHtml(label)}${count != null ? ` <span class="pill-count">${count}</span>` : ''}`;
-    if (key === 'pick') btn.title = '다시 누르면 새로 섞어요';
+    if (key === 'pick') btn.title = t('다시 누르면 새로 섞어요');
     bar.appendChild(btn);
   };
-  addPill('pick', '✨ 추천', null, true);
+  addPill('pick', t('✨ 추천'), null, true);
   groups.forEach(g => addPill(g.key, g.label, g.count));
 
   bar.onclick = (e) => {
@@ -159,7 +198,7 @@ function initFilters(groups, totalCount) {
     applyFilter(key);
   };
   const more = document.getElementById('projects-more');
-  if (more) more.innerHTML = `공개 저장소 <strong>${totalCount}개</strong>를 언어별로 모두 볼 수 있어요. 원본은 <a href="https://github.com/${GH_USER}?tab=repositories" target="_blank" rel="noopener">GitHub 프로필</a>에서도 확인할 수 있어요.`;
+  if (more) more.innerHTML = t('공개 저장소 <strong>{n}개</strong>를 언어별로 모두 볼 수 있어요. 원본은 <a href="{url}" target="_blank" rel="noopener">GitHub 프로필</a>에서도 확인할 수 있어요.', { n: totalCount, url: `https://github.com/${GH_USER}?tab=repositories` });
 }
 
 function pickRecommended(repos) {
@@ -223,7 +262,7 @@ function renderProjects(repos, reshuffle = false) {
   grid.innerHTML = repos.map((repo, order) => {
     const langKey = repo.language ? repo.language.toLowerCase() : 'etc';
     const meta = LANG_META[langKey] || LANG_META.default;
-    const desc = repo.description || `${repo.language || '실험적인'} 프로젝트`;
+    const desc = (IS_EN && REPO_EN[repo.name]) || repo.description || t('{lang} 프로젝트', { lang: repo.language || t('실험적인') });
     const picked = pickOrder.has(repo.name);
     return `
       <article class="project-card${picked ? '' : ' is-hidden'}" data-lang="${langKey}" data-order="${order}"${picked ? ` data-pick="1" data-pick-order="${pickOrder.get(repo.name)}"` : ''}>
@@ -232,7 +271,7 @@ function renderProjects(repos, reshuffle = false) {
           <h3>${escapeHtml(repo.name)}</h3>
           <p>${escapeHtml(desc)}</p>
           <div class="tags">
-            <span>${escapeHtml(repo.language || '기타')}</span>
+            <span>${escapeHtml(repo.language || t('기타'))}</span>
             ${demoLink(repo) ? '<span class="tag-demo">Live</span>' : ''}
             ${repo.stargazers_count > 0 ? `<span>⭐ ${repo.stargazers_count}</span>` : ''}
           </div>
@@ -248,7 +287,7 @@ function renderProjects(repos, reshuffle = false) {
     const counts = new Map();
     repos.forEach(r => {
       const key = r.language ? r.language.toLowerCase() : 'etc';
-      const label = r.language || '기타';
+      const label = r.language || t('기타');
       const g = counts.get(key) || { key, label, count: 0 };
       g.count++;
       counts.set(key, g);
@@ -265,7 +304,7 @@ function renderActivity(repos) {
   list.innerHTML = recent.map(repo => `
     <a href="${repo.html_url}" class="blog-item" target="_blank" rel="noopener">
       <span class="blog-date">${fmtDate(repo.pushed_at)}</span>
-      <span class="blog-title">${repo.name} 저장소 업데이트</span>
+      <span class="blog-title">${escapeHtml(t('{name} 저장소 업데이트', { name: repo.name }))}</span>
       <span class="blog-arrow">→</span>
     </a>`).join('');
   list.querySelectorAll('.blog-item').forEach(revealize);
@@ -415,17 +454,17 @@ function renderContribGraph(days) {
     if (dow === 0 || i === 0) {
       const m = date.getMonth();
       if (m !== lastMonth && (date.getDate() <= 7 || i === 0)) {
-        months.push({ x, text: `${m + 1}월` });
+        months.push({ x, text: IS_EN ? MONTHS_EN[m] : `${m + 1}월` });
         lastMonth = m;
       }
     }
-    const label = `${d.date} · ${d.count ? `기여 ${d.count}회` : '기여 없음'}`;
+    const label = `${d.date} · ${d.count ? t('기여 {n}회', { n: d.count }) : t('기여 없음')}`;
     cells.push(`<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2.5" class="lv${Math.min(4, d.level)}"><title>${label}</title></rect>`);
   });
   const monthLabels = months
     .filter((mo, i) => !months[i + 1] || months[i + 1].x - mo.x >= STEP * 3)
     .map(mo => `<text x="${mo.x}" y="11" class="contrib-label">${mo.text}</text>`);
-  const dows = [[1, '월'], [3, '수'], [5, '금']].map(([r, t]) => `<text x="0" y="${TOP + r * STEP + 9}" class="contrib-label">${t}</text>`);
+  const dows = [[1, '월'], [3, '수'], [5, '금']].map(([r, day]) => `<text x="0" y="${TOP + r * STEP + 9}" class="contrib-label">${t(day)}</text>`);
   grid.innerHTML = `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">${monthLabels.join('')}${dows.join('')}${cells.join('')}</svg>`;
   const scroller = document.getElementById('contrib-scroll');
   if (scroller) scroller.scrollLeft = scroller.scrollWidth; // show the most recent weeks first on small screens
@@ -443,10 +482,10 @@ async function loadContributions() {
     renderContribGraph(days);
     const s = contribStats(days);
     const total = data.total?.lastYear ?? s.total;
-    document.getElementById('contrib-total').textContent = `${total.toLocaleString('ko-KR')}회`;
-    document.getElementById('contrib-current').textContent = `${s.current}일`;
-    document.getElementById('contrib-longest').textContent = `${s.longest}일`;
-    document.getElementById('contrib-best').textContent = s.best.count ? `${s.best.date.slice(5).replace('-', '.')} · ${s.best.count}회` : '—';
+    document.getElementById('contrib-total').textContent = t('{n}회', { n: total.toLocaleString(IS_EN ? 'en-US' : 'ko-KR') });
+    document.getElementById('contrib-current').textContent = t('{n}일', { n: s.current });
+    document.getElementById('contrib-longest').textContent = t('{n}일', { n: s.longest });
+    document.getElementById('contrib-best').textContent = s.best.count ? t('{date} · {n}회', { date: IS_EN ? `${MONTHS_EN[Number(s.best.date.slice(5, 7)) - 1]} ${Number(s.best.date.slice(8))}` : s.best.date.slice(5).replace('-', '.'), n: s.best.count }) : '—';
   } catch (err) {
     console.warn('[homesweetlove.dev] contribution data unavailable.', err);
     grid.closest('.contrib-card')?.querySelectorAll('.contrib-stats, .contrib-scroll, .contrib-legend').forEach(el => { el.hidden = true; });

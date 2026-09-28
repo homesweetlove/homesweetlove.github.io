@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HWP 편집기 | homesweetlove.dev</title>
+<title data-en="HWP editor | homesweetlove.dev">HWP 편집기 | homesweetlove.dev</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="설치 없이 브라우저에서 HWP·HWPX 문서를 원본 모양 그대로 열고 편집해 저장합니다.">
+<meta name="description" content="설치 없이 브라우저에서 HWP·HWPX 문서를 원본 모양 그대로 열고 편집해 저장합니다." data-en-content="Open, edit and save HWP/HWPX documents in your browser with their original layout — nothing to install.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="homesweetlove.dev">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://homesweetlove.github.io/hwp-editor.html">
-<meta property="og:title" content="HWP 편집기 | homesweetlove.dev">
-<meta property="og:description" content="설치 없이 브라우저에서 HWP·HWPX 문서를 원본 모양 그대로 열고 편집해 저장합니다.">
+<meta property="og:title" content="HWP 편집기 | homesweetlove.dev" data-en-content="HWP editor | homesweetlove.dev">
+<meta property="og:description" content="설치 없이 브라우저에서 HWP·HWPX 문서를 원본 모양 그대로 열고 편집해 저장합니다." data-en-content="Open, edit and save HWP/HWPX documents in your browser with their original layout — nothing to install.">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=400">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/tools.css?v=6">
+<link rel="stylesheet" href="assets/tools.css?v=10">
+<script src="assets/i18n.js?v=1"></script>
 <style>
   html, body { height: 100%; }
   body { display: flex; flex-direction: column; min-height: 100vh; }
@@ -59,6 +60,7 @@
   .editor-overlay .hwp-drop-icon { margin: 0 auto; }
   .spinner { width: 34px; height: 34px; margin: 0 auto; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--accent); animation: spin .8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
+  :root[data-lang="en"] .editor-stage.is-dragging::after { content: "Drop to open"; }
   .editor-stage.is-dragging::after {
     content: "여기에 놓으면 열립니다"; position: absolute; inset: 12px; z-index: 3;
     display: grid; place-items: center; border: 3px dashed var(--accent); border-radius: 18px;
@@ -80,24 +82,25 @@
 <header class="tools-header">
   <div class="header-inner">
     <a class="brand" href="index.html">homesweetlove<span>.dev</span></a>
-    <nav aria-label="주요 메뉴">
-      <a href="index.html">포트폴리오</a>
-      <a href="tools.html">업무 도구</a>
-      <a class="nav-current" href="hwp-editor.html" aria-current="page">HWP 편집기</a>
-      <button class="theme-button" id="theme-toggle" type="button" aria-label="테마 전환">☼</button>
+    <nav aria-label="주요 메뉴" data-en-aria-label="Main menu">
+      <a href="index.html" data-en="Portfolio">포트폴리오</a>
+      <a href="tools.html" data-en="Work tools">업무 도구</a>
+      <a class="nav-current" href="hwp-editor.html" aria-current="page" data-en="HWP editor">HWP 편집기</a>
+      <button class="theme-button lang-toggle" type="button">EN</button>
+      <button class="theme-button" id="theme-toggle" type="button" aria-label="테마 전환" data-en-aria-label="Toggle theme">☼</button>
     </nav>
   </div>
 </header>
 
 <div class="editor-bar">
   <div class="editor-title">
-    <div class="editor-badge" aria-hidden="true">한</div>
-    <div><strong>HWP 편집기</strong><span id="doc-name">문서를 열어 편집하세요</span></div>
+    <div class="editor-badge" aria-hidden="true" data-en="한">한</div>
+    <div><strong data-en="HWP editor">HWP 편집기</strong><span id="doc-name" data-en="Open a document to start editing">문서를 열어 편집하세요</span></div>
   </div>
   <div class="editor-actions">
-    <button class="secondary-button" id="open-file" type="button" disabled>파일 열기</button>
-    <button class="primary-button" id="save-hwp" type="button" disabled>HWP로 저장</button>
-    <button class="secondary-button" id="save-hwpx" type="button" disabled>HWPX로 저장</button>
+    <button class="secondary-button" id="open-file" type="button" disabled data-en="Open file">파일 열기</button>
+    <button class="primary-button" id="save-hwp" type="button" disabled data-en="Save as HWP">HWP로 저장</button>
+    <button class="secondary-button" id="save-hwpx" type="button" disabled data-en="Save as HWPX">HWPX로 저장</button>
     <input id="file-input" type="file" accept=".hwp,.hwpx,.hml" hidden>
   </div>
   <p class="editor-status" id="status" role="status" aria-live="polite"></p>
@@ -108,24 +111,24 @@
   <div class="editor-overlay" id="overlay">
     <div class="card" id="overlay-loading">
       <div class="spinner" aria-hidden="true"></div>
-      <h1>편집기를 준비하는 중</h1>
-      <p>처음 한 번은 편집 엔진을 내려받느라 몇 초 걸릴 수 있어요.<br>문서는 서버로 전송되지 않고 이 브라우저 안에서만 처리됩니다.</p>
+      <h1 data-en="Getting the editor ready">편집기를 준비하는 중</h1>
+      <p data-en="The first time, downloading the editing engine can take a few seconds.&lt;br&gt;Your document never leaves this browser.">처음 한 번은 편집 엔진을 내려받느라 몇 초 걸릴 수 있어요.<br>문서는 서버로 전송되지 않고 이 브라우저 안에서만 처리됩니다.</p>
     </div>
     <div class="card" id="overlay-error" hidden>
       <div class="hwp-drop-icon" aria-hidden="true">!</div>
-      <h1>편집기를 불러오지 못했어요</h1>
-      <p id="overlay-error-text">인터넷 연결을 확인한 뒤 새로고침해 주세요.</p>
+      <h1 data-en="Couldn&#x27;t load the editor">편집기를 불러오지 못했어요</h1>
+      <p id="overlay-error-text" data-en="Check your internet connection and reload.">인터넷 연결을 확인한 뒤 새로고침해 주세요.</p>
       <div class="action-row" style="justify-content:center">
-        <button class="primary-button" type="button" onclick="location.reload()">다시 시도</button>
-        <a class="secondary-button" href="https://edwardkim.github.io/rhwp/" target="_blank" rel="noopener">rhwp 공식 편집기 열기 ↗</a>
+        <button class="primary-button" type="button" onclick="location.reload()" data-en="Try again">다시 시도</button>
+        <a class="secondary-button" href="https://edwardkim.github.io/rhwp/" target="_blank" rel="noopener" data-en="Open the official rhwp editor ↗">rhwp 공식 편집기 열기 ↗</a>
       </div>
     </div>
   </div>
 </main>
 
 <footer class="editor-foot">
-  <span>편집 엔진: <a href="https://github.com/edwardkim/rhwp" target="_blank" rel="noopener">rhwp</a> (MIT) · 편집 화면은 rhwp 공식 사이트에서 불러옵니다</span>
-  <span>파일 열기 · 끌어다 놓기 · Ctrl+S 저장</span>
+  <span data-en="Editing engine: &lt;a href=&quot;https://github.com/edwardkim/rhwp&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;rhwp&lt;/a&gt; (MIT) · the editor view is loaded from the official rhwp site">편집 엔진: <a href="https://github.com/edwardkim/rhwp" target="_blank" rel="noopener">rhwp</a> (MIT) · 편집 화면은 rhwp 공식 사이트에서 불러옵니다</span>
+  <span data-en="Open file · drag &amp; drop · Ctrl+S to save">파일 열기 · 끌어다 놓기 · Ctrl+S 저장</span>
 </footer>
 
 <script>
@@ -139,6 +142,7 @@
     });
   })();
 </script>
-<script type="module" src="assets/hwp-editor.js?v=1"></script>
+<script>i18n.apply()</script>
+<script type="module" src="assets/hwp-editor.js?v=2"></script>
 </body>
 </html>

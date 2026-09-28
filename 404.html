@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404 · homesweetlove.dev</title>
 <meta name="robots" content="noindex">
+<script src="/assets/i18n.js?v=1"></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -74,15 +75,16 @@
     <span class="spray" style="width:3px;height:3px;left:12%;bottom:-10px"></span>
   </div>
   <p class="tag">page not found</p>
-  <h1>여긴 아무것도 없어요</h1>
-  <p>주소가 바뀌었거나 사라진 페이지예요.<br><span class="path" id="path"></span></p>
+  <h1 data-en="Nothing to see here">여긴 아무것도 없어요</h1>
+  <p><span data-en="This page moved or no longer exists.">주소가 바뀌었거나 사라진 페이지예요.</span><br><span class="path" id="path"></span></p>
   <div class="actions">
-    <a class="btn primary" href="/">홈으로</a>
-    <a class="btn ghost" href="/tools.html">업무 도구</a>
+    <a class="btn primary" href="/" data-en="Go home">홈으로</a>
+    <a class="btn ghost" href="/tools.html" data-en="Work tools">업무 도구</a>
     <a class="btn ghost" href="https://github.com/homesweetlove" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
 </main>
 <script>
+  i18n.apply();
   document.getElementById('path').textContent = location.pathname;
 </script>
 </body>

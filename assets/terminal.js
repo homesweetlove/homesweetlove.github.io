@@ -1,5 +1,74 @@
 // Easter egg: press ` (backtick) anywhere on the portfolio to open a tiny terminal.
 (function () {
+  const T = (ko, vars) => (window.i18n ? window.i18n.t(ko, vars) : ko);
+  const IS_EN = window.i18n && window.i18n.lang === 'en';
+  const LOCALE = IS_EN ? 'en-US' : 'ko-KR';
+  window.i18n && window.i18n.add({
+      "터미널": "Terminal",
+      "터미널 닫기": "Close terminal",
+      "명령어 입력": "Command input",
+      "오늘은 쉬는 날이에요. 터미널 끄고 쉬세요 🛋️": "It's your day off. Close the terminal and rest 🛋️",
+      "이미 퇴근 시간이 지났어요. 왜 아직 여기 있어요? 🏃💨": "You're already past quitting time. Why are you still here? 🏃💨",
+      "퇴근({end})까지 <b>{h}시간 {m}분 {s}초</b> 남았어요.": "<b>{h}h {m}m {s}s</b> left until you clock out ({end}).",
+      "실시간 급여는 {link}에서 확인하세요{note}.": "Watch your pay grow live in the {link}{note}.",
+      "퇴근 · 급여 카운터": "Payday Counter",
+      " (기본 설정 09:00~18:00 기준)": " (default 09:00–18:00)",
+      "홈": "Home",
+      "잔디밭": "Contributions",
+      "IT 뉴스": "IT news",
+      "최근 업데이트": "Recent updates",
+      "업무 도구": "Work tools",
+      "HWP 편집기": "HWP editor",
+      "나는 누구인가": "Who am I",
+      "시스템 정보 (자랑용)": "System info (for bragging)",
+      "둘러보기 · 프로젝트 목록": "Look around · list projects",
+      "자기소개": "About me",
+      "open <이름>": "open <name>",
+      "프로젝트·페이지 열기 (예: open wading, open tools)": "Open a project or page (e.g. open wading, open tools)",
+      "오늘의 IT·보안 뉴스": "Today's IT & security news",
+      "퇴근": "leave",
+      "퇴근까지 남은 시간": "Time left until you clock out",
+      "테마 바꾸기 (mac은 여기서만!)": "Change theme (mac only works here!)",
+      "기록 · 화면 지우기 · 닫기": "History · clear screen · close",
+      "사용할 수 있는 명령어:": "Available commands:",
+      "Tab 자동완성 · ↑↓ 이전 명령 · Esc 닫기": "Tab to complete · ↑↓ history · Esc to close",
+      "GitHub에 이것저것 만들고 실험하는 사람. 집에 빨리 가는 방법을 연구 중.": "Builds and experiments with all sorts of things on GitHub. Researching faster ways to get home.",
+      "“오타쿠가 세상을 지배한다!”": "“Otaku will rule the world!”",
+      "GitHub Pages (static, 서버 없음)": "GitHub Pages (static, no server)",
+      "{n}개 공개": "{n} public",
+      "지난 1년 {n}": "{n} in the last year",
+      "퇴근 전까지": "until clock-out",
+      "프로젝트 목록을 아직 불러오는 중이에요.": "Still loading the project list.",
+      "기타": "Other",
+      "총 {n}개 · <span class=\"term-dim\">open &lt;이름&gt; 으로 열기</span>": "{n} total · <span class=\"term-dim\">open &lt;name&gt; to open one</span>",
+      "🤫 비밀: 사실 이 사이트의 절반은 퇴근하고 싶어서 만들어졌다.": "🤫 Secret: half of this site exists because I wanted to go home.",
+      "P.S. <span class=\"term-cmd\">theme mac</span> 도 한번 쳐보세요.": "P.S. try typing <span class=\"term-cmd\">theme mac</span>.",
+      "cat: 파일 이름을 적어주세요 (예: cat about)": "cat: give me a file name (e.g. cat about)",
+      "cat: {name}: 그런 파일이 없어요": "cat: {name}: No such file",
+      "뉴스를 아직 불러오지 못했어요.": "The news hasn't loaded yet.",
+      "📰 {date} 핵심 요약": "📰 {date} key points (in Korean)",
+      "open: 무엇을 열까요? (예: open wading, open tools)": "open: what should I open? (e.g. open wading, open tools)",
+      "→ {what} 여는 중…": "→ opening {what}…",
+      "open: '{name}' 를 찾을 수 없어요. ls projects 로 목록을 보세요.": "open: can't find '{name}'. Try ls projects.",
+      "이미 mac 테마예요. 되돌리려면 <span class=\"term-cmd\">theme default</span>": "Already on the mac theme. To go back: <span class=\"term-cmd\">theme default</span>",
+      "💻 mac 테마를 켰어요. 위쪽 메뉴 막대와 아래 Dock을 확인해 보세요.": "💻 mac theme on. Check out the menu bar up top and the Dock below.",
+      "되돌리려면 <span class=\"term-cmd\">theme default</span> · 이 테마는 터미널에서만 바꿀 수 있어요.": "To go back: <span class=\"term-cmd\">theme default</span> · this theme can only be changed from the terminal.",
+      "이미 기본 테마예요.": "Already on the default theme.",
+      "기본 테마로 돌아왔어요.": "Back to the default theme.",
+      "theme: '{name}' 는 없는 테마예요. dark · light · mac · default 중에 골라주세요.": "theme: there's no '{name}' theme. Pick dark · light · mac · default.",
+      "다크 모드로 바꿨어요.": "Switched to dark mode.",
+      "라이트 모드로 바꿨어요.": "Switched to light mode.",
+      "sudo: 퇴근 권한이 없습니다. 팀장님께 결재를 올려주세요. 📝": "sudo: you don't have permission to leave. Please ask your manager for approval. 📝",
+      "😏 좋은 시도였어요.": "😏 Nice try.",
+      "팀장님": "your manager",
+      "rm: 읽기 전용 포트폴리오예요.": "rm: this portfolio is read-only.",
+      "☕ 커피 내리는 중… 완료. 생산성 +10%, 퇴근 시간 변화 없음.": "☕ Brewing coffee… done. Productivity +10%, clock-out time unchanged.",
+      "안녕하세요! 👋 help 를 입력하면 할 수 있는 걸 알려드려요.": "Hi! 👋 Type help to see what I can do.",
+      "여긴 한 층짜리 집이에요. 갈 데가 없어요 🏠": "It's a one-story house. Nowhere to go 🏠",
+      "vim에 들어왔어요. 나가는 법은… 행운을 빌어요. (:q! 는 여기선 안 돼요 😇)": "You're in vim now. How to get out… good luck. (:q! doesn't work here 😇)",
+      "zsh: command not found: {name} — <span class=\"term-cmd\">help</span> 를 입력해 보세요": "zsh: command not found: {name} — try <span class=\"term-cmd\">help</span>",
+      "homesweetlove.dev 터미널에 오신 걸 환영해요. <span class=\"term-cmd\">help</span> 를 입력해 보세요.": "Welcome to the homesweetlove.dev terminal. Type <span class=\"term-cmd\">help</span> to begin."
+  });
   const USER = 'homesweetlove';
   const HOST = 'homesweetlove.dev';
   const PROMPT = `${USER}@${HOST}:~$`;
@@ -12,17 +81,17 @@
   wrap.className = 'term-overlay';
   wrap.hidden = true;
   wrap.innerHTML = `
-    <div class="term" role="dialog" aria-modal="true" aria-label="터미널">
+    <div class="term" role="dialog" aria-modal="true" aria-label="${T('터미널')}">
       <div class="term-bar">
         <span class="term-dots"><i></i><i></i><i></i></span>
         <span class="term-title">${USER}@${HOST} — zsh</span>
-        <button class="term-close" type="button" aria-label="터미널 닫기">×</button>
+        <button class="term-close" type="button" aria-label="${T('터미널 닫기')}">×</button>
       </div>
       <div class="term-body" tabindex="-1">
         <div class="term-out" aria-live="polite"></div>
         <form class="term-line" autocomplete="off">
           <span class="term-prompt">${PROMPT}</span>
-          <input class="term-input" type="text" spellcheck="false" autocapitalize="off" aria-label="명령어 입력">
+          <input class="term-input" type="text" spellcheck="false" autocapitalize="off" aria-label="${T('명령어 입력')}">
         </form>
       </div>
     </div>`;
@@ -65,14 +134,14 @@
     const end = (s && s.end) || '18:00';
     const days = (s && s.days) || [1, 2, 3, 4, 5];
     const now = new Date();
-    if (!days.includes(now.getDay())) return print('오늘은 쉬는 날이에요. 터미널 끄고 쉬세요 🛋️', 'term-ok');
+    if (!days.includes(now.getDay())) return print(T('오늘은 쉬는 날이에요. 터미널 끄고 쉬세요 🛋️'), 'term-ok');
     const [h, m] = end.split(':').map(Number);
     const target = new Date(now); target.setHours(h, m, 0, 0);
     const diff = Math.floor((target - now) / 1000);
-    if (diff <= 0) return print('이미 퇴근 시간이 지났어요. 왜 아직 여기 있어요? 🏃💨', 'term-ok');
+    if (diff <= 0) return print(T('이미 퇴근 시간이 지났어요. 왜 아직 여기 있어요? 🏃💨'), 'term-ok');
     const hh = Math.floor(diff / 3600), mm = Math.floor(diff % 3600 / 60), ss = diff % 60;
-    print(`퇴근(${esc(end)})까지 <b>${hh}시간 ${mm}분 ${ss}초</b> 남았어요.`);
-    print(`실시간 급여는 ${link('tools.html#payday', '퇴근 · 급여 카운터', false)}에서 확인하세요${s ? '' : ' (기본 설정 09:00~18:00 기준)'}.`, 'term-dim');
+    print(T('퇴근({end})까지 <b>{h}시간 {m}분 {s}초</b> 남았어요.', { end: esc(end), h: hh, m: mm, s: ss }));
+    print(T('실시간 급여는 {link}에서 확인하세요{note}.', { link: link('tools.html#payday', T('퇴근 · 급여 카운터'), false), note: s ? '' : T(' (기본 설정 09:00~18:00 기준)') }), 'term-dim');
   }
 
 
@@ -85,16 +154,16 @@
       clock.className = 'mac-clock';
       document.querySelector('.nav-actions')?.appendChild(clock);
       const tickClock = () => {
-        clock.textContent = new Date().toLocaleString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short', hour: 'numeric', minute: '2-digit' });
+        clock.textContent = new Date().toLocaleString(LOCALE, { month: 'long', day: 'numeric', weekday: 'short', hour: 'numeric', minute: '2-digit' });
       };
       tickClock();
       clockTimer = setInterval(tickClock, 15000);
     }
     if (!document.querySelector('.mac-dock')) {
       const items = [
-        ['#home', '🏠', '홈'], ['#about', '🙋', 'About'], ['#projects', '📦', 'Projects'], ['#skills', '🛠️', 'Skills'],
-        ['#contributions', '🌱', '잔디밭'], ['#news', '📰', 'IT 뉴스'], ['#activity', '🕒', '최근 업데이트'], ['#contact', '✉️', 'Contact'],
-        'sep', ['tools.html', '🧰', '업무 도구'], ['hwp-editor.html', '📝', 'HWP 편집기'], ['https://github.com/' + USER, '🐙', 'GitHub'],
+        ['#home', '🏠', T('홈')], ['#about', '🙋', 'About'], ['#projects', '📦', 'Projects'], ['#skills', '🛠️', 'Skills'],
+        ['#contributions', '🌱', T('잔디밭')], ['#news', '📰', T('IT 뉴스')], ['#activity', '🕒', T('최근 업데이트')], ['#contact', '✉️', 'Contact'],
+        'sep', ['tools.html', '🧰', T('업무 도구')], ['hwp-editor.html', '📝', T('HWP 편집기')], ['https://github.com/' + USER, '🐙', 'GitHub'],
       ];
       const dock = document.createElement('nav');
       dock.className = 'mac-dock';
@@ -102,7 +171,7 @@
       dock.innerHTML = items.map(item => item === 'sep'
         ? '<span class="dock-sep" aria-hidden="true"></span>'
         : `<a href="${item[0]}" data-label="${esc(item[2])}" aria-label="${esc(item[2])}"${item[0].startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${item[1]}</a>`).join('')
-        + '<span class="dock-sep" aria-hidden="true"></span><button class="dock-term" type="button" data-label="터미널" aria-label="터미널">&gt;_</button>';
+        + `<span class="dock-sep" aria-hidden="true"></span><button class="dock-term" type="button" data-label="${T('터미널')}" aria-label="${T('터미널')}">&gt;_</button>`;
       dock.querySelector('.dock-term').addEventListener('click', () => open());
       document.body.appendChild(dock);
     }
@@ -127,19 +196,19 @@
   const commands = {
     help() {
       const rows = [
-        ['whoami', '나는 누구인가'], ['neofetch', '시스템 정보 (자랑용)'], ['ls [projects]', '둘러보기 · 프로젝트 목록'],
-        ['cat about', '자기소개'], ['open <이름>', '프로젝트·페이지 열기 (예: open wading, open tools)'],
-        ['news', '오늘의 IT·보안 뉴스'], ['퇴근', '퇴근까지 남은 시간'], ['theme [dark|light|mac]', '테마 바꾸기 (mac은 여기서만!)'],
-        ['history · clear · exit', '기록 · 화면 지우기 · 닫기'],
+        ['whoami', T('나는 누구인가')], ['neofetch', T('시스템 정보 (자랑용)')], ['ls [projects]', T('둘러보기 · 프로젝트 목록')],
+        ['cat about', T('자기소개')], [T('open <이름>'), T('프로젝트·페이지 열기 (예: open wading, open tools)')],
+        ['news', T('오늘의 IT·보안 뉴스')], [T('퇴근'), T('퇴근까지 남은 시간')], ['theme [dark|light|mac]', T('테마 바꾸기 (mac은 여기서만!)')],
+        ['history · clear · exit', T('기록 · 화면 지우기 · 닫기')],
       ];
-      print('사용할 수 있는 명령어:', 'term-head');
-      rows.forEach(([c, d]) => print(`  <span class="term-cmd">${esc(c.padEnd(22, ' '))}</span><span class="term-dim">${esc(d)}</span>`));
-      print('Tab 자동완성 · ↑↓ 이전 명령 · Esc 닫기', 'term-dim');
+      print(T('사용할 수 있는 명령어:'), 'term-head');
+      rows.forEach(([c, d]) => print(`  <span class="term-cmd">${esc(c.padEnd(26, ' '))}</span><span class="term-dim">${esc(d)}</span>`));
+      print(T('Tab 자동완성 · ↑↓ 이전 명령 · Esc 닫기'), 'term-dim');
     },
     whoami() {
       print('i_so_free (@homesweetlove)', 'term-head');
-      print('GitHub에 이것저것 만들고 실험하는 사람. 집에 빨리 가는 방법을 연구 중.');
-      print('“오타쿠가 세상을 지배한다!”', 'term-dim');
+      print(T('GitHub에 이것저것 만들고 실험하는 사람. 집에 빨리 가는 방법을 연구 중.'));
+      print(T('“오타쿠가 세상을 지배한다!”'), 'term-dim');
     },
     neofetch() {
       const list = repos();
@@ -151,12 +220,12 @@
       const info = [
         `<b class="term-accent">${USER}</b>@${HOST}`,
         '─'.repeat(24),
-        `<b>OS</b>: GitHub Pages (static, 서버 없음)`,
-        `<b>Repos</b>: ${list.length}개 공개`,
+        `<b>OS</b>: ${T('GitHub Pages (static, 서버 없음)')}`,
+        `<b>Repos</b>: ${T('{n}개 공개', { n: list.length })}`,
         `<b>Langs</b>: ${esc(langs.join(', ') || '—')}`,
-        `<b>Commits</b>: 지난 1년 ${esc(contrib)}`,
+        `<b>Commits</b>: ${T('지난 1년 {n}', { n: esc(contrib) })}`,
         `<b>Shell</b>: homesweet-sh 0.1`,
-        `<b>Uptime</b>: 퇴근 전까지`,
+        `<b>Uptime</b>: ${T('퇴근 전까지')}`,
       ];
       const n = Math.max(logo.length, info.length);
       for (let i = 0; i < n; i++) print(`<span class="term-logo">${esc((logo[i] || '').padEnd(10, ' '))}</span>${info[i] || ''}`);
@@ -164,36 +233,36 @@
     ls(args) {
       if (args[0] === 'projects' || args[0] === 'projects/') {
         const list = repos();
-        if (!list.length) return print('프로젝트 목록을 아직 불러오는 중이에요.', 'term-dim');
+        if (!list.length) return print(T('프로젝트 목록을 아직 불러오는 중이에요.'), 'term-dim');
         list.forEach(r => {
           const demo = demoOf(r.name) ? ' <span class="term-ok">[demo]</span>' : '';
-          print(`  <span class="term-cmd">${esc((r.name || '').padEnd(30, ' '))}</span><span class="term-dim">${esc(r.language || '기타')}</span>${demo}`);
+          print(`  <span class="term-cmd">${esc((r.name || '').padEnd(30, ' '))}</span><span class="term-dim">${esc(r.language || T('기타'))}</span>${demo}`);
         });
-        return print(`총 ${list.length}개 · <span class="term-dim">open &lt;이름&gt; 으로 열기</span>`);
+        return print(T('총 {n}개 · <span class="term-dim">open &lt;이름&gt; 으로 열기</span>', { n: list.length }));
       }
       print('<span class="term-cmd">about</span>  <span class="term-accent">projects/</span>  <span class="term-cmd">news</span>  <span class="term-cmd">tools</span>  <span class="term-cmd">editor</span>  <span class="term-cmd">contact</span>  <span class="term-dim">.secret</span>');
     },
     cat(args) {
       const what = (args[0] || '').replace(/^\.\//, '');
       if (what === 'about') return print(esc(text('#about .about-text') || text('#about')));
-      if (what === '.secret') { print('🤫 비밀: 사실 이 사이트의 절반은 퇴근하고 싶어서 만들어졌다.', 'term-ok'); return print('P.S. <span class="term-cmd">theme mac</span> 도 한번 쳐보세요.', 'term-dim'); }
+      if (what === '.secret') { print(T('🤫 비밀: 사실 이 사이트의 절반은 퇴근하고 싶어서 만들어졌다.'), 'term-ok'); return print(T('P.S. <span class="term-cmd">theme mac</span> 도 한번 쳐보세요.'), 'term-dim'); }
       if (what === 'news') return commands.news();
-      if (!what) return print('cat: 파일 이름을 적어주세요 (예: cat about)', 'term-err');
-      print(`cat: ${esc(what)}: 그런 파일이 없어요`, 'term-err');
+      if (!what) return print(T('cat: 파일 이름을 적어주세요 (예: cat about)'), 'term-err');
+      print(T('cat: {name}: 그런 파일이 없어요', { name: esc(what) }), 'term-err');
     },
     news() {
       const items = [...document.querySelectorAll('#news-list li')].map(li => li.textContent.trim());
-      if (!items.length) return print('뉴스를 아직 불러오지 못했어요.', 'term-dim');
-      print(`📰 ${esc(text('#news-date'))} 핵심 요약`, 'term-head');
+      if (!items.length) return print(T('뉴스를 아직 불러오지 못했어요.'), 'term-dim');
+      print(T('📰 {date} 핵심 요약', { date: esc(text('#news-date')) }), 'term-head');
       items.forEach((t, i) => print(`  ${String(i + 1).padStart(2, '0')}. ${esc(t)}`));
     },
     open(args) {
       const target = args.join(' ').trim();
       const pages = { tools: 'tools.html', editor: 'hwp-editor.html', github: `https://github.com/${USER}`, news: '#news', contact: '#contact', about: '#about', projects: '#projects' };
-      if (!target) return print('open: 무엇을 열까요? (예: open wading, open tools)', 'term-err');
+      if (!target) return print(T('open: 무엇을 열까요? (예: open wading, open tools)'), 'term-err');
       if (pages[target]) {
         const href = pages[target];
-        print(`→ ${esc(href)} 여는 중…`, 'term-ok');
+        print(T('→ {what} 여는 중…', { what: esc(href) }), 'term-ok');
         if (href.startsWith('#')) { close(); document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' }); }
         else if (href.startsWith('http')) window.open(href, '_blank', 'noopener');
         else location.href = href;
@@ -201,52 +270,52 @@
       }
       const repo = repos().find(r => (r.name || '').toLowerCase() === target.toLowerCase())
         || repos().find(r => (r.name || '').toLowerCase().includes(target.toLowerCase()));
-      if (!repo) return print(`open: '${esc(target)}' 를 찾을 수 없어요. ls projects 로 목록을 보세요.`, 'term-err');
+      if (!repo) return print(T("open: '{name}' 를 찾을 수 없어요. ls projects 로 목록을 보세요.", { name: esc(target) }), 'term-err');
       const url = demoOf(repo.name) || repo.html_url;
-      print(`→ ${esc(repo.name)} ${url === repo.html_url ? '(GitHub)' : '(demo)'} 여는 중…`, 'term-ok');
+      print(T('→ {what} 여는 중…', { what: `${esc(repo.name)} ${url === repo.html_url ? '(GitHub)' : '(demo)'}` }), 'term-ok');
       window.open(url, '_blank', 'noopener');
     },
     퇴근: leaveWork,
     theme(args) {
       const want = (args[0] || '').toLowerCase();
       if (want === 'mac' || want === 'macos') {
-        if (document.documentElement.dataset.skin === 'mac') return print('이미 mac 테마예요. 되돌리려면 <span class="term-cmd">theme default</span>', 'term-dim');
+        if (document.documentElement.dataset.skin === 'mac') return print(T('이미 mac 테마예요. 되돌리려면 <span class="term-cmd">theme default</span>'), 'term-dim');
         setSkin('mac');
-        print('💻 mac 테마를 켰어요. 위쪽 메뉴 막대와 아래 Dock을 확인해 보세요.', 'term-ok');
-        return print('되돌리려면 <span class="term-cmd">theme default</span> · 이 테마는 터미널에서만 바꿀 수 있어요.', 'term-dim');
+        print(T('💻 mac 테마를 켰어요. 위쪽 메뉴 막대와 아래 Dock을 확인해 보세요.'), 'term-ok');
+        return print(T('되돌리려면 <span class="term-cmd">theme default</span> · 이 테마는 터미널에서만 바꿀 수 있어요.'), 'term-dim');
       }
       if (want === 'default' || want === 'reset' || want === 'original' || want === '기본') {
-        if (document.documentElement.dataset.skin !== 'mac') return print('이미 기본 테마예요.', 'term-dim');
+        if (document.documentElement.dataset.skin !== 'mac') return print(T('이미 기본 테마예요.'), 'term-dim');
         setSkin('default');
-        return print('기본 테마로 돌아왔어요.', 'term-ok');
+        return print(T('기본 테마로 돌아왔어요.'), 'term-ok');
       }
       const root = document.documentElement;
       const current = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      if (want && want !== 'dark' && want !== 'light') return print(`theme: '${esc(want)}' 는 없는 테마예요. dark · light · mac · default 중에 골라주세요.`, 'term-err');
+      if (want && want !== 'dark' && want !== 'light') return print(T("theme: '{name}' 는 없는 테마예요. dark · light · mac · default 중에 골라주세요.", { name: esc(want) }), 'term-err');
       const next = want || (current === 'dark' ? 'light' : 'dark');
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch { /* ignore */ }
-      print(`${next === 'dark' ? '다크' : '라이트'} 모드로 바꿨어요.`, 'term-ok');
+      print(T(next === 'dark' ? '다크 모드로 바꿨어요.' : '라이트 모드로 바꿨어요.'), 'term-ok');
     },
-    date() { print(new Date().toLocaleString('ko-KR', { dateStyle: 'full', timeStyle: 'medium' })); },
+    date() { print(new Date().toLocaleString(LOCALE, { dateStyle: 'full', timeStyle: 'medium' })); },
     echo(args) { print(esc(args.join(' '))); },
     history() { history.forEach((h, i) => print(`  ${String(i + 1).padStart(3, ' ')}  ${esc(h)}`)); },
     clear() { out.innerHTML = ''; },
     exit() { close(); },
     sudo(args) {
       const what = args.join(' ');
-      if (/퇴근/.test(what)) return print('sudo: 퇴근 권한이 없습니다. 팀장님께 결재를 올려주세요. 📝', 'term-err');
-      if (/rm\s+-rf/.test(what)) return print('😏 좋은 시도였어요.', 'term-err');
-      print(`${USER} is not in the sudoers file. This incident will be reported to 팀장님.`, 'term-err');
+      if (/퇴근|leave|home/i.test(what)) return print(T('sudo: 퇴근 권한이 없습니다. 팀장님께 결재를 올려주세요. 📝'), 'term-err');
+      if (/rm\s+-rf/.test(what)) return print(T('😏 좋은 시도였어요.'), 'term-err');
+      print(`${USER} is not in the sudoers file. This incident will be reported to ${T('팀장님')}.`, 'term-err');
     },
-    rm(args) { if (args.join(' ').includes('-rf')) return print('😏 좋은 시도였어요.', 'term-err'); print('rm: 읽기 전용 포트폴리오예요.', 'term-err'); },
-    coffee() { print('☕ 커피 내리는 중… 완료. 생산성 +10%, 퇴근 시간 변화 없음.', 'term-ok'); },
-    hello() { print('안녕하세요! 👋 help 를 입력하면 할 수 있는 걸 알려드려요.'); },
-    cd() { print('여긴 한 층짜리 집이에요. 갈 데가 없어요 🏠', 'term-dim'); },
+    rm(args) { if (args.join(' ').includes('-rf')) return print(T('😏 좋은 시도였어요.'), 'term-err'); print(T('rm: 읽기 전용 포트폴리오예요.'), 'term-err'); },
+    coffee() { print(T('☕ 커피 내리는 중… 완료. 생산성 +10%, 퇴근 시간 변화 없음.'), 'term-ok'); },
+    hello() { print(T('안녕하세요! 👋 help 를 입력하면 할 수 있는 걸 알려드려요.')); },
+    cd() { print(T('여긴 한 층짜리 집이에요. 갈 데가 없어요 🏠'), 'term-dim'); },
     pwd() { print(`/home/${USER}/sweet/home`); },
-    vim() { print('vim에 들어왔어요. 나가는 법은… 행운을 빌어요. (:q! 는 여기선 안 돼요 😇)', 'term-dim'); },
+    vim() { print(T('vim에 들어왔어요. 나가는 법은… 행운을 빌어요. (:q! 는 여기선 안 돼요 😇)'), 'term-dim'); },
   };
-  const aliases = { mac: 'theme mac', macos: 'theme mac', '?': 'help', 'ㅎ': 'help', '도움말': 'help', '안녕': 'hello', hi: 'hello', cls: 'clear', q: 'exit', quit: 'exit', 집에가고싶다: '퇴근', 퇴근언제: '퇴근', dir: 'ls', 'ls -la': 'ls', 'git': 'open' };
+  const aliases = { mac: 'theme mac', macos: 'theme mac', '?': 'help', 'ㅎ': 'help', '도움말': 'help', '안녕': 'hello', hi: 'hello', cls: 'clear', q: 'exit', quit: 'exit', 집에가고싶다: '퇴근', 퇴근언제: '퇴근', leave: '퇴근', gohome: '퇴근', 'go home': '퇴근', dir: 'ls', 'ls -la': 'ls', 'git': 'open' };
 
   function run(raw) {
     const line = raw.trim();
@@ -260,7 +329,7 @@
     const args = aliases[first] === 'open' ? ['github', ...rest] : rest;
     const fn = commands[name] || commands[name.toLowerCase()];
     if (fn) fn(args);
-    else print(`zsh: command not found: ${esc(first)} — <span class="term-cmd">help</span> 를 입력해 보세요`, 'term-err');
+    else print(T('zsh: command not found: {name} — <span class="term-cmd">help</span> 를 입력해 보세요', { name: esc(first) }), 'term-err');
   }
 
   // ---- open / close ----
@@ -271,8 +340,8 @@
     wrap.hidden = false;
     document.documentElement.classList.add('term-open');
     if (!out.childElementCount) {
-      print(`Last login: ${new Date().toLocaleString('ko-KR')} on ttys000`, 'term-dim');
-      print('homesweetlove.dev 터미널에 오신 걸 환영해요. <span class="term-cmd">help</span> 를 입력해 보세요.');
+      print(`Last login: ${new Date().toLocaleString(LOCALE)} on ttys000`, 'term-dim');
+      print(T('homesweetlove.dev 터미널에 오신 걸 환영해요. <span class="term-cmd">help</span> 를 입력해 보세요.'));
     }
     setTimeout(() => input.focus(), 0);
   }
