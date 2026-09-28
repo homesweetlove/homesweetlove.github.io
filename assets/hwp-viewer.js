@@ -518,6 +518,7 @@ function focusHit(i) {
   const hit = hits[index];
   const pageEl = els.pages.children[hit.page];
   if (pageEl) {
+    paintPage(pageEl); // make sure the target page (and its highlights) exist before scrolling
     const rect = hit.rects[0];
     const y = pageEl.offsetTop + (rect.y / state.sizes[hit.page].height) * pageEl.offsetHeight;
     const x = pageEl.offsetLeft + (rect.x / state.sizes[hit.page].width) * pageEl.offsetWidth;
