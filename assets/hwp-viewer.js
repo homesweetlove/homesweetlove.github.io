@@ -49,6 +49,7 @@ const state = {
   observer: null,
   text: null,
   current: 0,
+  autoFit: true,
 };
 
 let enginePromise = null;
@@ -161,9 +162,11 @@ function setZoom(zoom, keepPage = true) {
 }
 
 function fitWidth() {
+  state.autoFit = true;
   const widest = Math.max(...state.sizes.map(s => s.width));
   const available = els.scroller.clientWidth - 48;
-  setZoom(available > 0 ? available / widest : 1);
+  if (available < 200) return; // not laid out yet; ResizeObserver will retry
+  setZoom(Math.min(available / widest, 1.5));
 }
 
 function goToPage(index, behavior = 'smooth') {
@@ -380,8 +383,8 @@ els.panel.addEventListener('drop', event => {
 els.prev.addEventListener('click', () => goToPage(state.current - 1));
 els.next.addEventListener('click', () => goToPage(state.current + 1));
 els.pageInput.addEventListener('change', () => goToPage(Number(els.pageInput.value) - 1));
-els.zoomOut.addEventListener('click', () => setZoom(state.zoom / 1.2));
-els.zoomIn.addEventListener('click', () => setZoom(state.zoom * 1.2));
+els.zoomOut.addEventListener('click', () => { state.autoFit = false; setZoom(state.zoom / 1.2); });
+els.zoomIn.addEventListener('click', () => { state.autoFit = false; setZoom(state.zoom * 1.2); });
 els.fit.addEventListener('click', fitWidth);
 
 let scrollTick = false;
@@ -399,6 +402,7 @@ els.scroller.addEventListener('keydown', event => {
 els.scroller.addEventListener('wheel', event => {
   if (!event.ctrlKey) return;
   event.preventDefault();
+  state.autoFit = false;
   setZoom(state.zoom * (event.deltaY < 0 ? 1.1 : 1 / 1.1));
 }, { passive: false });
 
@@ -426,6 +430,14 @@ els.saveHwp.addEventListener('click', () => exportAs('hwp'));
 els.saveHwpx.addEventListener('click', () => exportAs('hwpx'));
 els.print.addEventListener('click', printDocument);
 els.close.addEventListener('click', closeViewer);
+
+let lastWidth = 0;
+new ResizeObserver(() => {
+  const width = els.scroller.clientWidth;
+  if (!state.doc || !state.autoFit || Math.abs(width - lastWidth) < 8) return;
+  lastWidth = width;
+  fitWidth();
+}).observe(els.scroller);
 
 window.hwpViewer = { open, close: closeViewer, preload: loadEngine };
 
