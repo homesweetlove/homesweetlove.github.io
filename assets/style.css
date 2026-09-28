@@ -804,3 +804,15 @@ svg{ width: 20px; height: 20px; }
 
 /* language toggle */
 .lang-toggle{ font: 700 .72rem 'JetBrains Mono', monospace; letter-spacing: .02em; }
+
+/* ---------- responsive polish (phones / tablets) ---------- */
+body{ word-break: keep-all; overflow-wrap: break-word; }
+.blog-title{ min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 400px){
+  .nav-inner{ padding: 0 14px; }
+  .nav-logo{ font-size: .95rem; }
+  .nav-actions{ gap: 6px; }
+  .icon-btn{ width: 36px; height: 36px; }
+  .contrib-stats strong{ font-size: .88rem; }
+  .contrib-stats > div{ padding: 12px; }
+}

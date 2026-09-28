@@ -48,6 +48,7 @@ const panels = document.querySelectorAll('.tool-panel');
 function openTool(name) {
   tabs.forEach(tab => tab.classList.toggle('is-active', tab.dataset.tool === name));
   panels.forEach(panel => panel.classList.toggle('is-active', panel.dataset.panel === name));
+  if (matchMedia('(max-width: 540px)').matches) document.querySelector(`.tool-tab[data-tool="${name}"]`)?.scrollIntoView({ block: 'nearest', inline: 'center' });
   history.replaceState(null, '', `#${name}`);
 }
 tabs.forEach(tab => tab.addEventListener('click', () => openTool(tab.dataset.tool)));

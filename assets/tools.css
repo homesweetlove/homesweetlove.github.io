@@ -49,3 +49,27 @@
 .payday-confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
 @media (max-width:720px){.payday-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.payday-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .lang-toggle{font:700 .72rem 'IBM Plex Mono',monospace;letter-spacing:.02em}
+
+/* ---------- responsive polish (phones / tablets) ---------- */
+body{word-break:keep-all;overflow-wrap:break-word}
+@media (max-width:600px){
+  .tools-header{height:auto}
+  .header-inner{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:8px;row-gap:4px}
+  .header-inner nav{width:100%;gap:14px;font-size:.82rem;overflow-x:auto;scrollbar-width:none}
+  .header-inner nav::-webkit-scrollbar{display:none}
+  .header-inner nav a{white-space:nowrap}
+  .header-inner nav .lang-toggle{margin-left:auto}
+  .header-inner .theme-button{width:34px;height:34px;flex:none}
+  .brand{font-size:.98rem}
+}
+@media (max-width:540px){
+  .tool-nav{display:flex;overflow-x:auto;gap:8px;padding:4px 2px 10px;scroll-snap-type:x proximity;scrollbar-width:none}
+  .tool-nav::-webkit-scrollbar{display:none}
+  .tool-nav:before,.tool-nav .nav-label{display:none}
+  .tool-tab{flex:none;width:auto;min-height:0;padding:10px 14px;border-radius:14px;scroll-snap-align:start;align-items:center}
+  .tool-tab small{display:none}
+  .tool-tab:hover{transform:none}
+  .tools-hero{padding-bottom:40px}
+  .tools-hero h1{font-size:2.35rem}
+  .payday-earned{font-size:2.2rem}
+}
