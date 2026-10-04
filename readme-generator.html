@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile README Generator | homesweetlove.dev</title>
+<meta name="description" content="GitHub 프로필 README를 브라우저에서 만들고 미리보기·복사·다운로드하는 무료 도구.">
+<link rel="canonical" href="https://homesweetlove.github.io/readme-generator.html">
+<meta name="theme-color" content="#0b0c14">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="homesweetlove.dev">
+<meta property="og:title" content="Profile README Generator | homesweetlove.dev">
+<meta property="og:description" content="GitHub 프로필 README를 브라우저에서 바로 만들고 복사하세요.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tools.css?v=11">
+<script src="assets/i18n.js?v=1"></script>
+<style>
+  .generator-main{width:min(1480px,calc(100% - 32px));margin:0 auto;padding:56px 0 80px}.generator-hero{padding:32px 0 44px}.generator-hero .kicker{margin-bottom:14px}.generator-hero h1{font-size:clamp(2.2rem,5vw,4.6rem);line-height:1.02;letter-spacing:-.055em;margin:0}.generator-hero h1 em{font-style:normal;color:var(--accent,#7c8cff)}.generator-hero p.hero-copy{max-width:760px;margin-top:20px;line-height:1.7;color:var(--muted,#9097a6)}
+  .generator-shell{display:grid;grid-template-columns:minmax(340px,.88fr) minmax(460px,1.12fr);gap:22px;align-items:start}.generator-card{border:1px solid var(--line,#262936);background:var(--panel,#11131b);border-radius:22px;overflow:hidden}.generator-card-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding:24px 24px 16px;border-bottom:1px solid var(--line,#262936)}.generator-card-head h2{margin:3px 0 6px;font-size:1.15rem}.generator-card-head p{margin:0;color:var(--muted,#9097a6);font-size:.9rem;line-height:1.55}.step-badge{font:600 .73rem/1 IBM Plex Mono,monospace;color:var(--accent,#8ea1ff);border:1px solid color-mix(in srgb,var(--accent,#8ea1ff) 45%,transparent);border-radius:999px;padding:7px 9px;white-space:nowrap}.generator-form{padding:20px 24px 26px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label,.sub-title{font-size:.78rem;font-weight:700;color:var(--muted,#9097a6);letter-spacing:.02em}.field input,.field textarea,.field select,.custom-tech-input{width:100%;box-sizing:border-box;border:1px solid var(--line,#303443);border-radius:12px;background:var(--input,#0d0f16);color:var(--text,#f2f4f8);padding:12px 13px;font:500 .9rem IBM Plex Sans KR,sans-serif;outline:none;transition:.18s border-color,.18s box-shadow}.field textarea{min-height:92px;resize:vertical;line-height:1.55}.field input:focus,.field textarea:focus,.field select:focus,.custom-tech-input:focus{border-color:var(--accent,#7d8cff);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent,#7d8cff) 15%,transparent)}.form-section{padding-top:22px;margin-top:22px;border-top:1px solid var(--line,#252936)}.form-section:first-child{padding-top:0;margin-top:0;border-top:0}.section-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.section-row h3{margin:0;font-size:.95rem}.section-row small{color:var(--muted,#8e95a5)}
+  .preset-row,.chip-grid,.toggle-grid{display:flex;flex-wrap:wrap;gap:8px}.preset,.tech-chip,.section-toggle{border:1px solid var(--line,#303443);background:transparent;color:var(--muted,#9aa0ad);border-radius:999px;padding:9px 11px;font:600 .78rem IBM Plex Sans KR,sans-serif;cursor:pointer;transition:.16s}.preset:hover,.tech-chip:hover,.section-toggle:hover{border-color:var(--accent,#7c8cff);color:var(--text,#fff)}.preset.is-active,.tech-chip.is-active,.section-toggle.is-active{background:color-mix(in srgb,var(--accent,#7c8cff) 15%,transparent);border-color:var(--accent,#7c8cff);color:var(--text,#fff)}.custom-tech-row{display:flex;gap:8px;margin-top:10px}.custom-tech-row button{flex:none}.hint{font-size:.76rem;color:var(--muted,#8e95a5);margin:8px 0 0;line-height:1.5}
+  .output-card{position:sticky;top:18px}.output-tabs{display:flex;gap:6px;padding:0 24px 16px}.output-tab{border:0;background:transparent;color:var(--muted,#9097a6);font:700 .8rem IBM Plex Sans KR,sans-serif;padding:8px 10px;border-radius:9px;cursor:pointer}.output-tab.is-active{background:color-mix(in srgb,var(--accent,#7c8cff) 14%,transparent);color:var(--text,#fff)}.output-pane{display:none}.output-pane.is-active{display:block}.code-wrap{padding:0 24px 24px}.markdown-output{width:100%;min-height:560px;box-sizing:border-box;border:1px solid var(--line,#2c3040);border-radius:16px;background:#090b10;color:#d8deea;padding:18px;font:500 .79rem/1.65 IBM Plex Mono,monospace;resize:vertical;outline:none}.action-row-gen{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.action-row-gen button{min-height:40px}.preview-wrap{padding:0 24px 24px}.github-preview{min-height:560px;background:#0d1117;border:1px solid #30363d;border-radius:16px;color:#f0f6fc;padding:28px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:auto}.github-preview h1,.github-preview h2,.github-preview h3{padding-bottom:.3em;border-bottom:1px solid #21262d}.github-preview a{color:#58a6ff}.preview-hero{text-align:center}.preview-avatar{width:104px;height:104px;border-radius:50%;border:1px solid #30363d}.preview-name{font-size:2rem;font-weight:700;margin:14px 0 4px}.preview-handle{color:#8b949e;margin-bottom:12px}.preview-bio{max-width:650px;margin:0 auto 18px;line-height:1.6}.preview-badges{display:flex;justify-content:center;flex-wrap:wrap;gap:6px}.fake-badge{background:#238636;border-radius:5px;padding:4px 8px;font-size:.75rem;font-weight:600}.preview-section{margin-top:28px}.preview-stack{display:flex;flex-wrap:wrap;gap:8px}.preview-tech{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:6px 9px;font-size:.82rem}.stats-preview{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stats-box{border:1px solid #30363d;border-radius:8px;background:#0d1117;padding:16px}.stats-box strong{display:block;margin-bottom:6px}.stats-box span{font-size:.8rem;color:#8b949e}.output-note{margin:12px 24px 22px;color:var(--muted,#8e95a5);font-size:.78rem;line-height:1.55}.credits{margin-top:20px;text-align:center;color:var(--muted,#8e95a5);font-size:.78rem}.credits a{color:inherit}
+  @media(max-width:1000px){.generator-shell{grid-template-columns:1fr}.output-card{position:static}.markdown-output,.github-preview{min-height:460px}}@media(max-width:620px){.generator-main{width:min(100% - 20px,1480px);padding-top:28px}.generator-card-head,.generator-form,.code-wrap,.preview-wrap{padding-left:16px;padding-right:16px}.output-tabs{padding-left:16px;padding-right:16px}.field-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.stats-preview{grid-template-columns:1fr}.github-preview{padding:18px}.generator-hero{padding-top:20px}}
+</style>
+</head>
+<body>
+<header class="tools-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">homesweetlove<span>.dev</span></a>
+    <nav aria-label="주요 메뉴" data-en-aria-label="Main menu">
+      <a href="index.html" data-en="Portfolio">포트폴리오</a>
+      <a href="tools.html" data-en="Work tools">업무 도구</a>
+      <a class="nav-current" href="readme-generator.html" aria-current="page" data-en="README Generator">README 생성기</a>
+      <button class="theme-button lang-toggle" type="button">EN</button>
+      <button class="theme-button" id="theme-toggle" type="button" aria-label="테마 전환" data-en-aria-label="Toggle theme">☼</button>
+    </nav>
+  </div>
+</header>
+
+<main class="generator-main">
+  <section class="generator-hero">
+    <p class="kicker">GITHUB PROFILE / README</p>
+    <h1 data-en="Build your GitHub profile,&lt;br&gt;&lt;em&gt;without touching Markdown.&lt;/em&gt;">GitHub 프로필을,<br><em>Markdown 몰라도 예쁘게.</em></h1>
+    <p class="hero-copy" data-en="Fill in a few fields, pick your stack, preview the result and copy or download README.md. Everything runs locally in your browser.">정보 몇 개만 입력하고 기술 스택을 고르면 README.md가 바로 만들어집니다. 미리보기부터 복사·다운로드까지 전부 브라우저 안에서 처리됩니다.</p>
+  </section>
+
+  <section class="generator-shell">
+    <article class="generator-card">
+      <div class="generator-card-head"><div><span class="step-badge">01 / CONFIG</span><h2 data-en="Profile settings">프로필 설정</h2><p data-en="Your inputs stay in this browser and are autosaved locally.">입력값은 이 브라우저에만 자동 저장됩니다.</p></div></div>
+      <div class="generator-form">
+        <div class="form-section">
+          <div class="section-row"><h3 data-en="Preset">프리셋</h3><small data-en="Choose a starting style">시작 구성을 선택하세요</small></div>
+          <div class="preset-row">
+            <button class="preset" data-preset="minimal" type="button">Minimal</button>
+            <button class="preset is-active" data-preset="portfolio" type="button">Portfolio</button>
+            <button class="preset" data-preset="stats" type="button">Stats+</button>
+          </div>
+        </div>
+
+        <div class="form-section field-grid">
+          <div class="field"><label for="username">GitHub username</label><input id="username" value="homesweetlove" autocomplete="off"></div>
+          <div class="field"><label for="displayName" data-en="Display name">표시 이름</label><input id="displayName" value="i_so_free" autocomplete="off"></div>
+          <div class="field full"><label for="headline" data-en="Headline">한 줄 소개</label><input id="headline" value="Building things, breaking things, learning fast." data-en-value="Building things, breaking things, learning fast."></div>
+          <div class="field full"><label for="bio" data-en="Bio">소개</label><textarea id="bio">TypeScript와 Python을 중심으로 이것저것 만들고 실험합니다. 코드로 이야기하는 편이 더 편해요.</textarea></div>
+          <div class="field"><label for="location" data-en="Location">위치</label><input id="location" value="South Korea"></div>
+          <div class="field"><label for="website">Website</label><input id="website" value="https://homesweetlove.github.io/"></div>
+          <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="hello@example.com"></div>
+          <div class="field"><label for="projectUrl" data-en="Featured project URL">대표 프로젝트 URL</label><input id="projectUrl" placeholder="https://github.com/user/project"></div>
+        </div>
+
+        <div class="form-section">
+          <div class="section-row"><h3 data-en="Tech stack">기술 스택</h3><small id="stack-count">4 selected</small></div>
+          <div class="chip-grid" id="tech-chips">
+            <button class="tech-chip is-active" data-tech="TypeScript" type="button">TypeScript</button>
+            <button class="tech-chip is-active" data-tech="Python" type="button">Python</button>
+            <button class="tech-chip is-active" data-tech="HTML" type="button">HTML</button>
+            <button class="tech-chip is-active" data-tech="Java" type="button">Java</button>
+            <button class="tech-chip" data-tech="JavaScript" type="button">JavaScript</button>
+            <button class="tech-chip" data-tech="React" type="button">React</button>
+            <button class="tech-chip" data-tech="Next.js" type="button">Next.js</button>
+            <button class="tech-chip" data-tech="Node.js" type="button">Node.js</button>
+            <button class="tech-chip" data-tech="Kotlin" type="button">Kotlin</button>
+            <button class="tech-chip" data-tech="Android" type="button">Android</button>
+            <button class="tech-chip" data-tech="C" type="button">C</button>
+            <button class="tech-chip" data-tech="C++" type="button">C++</button>
+            <button class="tech-chip" data-tech="Git" type="button">Git</button>
+            <button class="tech-chip" data-tech="Docker" type="button">Docker</button>
+            <button class="tech-chip" data-tech="Vercel" type="button">Vercel</button>
+            <button class="tech-chip" data-tech="Oracle Cloud" type="button">Oracle Cloud</button>
+          </div>
+          <div class="custom-tech-row"><input class="custom-tech-input" id="custom-tech" placeholder="직접 추가: Rust, Swift, ..." data-en-placeholder="Add custom: Rust, Swift, ..."><button class="secondary-button" id="add-tech" type="button" data-en="Add">추가</button></div>
+        </div>
+
+        <div class="form-section">
+          <div class="section-row"><h3 data-en="Sections">섹션</h3><small data-en="Toggle what appears">README 구성 선택</small></div>
+          <div class="toggle-grid" id="section-toggles">
+            <button class="section-toggle is-active" data-section="about" type="button">About</button>
+            <button class="section-toggle is-active" data-section="stack" type="button">Stack</button>
+            <button class="section-toggle is-active" data-section="stats" type="button">Stats</button>
+            <button class="section-toggle is-active" data-section="languages" type="button">Top Languages</button>
+            <button class="section-toggle" data-section="streak" type="button">Streak</button>
+            <button class="section-toggle is-active" data-section="contact" type="button">Contact</button>
+            <button class="section-toggle" data-section="views" type="button">Profile Views</button>
+          </div>
+        </div>
+
+        <div class="form-section field-grid">
+          <div class="field"><label for="linkedin">LinkedIn</label><input id="linkedin" placeholder="https://linkedin.com/in/..."></div>
+          <div class="field"><label for="xurl">X / Twitter</label><input id="xurl" placeholder="https://x.com/..."></div>
+          <div class="field"><label for="instagram">Instagram</label><input id="instagram" placeholder="https://instagram.com/..."></div>
+          <div class="field"><label for="youtube">YouTube</label><input id="youtube" placeholder="https://youtube.com/@..."></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="generator-card output-card">
+      <div class="generator-card-head"><div><span class="step-badge">02 / OUTPUT</span><h2 data-en="README output">README 결과</h2><p data-en="Preview it, then copy or download the generated Markdown.">미리 확인하고 그대로 복사하거나 README.md로 받으세요.</p></div></div>
+      <div class="output-tabs" role="tablist">
+        <button class="output-tab is-active" data-output="markdown" type="button">Markdown</button>
+        <button class="output-tab" data-output="preview" type="button" data-en="Preview">미리보기</button>
+      </div>
+      <div class="output-pane is-active" data-output-pane="markdown">
+        <div class="code-wrap">
+          <textarea class="markdown-output" id="markdown-output" spellcheck="false"></textarea>
+          <div class="action-row-gen">
+            <button class="primary-button" id="copy-markdown" type="button" data-en="Copy Markdown">Markdown 복사</button>
+            <button class="secondary-button" id="download-readme" type="button" data-en="Download README.md">README.md 다운로드</button>
+            <button class="text-button" id="reset-generator" type="button" data-en="Reset">초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="output-pane" data-output-pane="preview"><div class="preview-wrap"><div class="github-preview" id="github-preview"></div></div></div>
+      <p class="output-note" id="generator-message" data-en="Tip: create a repository with the same name as your GitHub username and put README.md in its root to show it on your profile.">팁: GitHub 사용자명과 같은 이름의 저장소를 만든 뒤 루트에 README.md를 넣으면 프로필 첫 화면에 표시됩니다.</p>
+    </article>
+  </section>
+
+  <p class="credits">Inspired by <a href="https://github.com/maurodesouza/profile-readme-generator" target="_blank" rel="noopener">maurodesouza/profile-readme-generator</a>. This implementation is built for homesweetlove.dev and runs entirely in the browser.</p>
+</main>
+
+<footer class="tools-footer"><span>homesweetlove.dev / README generator</span><span data-en="No account or server upload required.">계정 연결·서버 업로드 없이 작동합니다.</span></footer>
+
+<script>
+const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
+const ids=['username','displayName','headline','bio','location','website','email','projectUrl','linkedin','xurl','instagram','youtube'];
+const state={tech:new Set(['TypeScript','Python','HTML','Java']),sections:new Set(['about','stack','stats','languages','contact']),custom:[]};
+const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const mdEsc=s=>String(s||'').replace(/([\\`*_{}\[\]()#+.!|>~-])/g,'\\$1');
+const value=id=>$('#'+id).value.trim();
+const techBadge=t=>`![${t}](https://img.shields.io/badge/${encodeURIComponent(t).replace(/%20/g,'_')}-181717?style=for-the-badge)`;
+function activeTech(){return [...state.tech]}
+function socialLine(){const items=[];if(value('website'))items.push(`[Website](${value('website')})`);if(value('email'))items.push(`[Email](mailto:${value('email')})`);if(value('linkedin'))items.push(`[LinkedIn](${value('linkedin')})`);if(value('xurl'))items.push(`[X](${value('xurl')})`);if(value('instagram'))items.push(`[Instagram](${value('instagram')})`);if(value('youtube'))items.push(`[YouTube](${value('youtube')})`);return items.join(' · ')}
+function generate(){
+  const u=value('username')||'your-username',name=value('displayName')||u,headline=value('headline'),bio=value('bio'),loc=value('location'),project=value('projectUrl');
+  const lines=[];lines.push(`<div align="center">`);lines.push('');lines.push(`## Hi, I'm ${mdEsc(name)} 👋`);if(headline)lines.push(`**${mdEsc(headline)}**`);lines.push('');lines.push(`[![GitHub](https://img.shields.io/badge/GitHub-${encodeURIComponent(u)}-181717?style=for-the-badge&logo=github)](https://github.com/${encodeURIComponent(u)})`);if(state.sections.has('views'))lines.push(`![Profile views](https://komarev.com/ghpvc/?username=${encodeURIComponent(u)}&style=for-the-badge)`);lines.push('');lines.push(`</div>`);lines.push('');
+  if(state.sections.has('about')){lines.push('### About');lines.push('');if(bio)lines.push(bio);if(loc)lines.push(`- 📍 ${mdEsc(loc)}`);if(project)lines.push(`- 🚀 Featured project: ${project}`);lines.push('')}
+  if(state.sections.has('stack')&&activeTech().length){lines.push('### Tech stack');lines.push('');lines.push(activeTech().map(techBadge).join(' '));lines.push('')}
+  if(state.sections.has('stats')){lines.push('### GitHub stats');lines.push('');lines.push(`<img src="https://github-readme-stats.vercel.app/api?username=${encodeURIComponent(u)}&show_icons=true&theme=github_dark&hide_border=true" height="165" alt="GitHub stats" />`);if(state.sections.has('languages'))lines.push(`<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=${encodeURIComponent(u)}&layout=compact&theme=github_dark&hide_border=true" height="165" alt="Top languages" />`);lines.push('')}
+  else if(state.sections.has('languages')){lines.push('### Top languages');lines.push('');lines.push(`<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=${encodeURIComponent(u)}&layout=compact&theme=github_dark&hide_border=true" height="165" alt="Top languages" />`);lines.push('')}
+  if(state.sections.has('streak')){lines.push('### Streak');lines.push('');lines.push(`<img src="https://streak-stats.demolab.com?user=${encodeURIComponent(u)}&theme=github-dark-blue&hide_border=true" alt="GitHub streak" />`);lines.push('')}
+  const social=socialLine();if(state.sections.has('contact')&&social){lines.push('### Contact');lines.push('');lines.push(social);lines.push('')}
+  lines.push('---');lines.push(`<sub>Generated with [homesweetlove.dev README Generator](https://homesweetlove.github.io/readme-generator.html)</sub>`);
+  const out=lines.join('\n');$('#markdown-output').value=out;renderPreview({u,name,headline,bio,loc,project,social});save();
+}
+function renderPreview(d){const tech=activeTech().map(t=>`<span class="preview-tech">${esc(t)}</span>`).join('');let h=`<div class="preview-hero"><img class="preview-avatar" src="https://github.com/${encodeURIComponent(d.u)}.png?size=208" alt=""><div class="preview-name">${esc(d.name)} 👋</div><div class="preview-handle">@${esc(d.u)}</div>${d.headline?`<div class="preview-bio"><strong>${esc(d.headline)}</strong></div>`:''}<div class="preview-badges"><span class="fake-badge">GitHub · ${esc(d.u)}</span>${state.sections.has('views')?'<span class="fake-badge">Profile views</span>':''}</div></div>`;
+  if(state.sections.has('about'))h+=`<div class="preview-section"><h3>About</h3>${d.bio?`<p>${esc(d.bio)}</p>`:''}${d.loc?`<p>📍 ${esc(d.loc)}</p>`:''}${d.project?`<p>🚀 Featured project: <a href="#">${esc(d.project)}</a></p>`:''}</div>`;
+  if(state.sections.has('stack')&&tech)h+=`<div class="preview-section"><h3>Tech stack</h3><div class="preview-stack">${tech}</div></div>`;
+  if(state.sections.has('stats')||state.sections.has('languages')||state.sections.has('streak')){h+=`<div class="preview-section"><h3>GitHub stats</h3><div class="stats-preview">`;if(state.sections.has('stats'))h+='<div class="stats-box"><strong>GitHub Stats</strong><span>Stars · commits · contributions</span></div>';if(state.sections.has('languages'))h+='<div class="stats-box"><strong>Top Languages</strong><span>Language usage card</span></div>';if(state.sections.has('streak'))h+='<div class="stats-box"><strong>Streak</strong><span>Contribution streak card</span></div>';h+='</div></div>'}
+  if(state.sections.has('contact')&&d.social)h+=`<div class="preview-section"><h3>Contact</h3><p>${esc(d.social).replace(/\\\[|\\\]|\(|\)/g,'')}</p></div>`;$('#github-preview').innerHTML=h;
+}
+function setPreset(name){$$('.preset').forEach(b=>b.classList.toggle('is-active',b.dataset.preset===name));if(name==='minimal')state.sections=new Set(['about','stack','contact']);if(name==='portfolio')state.sections=new Set(['about','stack','stats','languages','contact']);if(name==='stats')state.sections=new Set(['about','stack','stats','languages','streak','contact','views']);syncSections();generate()}
+function syncSections(){$$('.section-toggle').forEach(b=>b.classList.toggle('is-active',state.sections.has(b.dataset.section)))}
+function syncTech(){$$('.tech-chip').forEach(b=>b.classList.toggle('is-active',state.tech.has(b.dataset.tech)));$('#stack-count').textContent=`${state.tech.size} selected`}
+function save(){try{const data={values:Object.fromEntries(ids.map(id=>[id,$('#'+id).value])),tech:[...state.tech],sections:[...state.sections]};localStorage.setItem('profile-readme-generator',JSON.stringify(data))}catch(e){}}
+function load(){try{const data=JSON.parse(localStorage.getItem('profile-readme-generator')||'null');if(!data)return;Object.entries(data.values||{}).forEach(([id,v])=>{if($('#'+id))$('#'+id).value=v});if(Array.isArray(data.tech))state.tech=new Set(data.tech);if(Array.isArray(data.sections))state.sections=new Set(data.sections)}catch(e){}}
+ids.forEach(id=>$('#'+id).addEventListener('input',generate));
+$('#tech-chips').addEventListener('click',e=>{const b=e.target.closest('.tech-chip');if(!b)return;state.tech.has(b.dataset.tech)?state.tech.delete(b.dataset.tech):state.tech.add(b.dataset.tech);syncTech();generate()});
+$('#add-tech').addEventListener('click',()=>{const i=$('#custom-tech'),t=i.value.trim();if(!t)return;if(!document.querySelector(`[data-tech="${CSS.escape(t)}"]`)){const b=document.createElement('button');b.type='button';b.className='tech-chip is-active';b.dataset.tech=t;b.textContent=t;$('#tech-chips').appendChild(b)}state.tech.add(t);i.value='';syncTech();generate()});
+$('#custom-tech').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('#add-tech').click()}});
+$('#section-toggles').addEventListener('click',e=>{const b=e.target.closest('.section-toggle');if(!b)return;state.sections.has(b.dataset.section)?state.sections.delete(b.dataset.section):state.sections.add(b.dataset.section);syncSections();generate()});
+$$('.preset').forEach(b=>b.addEventListener('click',()=>setPreset(b.dataset.preset)));
+$$('.output-tab').forEach(b=>b.addEventListener('click',()=>{$$('.output-tab').forEach(x=>x.classList.toggle('is-active',x===b));$$('.output-pane').forEach(p=>p.classList.toggle('is-active',p.dataset.outputPane===b.dataset.output))}));
+$('#copy-markdown').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('#markdown-output').value);$('#generator-message').textContent='Markdown을 클립보드에 복사했습니다.'}catch(e){$('#markdown-output').select();document.execCommand('copy');$('#generator-message').textContent='Markdown을 복사했습니다.'}});
+$('#download-readme').addEventListener('click',()=>{const blob=new Blob([$('#markdown-output').value],{type:'text/markdown;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='README.md';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+$('#reset-generator').addEventListener('click',()=>{try{localStorage.removeItem('profile-readme-generator')}catch(e){};location.reload()});
+load();syncTech();syncSections();generate();try{i18n.apply()}catch(e){}
+</script>
+</body>
+</html>
