@@ -7,6 +7,7 @@
 "오타쿠가 세상을 지배한다!"
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-6c5ce7?style=for-the-badge&logo=googlechrome&logoColor=white)](https://homesweetlove.github.io/)
+[![Resume](https://img.shields.io/badge/Resume-0a84ff?style=for-the-badge&logo=readme&logoColor=white)](https://homesweetlove.github.io/resume.html)
 [![CV](https://img.shields.io/badge/CV-1d1d1f?style=for-the-badge&logo=readme&logoColor=white)](https://homesweetlove.github.io/cv.html)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/homesweetlove)
 
@@ -17,7 +18,8 @@
 ### 🧑‍💻 About
 
 - 🐙 GitHub: [github.com/homesweetlove](https://github.com/homesweetlove)
-- 📄 CV: [homesweetlove.github.io/cv.html](https://homesweetlove.github.io/cv.html)
+- 📄 Resume: [homesweetlove.github.io/resume.html](https://homesweetlove.github.io/resume.html)
+- 📚 CV: [homesweetlove.github.io/cv.html](https://homesweetlove.github.io/cv.html)
 - 📅 GitHub 가입: 2025년 9월
 - 💻 주 사용 언어: TypeScript, Python, HTML, Java
 
