@@ -9,15 +9,15 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <style>
 :root{--bg:#ffffff;--text:#303030;--muted:#888;--line:#e5e5e5;--soft:#f7f7f7;--link:#405f91;--max:900px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.62;-webkit-font-smoothing:antialiased}a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}.wrap{width:min(calc(100% - 36px),var(--max));margin:0 auto}.toolbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.toolbar-inner{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:12px}.toolbar-group{display:flex;gap:8px;flex-wrap:wrap}.btn{appearance:none;border:1px solid var(--line);background:var(--soft);color:#444;border-radius:999px;padding:7px 12px;font:600 12px/1.2 inherit;cursor:pointer;text-decoration:none}.btn:hover{background:#eee;text-decoration:none}.btn.primary{background:#2d2d2d;color:#fff;border-color:#2d2d2d}.btn.editing{background:#fff3c4;border-color:#ead273;color:#5e4b00}.cv{padding:46px 0 54px}.profile{display:grid;grid-template-columns:104px 1fr;gap:26px;align-items:center;padding-bottom:28px}.avatar{width:98px;height:98px;border-radius:50%;object-fit:cover}.name{margin:0 0 5px;font-size:28px;line-height:1.2;letter-spacing:-.025em}.headline{margin:0;color:#707070;font-size:14px}.intro{margin:10px 0 0;max-width:680px}.links{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.link-pill{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:5px 10px;color:#555;font-size:12px;font-weight:600}.link-pill:hover{text-decoration:none;background:#eee}.nav{display:flex;gap:20px;overflow:auto;white-space:nowrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:4px}.nav a{font-size:12px;font-weight:650;color:#5d5d5d}.section{padding-top:29px;scroll-margin-top:80px}.section-title{margin:0 0 13px;padding-top:5px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:#999;font-weight:700}.entry{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;padding:9px 0}.entry+.entry{border-top:1px solid #f2f2f2}.entry-title{font-weight:650;color:#333}.entry-sub{margin-top:2px;color:#666}.entry-desc{margin-top:5px;color:#555;font-size:14px}.date{font-size:12.5px;color:#999;white-space:nowrap;text-align:right}.project-links{font-size:12px;margin-top:4px}.skills{display:grid;grid-template-columns:125px 1fr;gap:7px 16px}.skills strong{font-weight:650}.skills span{color:#555}.footer{margin-top:35px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:#9a9a9a;text-align:center}.editing-hint{display:none;margin:15px 0 0;padding:9px 12px;border:1px dashed #d5b84b;background:#fff9dd;color:#725f0d;border-radius:8px;font-size:12px}.is-editing .editing-hint{display:block}.is-editing [data-editable]{outline:1px dashed #d8bd52;outline-offset:3px;border-radius:2px}.is-editing [data-editable]:focus{outline:2px solid #c6a633;background:#fffdf1}@media(max-width:680px){.profile{grid-template-columns:78px 1fr;gap:17px}.avatar{width:74px;height:74px}.name{font-size:24px}.entry{grid-template-columns:1fr;gap:2px}.date{text-align:left}.skills{grid-template-columns:1fr;gap:2px}.toolbar-inner{padding:9px 0}.toolbar{position:static}.cv{padding-top:28px}}
-@media print{@page{size:A4;margin:12mm}.toolbar,.nav,.editing-hint{display:none!important}body{font-size:11.2px}.wrap{width:100%;max-width:none}.cv{padding:0}.profile{grid-template-columns:72px 1fr;gap:16px;padding-bottom:16px}.avatar{width:68px;height:68px}.name{font-size:22px}.headline,.intro{font-size:10.5px}.links{margin-top:7px}.link-pill{border:0;background:none;padding:0 8px 0 0;font-size:9.5px}.section{padding-top:13px}.section-title{font-size:9px;margin-bottom:7px}.entry{padding:5px 0;gap:18px}.entry-title{font-size:10.5px}.entry-sub,.entry-desc,.skills{font-size:9.7px}.date,.project-links{font-size:9px}.footer{margin-top:15px;padding-top:9px;font-size:8.5px}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.62;-webkit-font-smoothing:antialiased}a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}.wrap{width:min(calc(100% - 36px),var(--max));margin:0 auto}.toolbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.toolbar-inner{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:12px}.toolbar-group{display:flex;gap:8px;flex-wrap:wrap}.btn{appearance:none;border:1px solid var(--line);background:var(--soft);color:#444;border-radius:999px;padding:7px 12px;font:600 12px/1.2 inherit;cursor:pointer;text-decoration:none}.btn:hover{background:#eee;text-decoration:none}.btn.primary{background:#2d2d2d;color:#fff;border-color:#2d2d2d}.cv{padding:46px 0 54px}.profile{display:grid;grid-template-columns:104px 1fr;gap:26px;align-items:center;padding-bottom:28px}.avatar{width:98px;height:98px;border-radius:50%;object-fit:cover}.name{margin:0 0 5px;font-size:28px;line-height:1.2;letter-spacing:-.025em}.headline{margin:0;color:#707070;font-size:14px}.intro{margin:10px 0 0;max-width:680px}.links{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.link-pill{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:5px 10px;color:#555;font-size:12px;font-weight:600}.link-pill:hover{text-decoration:none;background:#eee}.nav{display:flex;gap:20px;overflow:auto;white-space:nowrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:4px}.nav a{font-size:12px;font-weight:650;color:#5d5d5d}.section{padding-top:29px;scroll-margin-top:80px}.section-title{margin:0 0 13px;padding-top:5px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:#999;font-weight:700}.entry{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;padding:9px 0}.entry+.entry{border-top:1px solid #f2f2f2}.entry-title{font-weight:650;color:#333}.entry-sub{margin-top:2px;color:#666}.entry-desc{margin-top:5px;color:#555;font-size:14px}.date{font-size:12.5px;color:#999;white-space:nowrap;text-align:right}.project-links{font-size:12px;margin-top:4px}.skills{display:grid;grid-template-columns:125px 1fr;gap:7px 16px}.skills strong{font-weight:650}.skills span{color:#555}.footer{margin-top:35px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:#9a9a9a;text-align:center}@media(max-width:680px){.profile{grid-template-columns:78px 1fr;gap:17px}.avatar{width:74px;height:74px}.name{font-size:24px}.entry{grid-template-columns:1fr;gap:2px}.date{text-align:left}.skills{grid-template-columns:1fr;gap:2px}.toolbar-inner{padding:9px 0}.toolbar{position:static}.cv{padding-top:28px}}
+@media print{@page{size:A4;margin:12mm}.toolbar,.nav{display:none!important}body{font-size:11.2px}.wrap{width:100%;max-width:none}.cv{padding:0}.profile{grid-template-columns:72px 1fr;gap:16px;padding-bottom:16px}.avatar{width:68px;height:68px}.name{font-size:22px}.headline,.intro{font-size:10.5px}.links{margin-top:7px}.link-pill{border:0;background:none;padding:0 8px 0 0;font-size:9.5px}.section{padding-top:13px}.section-title{font-size:9px;margin-bottom:7px}.entry{padding:5px 0;gap:18px}.entry-title{font-size:10.5px}.entry-sub,.entry-desc,.skills{font-size:9.7px}.date,.project-links{font-size:9px}.footer{margin-top:15px;padding-top:9px;font-size:8.5px}}
 </style>
 </head>
 <body>
 <div class="toolbar">
   <div class="wrap toolbar-inner">
     <div class="toolbar-group"><a class="btn" href="index.html">← Portfolio</a><a class="btn" href="resume.html">Resume</a></div>
-    <div class="toolbar-group"><button class="btn" id="editBtn" type="button">Edit</button><button class="btn" id="printBtn" type="button">Print</button><button class="btn primary" id="pdfBtn" type="button">Download PDF</button></div>
+    <div class="toolbar-group"><button class="btn" id="printBtn" type="button">Print</button><button class="btn primary" id="pdfBtn" type="button">Download PDF</button></div>
   </div>
 </div>
 
@@ -25,15 +25,14 @@
   <header class="profile">
     <img class="avatar" src="https://avatars.githubusercontent.com/u/232012965?v=4" alt="@homesweetlove profile photo">
     <div>
-      <h1 class="name" data-editable>@homesweetlove</h1>
-      <p class="headline" data-editable>Computer Science Undergraduate · Software Systems · AI · Automation · Human-Computer Interaction</p>
-      <p class="intro" data-editable>I design and build software systems with an emphasis on algorithms, automation, AI-assisted workflows, and human-centered interfaces. My current interests span adaptive resource orchestration, browser and multi-agent automation, compiler/interpreter design, and sEMG-based human-machine interaction.</p>
+      <h1 class="name">@homesweetlove</h1>
+      <p class="headline">Computer Science Undergraduate · Software Systems · AI · Automation · Human-Computer Interaction</p>
+      <p class="intro">I design and build software systems with an emphasis on algorithms, automation, AI-assisted workflows, and human-centered interfaces. My current interests span adaptive resource orchestration, browser and multi-agent automation, compiler/interpreter design, and sEMG-based human-machine interaction.</p>
       <div class="links">
         <a class="link-pill" href="https://github.com/homesweetlove" target="_blank" rel="noopener">GitHub</a>
         <a class="link-pill" href="https://homesweetlove.github.io/">Portfolio</a>
-        <span class="link-pill" data-editable>South Korea</span>
+        <span class="link-pill">South Korea</span>
       </div>
-      <div class="editing-hint">Edit mode is on. Click highlighted text to change it. Changes are temporary unless you copy them back into this HTML file.</div>
     </div>
   </header>
 
@@ -44,16 +43,16 @@
   <section class="section" id="education">
     <h2 class="section-title">Education</h2>
     <div class="entry">
-      <div><div class="entry-title" data-editable>Daegu Catholic University</div><div class="entry-sub" data-editable>B.S. Undergraduate · Computer Science / Computer Engineering · Daegu, South Korea</div><div class="entry-desc" data-editable>Relevant areas: System Programming, Programming Languages, Algorithms, Computer Systems, Mobile Application Development</div></div>
-      <div class="date" data-editable>2023 — Present</div>
+      <div><div class="entry-title">Daegu Catholic University</div><div class="entry-sub">B.S. Undergraduate · Computer Science / Computer Engineering · Daegu, South Korea</div><div class="entry-desc">Relevant areas: System Programming, Programming Languages, Algorithms, Computer Systems, Mobile Application Development</div></div>
+      <div class="date">2023 — Present</div>
     </div>
   </section>
 
   <section class="section" id="research">
     <h2 class="section-title">Research</h2>
     <div class="entry">
-      <div><div class="entry-title" data-editable>sEMG-Based Muscle Fatigue Analysis</div><div class="entry-sub" data-editable>Undergraduate Research</div><div class="entry-desc" data-editable>Investigating surface electromyography signals for upper-arm muscle fatigue analysis; exploring signal processing, machine-learning classification, gesture recognition, robotic-arm control, and individual differences in muscle activation.</div></div>
-      <div class="date" data-editable>Current</div>
+      <div><div class="entry-title">sEMG-Based Muscle Fatigue Analysis</div><div class="entry-sub">Undergraduate Research</div><div class="entry-desc">Investigating surface electromyography signals for upper-arm muscle fatigue analysis; exploring signal processing, machine-learning classification, gesture recognition, robotic-arm control, and individual differences in muscle activation.</div></div>
+      <div class="date">Current</div>
     </div>
   </section>
 
@@ -62,92 +61,82 @@
 
     <div class="entry">
       <div>
-        <div class="entry-title" data-editable>RAM Flow — Adaptive Windows Resource Orchestrator</div>
-        <div class="entry-sub" data-editable>Systems · Algorithm Design · Windows Resource Management</div>
-        <div class="entry-desc" data-editable>Designed a pressure-aware control algorithm that combines memory compression, committed memory, pagefile usage, hard-fault activity, and process working sets into a system-pressure model. The policy classifies foreground, background, and AI/LLM workloads, then applies staged interventions through process priority, idle-app management, and selective working-set tuning, followed by continuous verification and recovery as conditions change.</div>
+        <div class="entry-title">RAM Flow — Adaptive Windows Resource Orchestrator</div>
+        <div class="entry-sub">Systems · Algorithm Design · Windows Resource Management</div>
+        <div class="entry-desc">Designed a pressure-aware control algorithm that combines memory compression, committed memory, pagefile usage, hard-fault activity, and process working sets into a system-pressure model. The policy classifies foreground, background, and AI/LLM workloads, then applies staged interventions through process priority, idle-app management, and selective working-set tuning, followed by continuous verification and recovery as conditions change.</div>
       </div>
-      <div class="date" data-editable>System Design</div>
+      <div class="date">System Design</div>
     </div>
 
     <div class="entry">
       <div>
-        <div class="entry-title" data-editable>AI-Powered Browser / Stateful Web Agent</div>
-        <div class="entry-sub" data-editable>AI Agents · Browser Automation · DOM / Accessibility-Tree Reasoning</div>
-        <div class="entry-desc" data-editable>Architected a lightweight browser agent that interprets natural-language requests, reads structured page context, selects actions using an LLM or local model, and executes web workflows while maintaining local state, reusable command skills, and human-centered controls.</div>
+        <div class="entry-title">AI-Powered Browser / Stateful Web Agent</div>
+        <div class="entry-sub">AI Agents · Browser Automation · DOM / Accessibility-Tree Reasoning</div>
+        <div class="entry-desc">Architected a lightweight browser agent that interprets natural-language requests, reads structured page context, selects actions using an LLM or local model, and executes web workflows while maintaining local state, reusable command skills, and human-centered controls.</div>
       </div>
-      <div class="date" data-editable>AI Systems</div>
+      <div class="date">AI Systems</div>
     </div>
 
     <div class="entry">
       <div>
-        <div class="entry-title" data-editable>Agency Router — Multi-Agent Orchestration Workflow</div>
-        <div class="entry-sub" data-editable>Multi-Agent Systems · Routing · Delegation · Review Loops</div>
-        <div class="entry-desc" data-editable>Designed an automatic orchestration workflow that analyzes a request, selects the smallest useful set of specialist agents, delegates subtasks, integrates outputs, and runs review-and-correction loops for software-engineering tasks.</div>
+        <div class="entry-title">Agency Router — Multi-Agent Orchestration Workflow</div>
+        <div class="entry-sub">Multi-Agent Systems · Routing · Delegation · Review Loops</div>
+        <div class="entry-desc">Designed an automatic orchestration workflow that analyzes a request, selects the smallest useful set of specialist agents, delegates subtasks, integrates outputs, and runs review-and-correction loops for software-engineering tasks.</div>
       </div>
-      <div class="date" data-editable>Agent Architecture</div>
+      <div class="date">Agent Architecture</div>
     </div>
 
     <div class="entry">
       <div>
-        <div class="entry-title" data-editable>S-Language Compiler / Interpreter</div>
-        <div class="entry-sub" data-editable>Compiler Design · Recursive-Descent Parsing · AST · Typed Scopes</div>
-        <div class="entry-desc" data-editable>Implemented a regex tokenizer, recursive-descent parser, AST-based interpreter, lexical scope and type handling, declarations and assignment, input/output, conditionals, loops, and operator-precedence rules across arithmetic, comparison, and logical expressions.</div>
+        <div class="entry-title">S-Language Compiler / Interpreter</div>
+        <div class="entry-sub">Compiler Design · Recursive-Descent Parsing · AST · Typed Scopes</div>
+        <div class="entry-desc">Implemented a regex tokenizer, recursive-descent parser, AST-based interpreter, lexical scope and type handling, declarations and assignment, input/output, conditionals, loops, and operator-precedence rules across arithmetic, comparison, and logical expressions.</div>
       </div>
-      <div class="date" data-editable>Language Systems</div>
+      <div class="date">Language Systems</div>
     </div>
 
     <div class="entry">
       <div>
-        <div class="entry-title" data-editable>Music Magic</div>
-        <div class="entry-sub" data-editable>Android · Audio Metadata · File Integrity · Mobile UX</div>
-        <div class="entry-desc" data-editable>Designed an Android audio-management application that edits metadata embedded directly in music files, with overwrite safeguards, metadata automation, and library-management workflows focused on preserving source-file integrity.</div>
+        <div class="entry-title">Music Magic</div>
+        <div class="entry-sub">Android · Audio Metadata · File Integrity · Mobile UX</div>
+        <div class="entry-desc">Designed an Android audio-management application that edits metadata embedded directly in music files, with overwrite safeguards, metadata automation, and library-management workflows focused on preserving source-file integrity.</div>
       </div>
-      <div class="date" data-editable>Android</div>
+      <div class="date">Android</div>
     </div>
   </section>
 
   <section class="section" id="skills">
     <h2 class="section-title">Technical Skills</h2>
     <div class="skills">
-      <strong>Programming</strong><span data-editable>Python · Kotlin · Java · JavaScript / TypeScript · C · HTML · CSS</span>
-      <strong>Systems & Algorithms</strong><span data-editable>Adaptive Resource Management · Process Prioritization · Parser / Interpreter Design · Agent Routing · Control Policies</span>
-      <strong>AI & Automation</strong><span data-editable>LLM Integration · Browser Automation · Multi-Agent Orchestration · AI-Assisted Applications · Machine Learning Fundamentals</span>
-      <strong>Development</strong><span data-editable>Android · Web Applications · REST APIs · Responsive UI · Local-First Workflows</span>
-      <strong>Infrastructure</strong><span data-editable>Git · GitHub · Linux · Windows · Oracle Cloud · Caddy · DNS</span>
-      <strong>Product</strong><span data-editable>UX/UI Design · Prototyping · Human-Computer Interaction · Product Ideation</span>
+      <strong>Programming</strong><span>Python · Kotlin · Java · JavaScript / TypeScript · C · HTML · CSS</span>
+      <strong>Systems & Algorithms</strong><span>Adaptive Resource Management · Process Prioritization · Parser / Interpreter Design · Agent Routing · Control Policies</span>
+      <strong>AI & Automation</strong><span>LLM Integration · Browser Automation · Multi-Agent Orchestration · AI-Assisted Applications · Machine Learning Fundamentals</span>
+      <strong>Development</strong><span>Android · Web Applications · REST APIs · Responsive UI · Local-First Workflows</span>
+      <strong>Infrastructure</strong><span>Git · GitHub · Linux · Windows · Oracle Cloud · Caddy · DNS</span>
+      <strong>Product</strong><span>UX/UI Design · Prototyping · Human-Computer Interaction · Product Ideation</span>
     </div>
   </section>
 
   <section class="section" id="interests">
     <h2 class="section-title">Interests</h2>
-    <div class="entry"><div><div class="entry-desc" data-editable>Software systems · AI-native applications · Apple platform development · Human-Computer Interaction · Automation · Compiler design · Biosignal processing</div></div><div class="date"> </div></div>
+    <div class="entry"><div><div class="entry-desc">Software systems · AI-native applications · Apple platform development · Human-Computer Interaction · Automation · Compiler design · Biosignal processing</div></div><div class="date"> </div></div>
   </section>
 
-  <footer class="footer">@homesweetlove · Curriculum Vitae · HTML version</footer>
+  <footer class="footer">@homesweetlove · Curriculum Vitae</footer>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js"></script>
 <script>
-const editBtn=document.getElementById('editBtn');
-let editing=false;
-editBtn.addEventListener('click',()=>{
-  editing=!editing;
-  document.body.classList.toggle('is-editing',editing);
-  document.querySelectorAll('[data-editable]').forEach(el=>el.contentEditable=editing?'true':'false');
-  editBtn.textContent=editing?'Done':'Edit';
-  editBtn.classList.toggle('editing',editing);
-});
 document.getElementById('printBtn').addEventListener('click',()=>window.print());
 document.getElementById('pdfBtn').addEventListener('click',async()=>{
   const btn=document.getElementById('pdfBtn');
-  const old=btn.textContent; btn.textContent='Preparing…'; btn.disabled=true;
+  const old=btn.textContent;btn.textContent='Preparing…';btn.disabled=true;
   try{
-    document.body.classList.remove('is-editing');
     const element=document.getElementById('cvDocument');
     const opt={margin:[8,8,8,8],filename:'homesweetlove-CV.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff'},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['avoid-all','css','legacy']}};
     await html2pdf().set(opt).from(element).save();
   }catch(e){window.print();}
-  finally{btn.textContent=old;btn.disabled=false;if(editing)document.body.classList.add('is-editing');}
+  finally{btn.textContent=old;btn.disabled=false;}
 });
 </script>
 </body>
