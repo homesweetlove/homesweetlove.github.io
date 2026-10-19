@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>i_so_free (@homesweetlove)</title>
-<meta name="description" content="이것저것 만들고 실험하는 개발자 i_so_free(@homesweetlove)의 포트폴리오. 프로젝트, 매일 IT 뉴스, 브라우저 업무 도구." data-en-content="Portfolio of i_so_free (@homesweetlove), a developer who likes building and experimenting. Projects, a daily IT briefing and in-browser work tools.">
+<title>i_so_free · Systems & Product Engineering</title>
+<meta name="description" content="제약된 환경에서 신뢰할 수 있는 소프트웨어를 설계합니다. RamFlow, Luma, Subject Japan, sEMG 연구 사례." data-en-content="Engineering reliable, resource-aware systems. Selected work in desktop, automation, mobile and sEMG research.">
 <link rel="canonical" href="https://homesweetlove.github.io/">
 <meta name="theme-color" content="#0b0c14">
 <meta property="og:type" content="website">
@@ -12,7 +12,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://homesweetlove.github.io/">
 <meta property="og:title" content="i_so_free (@homesweetlove)">
-<meta property="og:description" content="이것저것 만들고 실험하는 개발자 i_so_free(@homesweetlove)의 포트폴리오. 프로젝트, 매일 IT 뉴스, 브라우저 업무 도구." data-en-content="Portfolio of i_so_free (@homesweetlove), a developer who likes building and experimenting. Projects, a daily IT briefing and in-browser work tools.">
+<meta property="og:description" content="문제 정의, 설계 판단, 검증으로 설명하는 소프트웨어 엔지니어링 포트폴리오.">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=400">
 <meta property="og:image:width" content="400">
 <meta property="og:image:height" content="400">
@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=11">
+<link rel="stylesheet" href="assets/style.css?v=12">
 <script src="assets/i18n.js?v=1"></script>
 <script>try{if(localStorage.getItem('skin')==='mac')document.documentElement.dataset.skin='mac'}catch(e){}</script>
 </head>
@@ -36,13 +36,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#home" class="nav-logo">homesweetlove<span class="dot">.</span>dev</a>
-    <ul class="nav-links">
-      <li><a href="tools.html" data-en="Work tools">업무 도구</a></li>
-      <li><a href="hwp-editor.html" data-en="HWP editor">HWP 편집기</a></li>
-      <li><a href="cv.html">CV</a></li>
-      <li><a href="resume.html" data-en="Resume">이력서</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <ul class="nav-links"><li><a href="#projects" data-en="Work">Work</a></li><li><a href="work.html#semg" data-en="Research">Research</a></li><li><a href="labs.html" data-en="Labs">Labs</a></li><li><a href="resume.html" data-en="Resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
     <div class="nav-actions">
       <button class="icon-btn lang-toggle" type="button">EN</button>
       <button id="theme-toggle" class="icon-btn" aria-label="테마 전환" data-en-aria-label="Toggle theme">
@@ -54,13 +48,7 @@
       </button>
     </div>
   </div>
-  <ul class="nav-links-mobile" id="nav-links-mobile">
-    <li><a href="tools.html" data-en="Work tools">업무 도구</a></li>
-    <li><a href="hwp-editor.html" data-en="HWP editor">HWP 편집기</a></li>
-    <li><a href="cv.html">CV</a></li>
-    <li><a href="resume.html" data-en="Resume">이력서</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <ul class="nav-links-mobile" id="nav-links-mobile"><li><a href="#projects">Work</a></li><li><a href="work.html#semg">Research</a></li><li><a href="labs.html">Labs</a></li><li><a href="resume.html">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
 </nav>
 
 <main>
@@ -76,17 +64,8 @@
       <h2 class="hero-role">
         <span class="type-target" id="type-target"></span><span class="cursor">|</span>
       </h2>
-      <p class="hero-desc" data-en="I love building and experimenting with all sorts of things on GitHub.&lt;br&gt;I&#x27;d rather let the code do the talking.">
-        GitHub에 이것저것 만들고 실험하는 걸 좋아합니다.<br>
-        코드로 이야기하는 편이 더 편해요.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary" data-en="See projects">프로젝트 보기</a>
-        <a href="resume.html" class="btn btn-primary" data-en="View resume">이력서 보기</a>
-        <a href="cv.html" class="btn btn-ghost">CV</a>
-        <a href="tools.html" class="btn btn-ghost" data-en="Open work tools">업무 도구 열기</a>
-        <a href="https://github.com/homesweetlove" target="_blank" rel="noopener" class="btn btn-ghost" data-en="Visit GitHub">GitHub 방문하기</a>
-      </div>
+      <p class="hero-desc" data-en="I design reliable software for constrained environments.&lt;br&gt;I document the trade-offs, validation and remaining limitations.">제약된 환경에서 안정적으로 동작하는 소프트웨어를 설계합니다.<br>기능뿐 아니라 설계 판단과 검증, 남은 한계를 기록합니다.</p>
+      <div class="hero-actions"><a href="#projects" class="btn btn-primary" data-en="Selected work">대표 프로젝트</a><a href="resume.html" class="btn btn-ghost" data-en="Resume">Resume</a><a href="https://github.com/homesweetlove" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a></div>
       <div class="hero-social">
         <a href="https://github.com/homesweetlove" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.02-2-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.21.09 1.85 1.24 1.85 1.24 1.08 1.84 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4 1.02 0 2.04.13 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -99,261 +78,46 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="section-inner">
-      <p class="section-tag">01 · About</p>
-      <h2 class="section-title" data-en="Let GitHub introduce me">GitHub로 저를 소개합니다</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <blockquote class="bio-quote" data-en="“Otaku will rule the world!”">“오타쿠가 세상을 지배한다!”</blockquote>
-          <p data-en="I&#x27;m &lt;a href=&quot;https://github.com/homesweetlove&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;@homesweetlove&lt;/a&gt;. Always looking for a faster way home, I build all kinds of things, mostly in TypeScript and Python.">
-            <a href="https://github.com/homesweetlove" target="_blank" rel="noopener">@homesweetlove</a>
-            입니다. 집에 빨리 가는 방법을 고민하며, TypeScript와 Python을 중심으로 이것저것 만들어보고 있어요.
-          </p>
-          <ul class="about-facts">
-            <li><span>🐙</span> GitHub: <a href="https://github.com/homesweetlove" target="_blank" rel="noopener">github.com/homesweetlove</a></li>
-            <li data-en="&lt;span&gt;📅&lt;/span&gt; Joined GitHub: September 2025"><span>📅</span> GitHub 가입: 2025년 9월</li>
-            <li data-en="&lt;span&gt;💻&lt;/span&gt; Main languages: TypeScript, Python, HTML, Java"><span>💻</span> 주 사용 언어: TypeScript, Python, HTML, Java</li>
-          </ul>
-        </div>
-        <div class="about-stats">
-          <div class="stat-card">
-            <span class="stat-num" id="stat-repos" data-count="16">0</span>
-            <span class="stat-label">Public Repos</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num" id="stat-langs" data-count="4">0</span>
-            <span class="stat-label">Languages Used</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num" id="stat-years" data-count="1">0</span>
-            <span class="stat-label">Year on GitHub</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num" data-count="100">0</span>
-            <span class="stat-label" data-en="Otaku Power 📈">오덕력 지수 📈</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section id="about" class="section"><div class="section-inner">
+<p class="section-tag">01 · Approach</p><h2 class="section-title" data-en="How I approach problems">문제를 해결하는 방식</h2>
+<p class="section-intro" data-en="I start with constraints, compare alternatives, protect users from failure, and measure outcomes.">먼저 제약 조건을 정의하고, 대안을 비교하고, 실패 시 복구를 설계한 뒤, 결과를 측정합니다.</p>
+<div class="skills-grid">
+<div class="skill-group"><h3>01 · Find the constraint</h3><p data-en="Understand memory, network, device, and human constraints before adding features.">기능을 추가하기 전에 메모리, 네트워크, 기기, 사용자의 제약을 먼저 파악합니다.</p></div>
+<div class="skill-group"><h3>02 · Choose deliberately</h3><p data-en="Document why a technique was chosen, including trade-offs and risks.">기술을 선택한 이유와 포기한 대안, 위험을 문서로 남깁니다.</p></div>
+<div class="skill-group"><h3>03 · Verify and revise</h3><p data-en="Measure what can be measured and distinguish implemented behavior from future plans.">측정 가능한 결과를 확인하고, 구현된 내용과 앞으로의 계획을 구분합니다.</p></div>
+</div></div></section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="section section-alt">
-    <div class="section-inner">
-      <p class="section-tag">02 · Projects <span class="live-badge" id="live-badge"><span class="live-dot"></span>Live from GitHub</span></p>
-      <h2 class="section-title" data-en="GitHub repositories">GitHub 저장소</h2>
-
-      <div class="project-filters" id="project-filters">
-        <button class="filter-pill is-active" data-lang="all" data-en="✨ Picks">✨ 추천</button>
-      </div>
-
-      <div class="project-grid" id="project-grid">
-
-        <!-- fallback static cards (replaced by script.js once the GitHub API responds) -->
-        <article class="project-card" data-lang="javascript">
-          <div class="project-thumb" style="--c1:#f7df1e;--c2:#ffa66c;">⚡</div>
-          <div class="project-body">
-            <h3>antigravity-korean-langpack</h3>
-            <p data-en="Korean language pack &amp; UI translation patcher for Antigravity IDE">Antigravity IDE 한국어 언어팩 · UI 번역 패처</p>
-            <div class="tags"><span>JavaScript</span></div>
-            <div class="project-links">
-              <a href="https://github.com/homesweetlove/antigravity-korean-langpack" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-lang="python">
-          <div class="project-thumb" style="--c1:#3776ab;--c2:#ffd43b;">🐍</div>
-          <div class="project-body">
-            <h3>ClaudeCodexUsageWidget</h3>
-            <p data-en="Desktop widget showing Claude Code / Codex usage">Claude Code / Codex 사용량을 보여주는 데스크톱 위젯</p>
-            <div class="tags"><span>Python</span></div>
-            <div class="project-links">
-              <a href="https://github.com/homesweetlove/ClaudeCodexUsageWidget" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-lang="typescript">
-          <div class="project-thumb" style="--c1:#3178c6;--c2:#00d4ff;">🧩</div>
-          <div class="project-body">
-            <h3>open_web_mail</h3>
-            <p data-en="Webmail UI prototype in a Neo Kinpaku style">Neo Kinpaku 스타일 웹메일 UI 프로토타입</p>
-            <div class="tags"><span>TypeScript</span></div>
-            <div class="project-links">
-              <a href="https://github.com/homesweetlove/open_web_mail" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-lang="typescript">
-          <div class="project-thumb" style="--c1:#3178c6;--c2:#00d4ff;">🧩</div>
-          <div class="project-body">
-            <h3>payroll-manager</h3>
-            <p data-en="Payroll calculator from attendance logs, with pay slips">조교·강사 근태 기반 급여 자동 계산 · 명세서 출력</p>
-            <div class="tags"><span>TypeScript</span></div>
-            <div class="project-links">
-              <a href="https://github.com/homesweetlove/payroll-manager" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-lang="python">
-          <div class="project-thumb" style="--c1:#3776ab;--c2:#ffd43b;">🐍</div>
-          <div class="project-body">
-            <h3>paper-assistant</h3>
-            <p data-en="Offline writing checker for Korean papers and reports">오프라인 한국어 논문·보고서 문장 점검 도구</p>
-            <div class="tags"><span>Python</span></div>
-            <div class="project-links">
-              <a href="https://github.com/homesweetlove/paper-assistant" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-lang="typescript">
-          <div class="project-thumb" style="--c1:#3178c6;--c2:#00d4ff;">🧩</div>
-          <div class="project-body">
-            <h3>wading</h3>
-            <p data-en="Digital wedding invitation with a different experience per theme">테마별로 다른 경험을 주는 디지털 청첩장</p>
-            <div class="tags"><span>TypeScript</span></div>
-            <div class="project-links">
-              <a class="demo-link" href="https://wading.vercel.app" target="_blank" rel="noopener">Demo ↗</a>
-              <a href="https://github.com/homesweetlove/wading" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-      <p class="projects-more" id="projects-more" data-en="See more repositories on my &lt;a href=&quot;https://github.com/homesweetlove?tab=repositories&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub profile&lt;/a&gt;.">
-        더 많은 저장소는 <a href="https://github.com/homesweetlove?tab=repositories" target="_blank" rel="noopener">GitHub 프로필</a>에서 확인하세요.
-      </p>
-    </div>
-  </section>
+<section id="projects" class="section section-alt"><div class="section-inner">
+<p class="section-tag">02 · Selected Work</p><h2 class="section-title" data-en="Focused work, not a repository count">프로젝트 수보다 문제 해결의 깊이</h2>
+<p class="section-intro" data-en="Four directions that show my systems focus and product breadth. Private projects are clearly labeled.">시스템 설계라는 중심축과 제품·연구로 확장한 시도를 골랐습니다. 비공개 프로젝트는 별도로 표기했습니다.</p>
+<div class="project-grid" id="project-grid">
+<article class="project-card"><div class="project-thumb" style="--c1:#415b88;--c2:#45aba2">⚙️</div><div class="project-body"><p class="case-kicker">SYSTEMS · PUBLIC</p><h3>RamFlow</h3><p data-en="Resource-aware Windows orchestration with measured memory footprint reduction, protected foreground work, and safe restoration.">제약된 Windows 환경에서 자원을 관리합니다. 자기 프로그램의 메모리 사용량을 측정하고, 활성 작업 보호와 안전한 복원을 설계했습니다.</p><div class="tags"><span>C# / .NET</span><span>Windows</span><span>Validation</span></div><div class="project-links"><a href="work.html#ramflow">Case study ↗</a><a href="https://github.com/homesweetlove/RamFlow" target="_blank" rel="noopener">Source ↗</a></div></div></article>
+<article class="project-card"><div class="project-thumb" style="--c1:#7c6cff;--c2:#4c9aca">◈</div><div class="project-body"><p class="case-kicker">DESKTOP · PRIVATE SOURCE</p><h3>Luma</h3><p data-en="A lightweight personal browser exploring visible, user-controlled automation on constrained Windows devices.">제한된 사양에서도 사용할 수 있는 개인 브라우저. 자동화 편의성과 사용자 통제 사이의 균형을 탐색합니다.</p><div class="tags"><span>WinUI 3</span><span>WebView2</span><span>Automation</span></div><div class="project-links"><a href="work.html#luma">Design notes ↗</a></div></div></article>
+<article class="project-card"><div class="project-thumb" style="--c1:#cc8f5d;--c2:#70b0ab">✦</div><div class="project-body"><p class="case-kicker">MOBILE · PRIVATE SOURCE</p><h3>Subject Japan</h3><p data-en="A travel companion addressing translation, personal size information, reminders and unreliable external data.">여행 중 흩어진 번역·사이즈·이동 정보를 연결하고 외부 데이터의 최신성과 실패 상황을 고려한 모바일 경험.</p><div class="tags"><span>Cross-platform</span><span>Data</span><span>UX</span></div><div class="project-links"><a href="work.html#subject-japan">Design notes ↗</a></div></div></article>
+<article class="project-card"><div class="project-thumb" style="--c1:#5eaa7e;--c2:#7999d6">∿</div><div class="project-body"><p class="case-kicker">RESEARCH · IN PROGRESS</p><h3>sEMG Muscle Fatigue</h3><p data-en="Undergraduate research investigating upper-arm muscle fatigue signals and individual variation; no classification outcome is claimed yet.">상완 근피로 신호의 특징과 개인차를 탐구하는 학부 연구. 아직 확정되지 않은 성능 결과는 주장하지 않습니다.</p><div class="tags"><span>sEMG</span><span>Signal Processing</span><span>Research</span></div><div class="project-links"><a href="work.html#semg">Research questions ↗</a></div></div></article>
+</div><p class="projects-more" data-en="Looking for the smaller experiments and tools?"><a href="labs.html">Labs & Tools →</a> · <a href="work.html">All case studies →</a></p>
+</div></section>
 
   <!-- SKILLS -->
-  <section id="skills" class="section">
-    <div class="section-inner">
-      <p class="section-tag">03 · Skills</p>
-      <h2 class="section-title" data-en="Tech stack">기술 스택</h2>
-      <div class="skills-grid">
+<section id="skills" class="section"><div class="section-inner"><p class="section-tag">03 · Engineering Breadth</p>
+<h2 class="section-title" data-en="Depth in systems, breadth across products">시스템의 깊이, 제품 경험의 폭</h2>
+<div class="skills-grid">
+<div class="skill-group"><h3>Core · Systems</h3><div class="skill-pills"><span>C# / .NET</span><span>Windows APIs</span><span>Process & Memory</span><span>Testing</span></div></div>
+<div class="skill-group"><h3>Product · Web & Mobile</h3><div class="skill-pills"><span>TypeScript</span><span>React</span><span>Kotlin</span><span>WinUI 3</span></div></div>
+<div class="skill-group"><h3>Exploration · Research</h3><div class="skill-pills"><span>Python</span><span>Linux</span><span>Automation</span><span>sEMG</span></div></div>
+</div></div></section>
 
-        <div class="skill-group">
-          <h3>Languages <span class="skill-live-note" data-en="(auto-counted from repos)">(저장소 기반 자동 집계)</span></h3>
-          <div class="skill-pills" id="lang-pills">
-            <span>TypeScript</span><span>Python</span><span>JavaScript</span><span>Java</span><span>C</span><span>HTML</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h3>Frontend</h3>
-          <div class="skill-pills">
-            <span>React</span><span>Next.js</span><span>Vite</span><span>Tailwind CSS</span><span>Three.js</span><span>Framer Motion</span><span>Radix UI</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h3>Backend · Data</h3>
-          <div class="skill-pills">
-            <span>Node.js</span><span>Express</span><span>Zod</span><span>SheetJS</span><span>jsPDF</span><span>WebAssembly</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h3>Desktop · Scripting</h3>
-          <div class="skill-pills">
-            <span>Tkinter</span><span>Java Swing</span><span>Linux C</span><span>Rainmeter · Lua</span><span>Word VBA</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h3>DevOps · Tools</h3>
-          <div class="skill-pills">
-            <span>Git</span><span>GitHub Actions</span><span>GitHub Pages</span><span>Vercel</span><span>Docker</span><span>pnpm</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTRIBUTIONS -->
-  <section id="contributions" class="section">
-    <div class="section-inner">
-      <p class="section-tag">04 · Contributions</p>
-      <h2 class="section-title" data-en="Contribution garden">잔디밭</h2>
-      <div class="contrib-card">
-        <div class="contrib-stats">
-          <div><strong id="contrib-total">—</strong><span data-en="Contributions, last year">지난 1년 기여</span></div>
-          <div><strong id="contrib-current">—</strong><span data-en="Current streak">현재 연속</span></div>
-          <div><strong id="contrib-longest">—</strong><span data-en="Longest streak">최장 연속</span></div>
-          <div><strong id="contrib-best">—</strong><span data-en="Busiest day">가장 바빴던 날</span></div>
-        </div>
-        <div class="contrib-scroll" id="contrib-scroll">
-          <div class="contrib-grid" id="contrib-grid" role="img" aria-label="지난 1년간 GitHub 기여 그래프" data-en-aria-label="GitHub contributions over the last year"></div>
-        </div>
-        <div class="contrib-legend" aria-hidden="true"><span data-en="Less">적음</span><i class="lv0"></i><i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i><span data-en="More">많음</span></div>
-        <p class="contrib-fallback" id="contrib-fallback" hidden data-en="Couldn&#x27;t load contribution data. Check my &lt;a href=&quot;https://github.com/homesweetlove&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub profile&lt;/a&gt;.">
-          잔디 데이터를 불러오지 못했어요. <a href="https://github.com/homesweetlove" target="_blank" rel="noopener">GitHub 프로필</a>에서 확인해보세요.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- DAILY IT NEWS -->
-  <section id="news" class="section section-alt">
-    <div class="section-inner">
-      <p class="section-tag">05 · News <span class="live-badge" id="news-badge"><span class="live-dot"></span><span data-en="Auto-updated every morning">매일 아침 자동 업데이트</span></span></p>
-      <h2 class="section-title" data-en="Today's IT &amp; security news">오늘의 IT·보안 뉴스</h2>
-      <article class="news-card" id="news-card">
-        <header class="news-head">
-          <span class="news-date" id="news-date">2026.09.27</span>
-          <span class="news-sub" data-en="Key points at a glance · written in Korean">한눈에 보는 핵심 요약</span>
-        </header>
-        <ul class="news-list" id="news-list">
-          <li>미국과 중국이 AI의 위험·편익을 논의하고 AI 관련 사고에 대응할 상시 연락 채널을 만들기로 합의했습니다.</li>
-          <li>미국 배심원단이 Apple의 햅틱 기술 특허 침해를 인정해 57억 달러가 넘는 배상 평결을 내렸으며, Apple은 항소 방침을 밝혔습니다.</li>
-          <li>ShinyHunters가 Oracle PeopleSoft 취약점 CVE-2026-35273을 다시 대규모 악용하고 있습니다. 단순 WAF 차단 규칙을 우회하므로 패치가 필수입니다.</li>
-          <li>악성 코드가 남아 있던 GitHub Actions 저장소 두 곳이 다시 활성화되면서, 가변 태그를 사용한 워크플로가 기존 악성 페이로드를 다시 실행하는 공급망 사고가 발생했습니다.</li>
-        </ul>
-        <footer class="news-actions">
-          <a class="btn btn-primary" id="news-link" href="https://github.com/homesweetlove/Daily_IT_News/blob/main/news/2026-09-27.md" target="_blank" rel="noopener" data-en="Read the full briefing ↗">전체 브리핑 읽기 ↗</a>
-          <a class="news-archive" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news" target="_blank" rel="noopener" data-en="News archive →">지난 뉴스 아카이브 →</a>
-        </footer>
-      </article>
-    </div>
-  </section>
-
-  <!-- ACTIVITY -->
-  <section id="activity" class="section">
-    <div class="section-inner">
-      <p class="section-tag">06 · Activity</p>
-      <h2 class="section-title" data-en="Recent updates">최근 업데이트</h2>
-      <div class="blog-list" id="activity-list">
-        <a href="https://github.com/homesweetlove/antigravity-korean-langpack" class="blog-item" target="_blank" rel="noopener">
-          <span class="blog-date">2026.09.28</span>
-          <span class="blog-title" data-en="Updated antigravity-korean-langpack">antigravity-korean-langpack 저장소 업데이트</span>
-          <span class="blog-arrow">→</span>
-        </a>
-        <a href="https://github.com/homesweetlove/Daily_IT_News" class="blog-item" target="_blank" rel="noopener">
-          <span class="blog-date">2026.09.27</span>
-          <span class="blog-title" data-en="Updated Daily_IT_News">Daily_IT_News 저장소 업데이트</span>
-          <span class="blog-arrow">→</span>
-        </a>
-        <a href="https://github.com/homesweetlove/happyday" class="blog-item" target="_blank" rel="noopener">
-          <span class="blog-date">2026.09.21</span>
-          <span class="blog-title" data-en="Updated happyday">happyday 저장소 업데이트</span>
-          <span class="blog-arrow">→</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
+  <!-- EXPLORATIONS -->
+<section class="section section-alt" id="explorations"><div class="section-inner">
+<p class="section-tag">04 · Beyond selected work</p><h2 class="section-title" data-en="Smaller work still has a place">작은 실험도 제자리가 있습니다</h2>
+<p class="section-intro" data-en="Utilities, interface experiments and coursework remain accessible without crowding the main portfolio.">유틸리티·UI 실험·수업 코드는 삭제하지 않고 별도로 분류했습니다. 홈페이지에서는 대표작에 집중합니다.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="labs.html">Labs & Tools ↗</a><a class="btn btn-ghost" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news" target="_blank" rel="noopener">Writing / News ↗</a><a class="btn btn-ghost" href="cv.html">Full CV ↗</a></div></div></section>
 
   <!-- CONTACT -->
   <section id="contact" class="section section-alt contact">
     <div class="section-inner">
-      <p class="section-tag">07 · Contact</p>
+      <p class="section-tag">05 · Contact</p>
       <h2 class="section-title" data-en="Let's meet on GitHub">GitHub에서 만나요</h2>
       <p class="contact-desc" data-en="GitHub is the surest way to reach me.&lt;br&gt;Code, issues, PRs — all welcome.">
         가장 확실한 연락 방법은 GitHub입니다.<br>
@@ -373,7 +137,7 @@
 </footer>
 
 <script>i18n.apply()</script>
-<script src="assets/script.js?v=9"></script>
+<script src="assets/script.js?v=10"></script>
 <script src="assets/terminal.js?v=4"></script>
 </body>
 </html>
