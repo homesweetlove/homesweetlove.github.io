@@ -1,58 +1,24 @@
-<div align="center">
+# @homesweetlove
 
-<img src="https://avatars.githubusercontent.com/u/232012965?v=4" width="100" style="border-radius:50%" />
+Computer Science undergraduate building reliable, resource-aware software.
+I focus on **systems engineering**, and extend that work into desktop automation, mobile products, and human-centered research.
 
-# i_so_free (@homesweetlove)
+**What I care about:** understanding constraints, documenting trade-offs, protecting user work, and validating behavior instead of listing features.
 
-"오타쿠가 세상을 지배한다!"
+## Selected engineering work
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-6c5ce7?style=for-the-badge&logo=googlechrome&logoColor=white)](https://homesweetlove.github.io/)
-[![Resume](https://img.shields.io/badge/Resume-0a84ff?style=for-the-badge&logo=readme&logoColor=white)](https://homesweetlove.github.io/resume.html)
-[![CV](https://img.shields.io/badge/CV-1d1d1f?style=for-the-badge&logo=readme&logoColor=white)](https://homesweetlove.github.io/cv.html)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/homesweetlove)
+| Project | Engineering question | Evidence |
+| --- | --- | --- |
+| [RamFlow](https://github.com/homesweetlove/RamFlow) | How can a constrained Windows PC manage resources without disrupting active work? | [Architecture](https://github.com/homesweetlove/RamFlow/blob/main/docs/NATIVE_ARCHITECTURE.md) · [Validation](https://github.com/homesweetlove/RamFlow/blob/main/docs/VALIDATION.md) |
+| [Claude/Codex Usage Widget](https://github.com/homesweetlove/ClaudeCodexUsageWidget) | What can be displayed from local usage metadata without triggering model requests? | Local-first utility · unavailable-data handling |
+| [Payroll Manager](https://github.com/homesweetlove/payroll-manager) | How should attendance inputs and wage-calculation rules be organized in a web application? | React / TypeScript application |
 
-</div>
+## Beyond the core
 
----
+- **Desktop / AI automation:** [Luma design notes](https://homesweetlove.github.io/work.html#luma) (private project)
+- **Mobile UX / data reliability:** [Subject Japan design notes](https://homesweetlove.github.io/work.html#subject-japan) (private project)
+- **Biosignal research:** [sEMG fatigue analysis](https://homesweetlove.github.io/work.html#semg) (undergraduate research in progress)
 
-### 🧑‍💻 About
+**[Portfolio](https://homesweetlove.github.io/)** · **[Case Studies](https://homesweetlove.github.io/work.html)** · **[Resume](https://homesweetlove.github.io/resume.html)** · **[CV](https://homesweetlove.github.io/cv.html)** · **[Labs & Tools](https://homesweetlove.github.io/labs.html)**
 
-- 🐙 GitHub: [github.com/homesweetlove](https://github.com/homesweetlove)
-- 📄 Resume: [homesweetlove.github.io/resume.html](https://homesweetlove.github.io/resume.html)
-- 📚 CV: [homesweetlove.github.io/cv.html](https://homesweetlove.github.io/cv.html)
-- 📅 GitHub 가입: 2025년 9월
-- 💻 주 사용 언어: TypeScript, Python, HTML, Java
-
-### 🛠️ Tech Stack
-
-<div align="center">
-
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
-
-</div>
-
-### 📊 GitHub Stats
-
-<div align="center">
-
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=homesweetlove&show_icons=true&theme=dark&hide_border=true&count_private=true" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=homesweetlove&layout=compact&theme=dark&hide_border=true" />
-
-</div>
-
-<div align="center">
-
-![GitHub Streak](https://streak-stats.demolab.com?user=homesweetlove&theme=dark&hide_border=true)
-
-</div>
-
----
-
-<div align="center">
-<sub>이 프로필은 <a href="https://homesweetlove.github.io/">homesweetlove.github.io</a> 포트폴리오와 함께 관리됩니다.</sub>
-</div>
+<sub>Public repositories include learning work and experiments; featured work is selected for clarity and verifiable engineering decisions. This README is a profile template—copy it to a public repository named <code>homesweetlove</code> to display it on the GitHub profile.</sub>
