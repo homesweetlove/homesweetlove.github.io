@@ -21,4 +21,4 @@ I focus on **systems engineering**, and extend that work into desktop automation
 
 **[Portfolio](https://homesweetlove.github.io/)** · **[Case Studies](https://homesweetlove.github.io/work.html)** · **[Resume](https://homesweetlove.github.io/resume.html)** · **[CV](https://homesweetlove.github.io/cv.html)** · **[Labs & Tools](https://homesweetlove.github.io/labs.html)**
 
-<sub>Public repositories include learning work and experiments; featured work is selected for clarity and verifiable engineering decisions. This README is a profile template—copy it to a public repository named <code>homesweetlove</code> to display it on the GitHub profile.</sub>
+<sub>Featured work is selected for clear engineering decisions and verifiable evidence.</sub>
