@@ -816,3 +816,16 @@ body{ word-break: keep-all; overflow-wrap: break-word; }
   .contrib-stats strong{ font-size: .88rem; }
   .contrib-stats > div{ padding: 12px; }
 }
+
+
+/* Curated engineering portfolio — editorial focus */
+.section-intro{max-width:760px;color:var(--text-dim);font-size:1.05rem;line-height:1.8;margin:-6px 0 34px}
+.case-kicker{font-family:'JetBrains Mono',monospace;font-size:.73rem!important;letter-spacing:.09em;font-weight:600;text-transform:uppercase;color:var(--accent)!important;margin:0 0 13px!important}
+.project-card .project-body{padding:28px}
+.project-card .project-body h3{font-size:1.35rem;letter-spacing:-.025em}
+.project-card .project-body p:not(.case-kicker){line-height:1.75}
+.project-card .project-thumb{height:110px;font-size:2.5rem}
+.project-card .project-links{gap:20px;flex-wrap:wrap}
+.project-card .project-links a:first-child{color:var(--accent)}
+.section .skill-group p{color:var(--text-dim);line-height:1.8}
+@media (max-width:760px){.section-intro{font-size:.97rem}.project-card .project-body{padding:22px}.project-card .project-thumb{height:90px}}
