@@ -6,7 +6,7 @@
 <title>i_so_free · Systems & Product Engineering</title>
 <meta name="description" content="제약된 환경에서 신뢰할 수 있는 소프트웨어를 설계합니다. RamFlow, Luma, Subject Japan, sEMG 연구 사례." data-en-content="Engineering reliable, resource-aware systems. Selected work in desktop, automation, mobile and sEMG research.">
 <link rel="canonical" href="https://homesweetlove.github.io/">
-<meta name="theme-color" content="#0b0c14">
+<meta name="theme-color" content="#08202b">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="homesweetlove.dev">
 <meta property="og:locale" content="ko_KR">
@@ -26,104 +26,210 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=12">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=13">
+<link rel="stylesheet" href="assets/home.css?v=1">
 <script src="assets/i18n.js?v=1"></script>
-<script>try{if(localStorage.getItem('skin')==='mac')document.documentElement.dataset.skin='mac'}catch(e){}</script>
+<script>try{if(localStorage.getItem('skin')==='mac')document.documentElement.dataset.skin='mac';var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}document.documentElement.classList.add('js')</script>
 </head>
-<body>
+<body class="home">
+
+<div class="scroll-meter" aria-hidden="true"><i id="scroll-meter"></i></div>
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#home" class="nav-logo">homesweetlove<span class="dot">.</span>dev</a>
-    <ul class="nav-links"><li><a href="#projects" data-en="Work">Work</a></li><li><a href="work.html#semg" data-en="Research">Research</a></li><li><a href="labs.html" data-en="Labs">Labs</a></li><li><a href="resume.html" data-en="Resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
+    <ul class="nav-links"><li><a href="#projects" data-en="Work">작업</a></li><li><a href="work.html#semg" data-en="Research">연구</a></li><li><a href="labs.html" data-en="Labs">실험실</a></li><li><a href="resume.html" data-en="Resume">이력서</a></li><li><a href="#contact" data-en="Contact">연락</a></li></ul>
     <div class="nav-actions">
       <button class="icon-btn lang-toggle" type="button">EN</button>
       <button id="theme-toggle" class="icon-btn" aria-label="테마 전환" data-en-aria-label="Toggle theme">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
-      <button id="nav-toggle" class="icon-btn nav-burger" aria-label="메뉴" data-en-aria-label="Menu">
+      <button id="nav-toggle" class="icon-btn nav-burger" aria-label="메뉴" data-en-aria-label="Menu" aria-expanded="false" aria-controls="nav-links-mobile">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
   </div>
-  <ul class="nav-links-mobile" id="nav-links-mobile"><li><a href="#projects">Work</a></li><li><a href="work.html#semg">Research</a></li><li><a href="labs.html">Labs</a></li><li><a href="resume.html">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
+  <ul class="nav-links-mobile" id="nav-links-mobile"><li><a href="#projects" data-en="Work">작업</a></li><li><a href="work.html#semg" data-en="Research">연구</a></li><li><a href="labs.html" data-en="Labs">실험실</a></li><li><a href="resume.html" data-en="Resume">이력서</a></li><li><a href="#contact" data-en="Contact">연락</a></li></ul>
 </nav>
 
 <main>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="hero-glow"></div>
-    <div class="section-inner hero-inner">
-      <img class="hero-avatar" src="https://avatars.githubusercontent.com/u/232012965?v=4" alt="homesweetlove avatar">
-      <p class="eyebrow" data-en="👋 Hi, I'm">👋 안녕하세요, 저는</p>
-      <h1 class="hero-title">i_so_free<span class="accent">.</span></h1>
-      <a class="hero-handle" href="https://github.com/homesweetlove" target="_blank" rel="noopener">@homesweetlove</a>
-      <h2 class="hero-role">
-        <span class="type-target" id="type-target"></span><span class="cursor">|</span>
-      </h2>
-      <p class="hero-desc" data-en="I design reliable software for constrained environments.&lt;br&gt;I document the trade-offs, validation and remaining limitations.">제약된 환경에서 안정적으로 동작하는 소프트웨어를 설계합니다.<br>기능뿐 아니라 설계 판단과 검증, 남은 한계를 기록합니다.</p>
-      <div class="hero-actions"><a href="#projects" class="btn btn-primary" data-en="Selected work">대표 프로젝트</a><a href="resume.html" class="btn btn-ghost" data-en="Resume">Resume</a><a href="https://github.com/homesweetlove" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a></div>
-      <div class="hero-social">
-        <a href="https://github.com/homesweetlove" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.02-2-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.21.09 1.85 1.24 1.85 1.24 1.08 1.84 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4 1.02 0 2.04.13 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
+  <!-- 첫 화면 -->
+  <section id="home" class="top">
+    <div class="wrap top-copy">
+      <p class="top-hello">
+        <img src="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=120" width="44" height="44" alt="">
+        <span data-en="Hi, I'm i_so_free">안녕하세요, i_so_free입니다</span>
+        <a href="https://github.com/homesweetlove" target="_blank" rel="noopener">@homesweetlove</a>
+      </p>
+      <h1 class="top-title">
+        <span class="ln"><span class="ln-in" data-en="Reliable software,">제약된 환경에서도</span></span>
+        <span class="ln"><span class="ln-in" data-en="designed for">안정적으로 동작하는</span></span>
+        <span class="ln"><span class="ln-in" data-en="constrained environments.">소프트웨어를 설계합니다.</span></span>
+      </h1>
+      <p class="top-desc" data-en="Beyond features, I document the trade-offs, the validation and the limitations that remain.">기능뿐 아니라 설계 판단과 검증, 남은 한계를 기록합니다.</p>
+      <div class="top-actions">
+        <a href="#projects" class="btn btn-primary" data-magnet data-en="See selected work">대표 프로젝트 보기</a>
+        <a href="resume.html" class="btn btn-ghost" data-en="Resume">이력서</a>
+        <a href="https://github.com/homesweetlove" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
       </div>
     </div>
-    <a href="#about" class="scroll-cue" aria-label="아래로 스크롤" data-en-aria-label="Scroll down">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-    </a>
+    <div class="top-band" aria-hidden="true"><canvas class="top-signal" id="signal"></canvas></div>
+    <div class="wrap top-readout">
+      <p class="top-hint">
+        <span class="hint-mouse" data-en="Move your mouse. Like the muscle signals in my sEMG research, this line follows your hand.">마우스를 움직여 보세요. sEMG 연구에서 다루는 근육 신호처럼, 이 선은 손의 움직임을 따라 그려집니다.</span>
+        <span class="hint-touch" data-en="Swipe the screen. Like the muscle signals in my sEMG research, this line follows your hand.">화면을 쓸어 보세요. sEMG 연구에서 다루는 근육 신호처럼, 이 선은 손의 움직임을 따라 그려집니다.</span>
+      </p>
+      <p class="top-level" aria-hidden="true"><span data-en="Strength">세기</span><b id="sig-amp">0.00</b><i class="level"><i id="sig-bar"></i></i></p>
+    </div>
   </section>
 
-  <!-- ABOUT -->
-<section id="about" class="section"><div class="section-inner">
-<p class="section-tag">01 · Approach</p><h2 class="section-title" data-en="How I approach problems">문제를 해결하는 방식</h2>
-<p class="section-intro" data-en="I start with constraints, compare alternatives, protect users from failure, and measure outcomes.">먼저 제약 조건을 정의하고, 대안을 비교하고, 실패 시 복구를 설계한 뒤, 결과를 측정합니다.</p>
-<div class="skills-grid">
-<div class="skill-group"><h3>01 · Find the constraint</h3><p data-en="Understand memory, network, device, and human constraints before adding features.">기능을 추가하기 전에 메모리, 네트워크, 기기, 사용자의 제약을 먼저 파악합니다.</p></div>
-<div class="skill-group"><h3>02 · Choose deliberately</h3><p data-en="Document why a technique was chosen, including trade-offs and risks.">기술을 선택한 이유와 포기한 대안, 위험을 문서로 남깁니다.</p></div>
-<div class="skill-group"><h3>03 · Verify and revise</h3><p data-en="Measure what can be measured and distinguish implemented behavior from future plans.">측정 가능한 결과를 확인하고, 구현된 내용과 앞으로의 계획을 구분합니다.</p></div>
-</div></div></section>
+  <!-- 일하는 방식 -->
+  <section id="about" class="blk">
+    <div class="wrap">
+      <h2 class="blk-title" data-words data-en="How I approach problems">문제를 해결하는 방식</h2>
+      <p class="blk-intro" data-rv data-en="I start with constraints, compare alternatives, protect users from failure, and measure outcomes.">먼저 제약 조건을 정의하고, 대안을 비교하고, 실패 시 복구를 설계한 뒤, 결과를 측정합니다.</p>
+      <ol class="steps" id="steps">
+        <li class="step">
+          <svg class="step-fig fig-limit" viewBox="0 0 120 72" aria-hidden="true"><rect class="f-frame" x="6" y="14" width="108" height="44" rx="6"/><rect class="f-fill" x="12" y="20" width="96" height="32" rx="3"/><path class="f-wall" d="M84 8v56"/></svg>
+          <span class="step-no">1</span>
+          <h3 data-en="Find the constraint">제약부터 찾기</h3>
+          <p data-en="Understand memory, network, device, and human constraints before adding features.">기능을 추가하기 전에 메모리, 네트워크, 기기, 사용자의 제약을 먼저 파악합니다.</p>
+        </li>
+        <li class="step">
+          <svg class="step-fig fig-pick" viewBox="0 0 120 72" aria-hidden="true"><path class="f-alt" d="M14 36C44 36 52 12 106 12"/><path class="f-alt" d="M14 36C44 36 52 60 106 60"/><path class="f-main" pathLength="1" d="M14 36h92"/><circle class="f-node" cx="14" cy="36" r="5"/><circle class="f-end" cx="106" cy="36" r="5"/></svg>
+          <span class="step-no">2</span>
+          <h3 data-en="Choose deliberately">근거를 갖고 고르기</h3>
+          <p data-en="Document why a technique was chosen, including trade-offs and risks.">기술을 선택한 이유와 포기한 대안, 위험을 문서로 남깁니다.</p>
+        </li>
+        <li class="step">
+          <svg class="step-fig fig-check" viewBox="0 0 120 72" aria-hidden="true"><path class="f-loop" pathLength="1" d="M92 36a32 26 0 1 1-10-19"/><path class="f-head" d="M84 6l-1 12 12 0"/><path class="f-tick" pathLength="1" d="M44 37l11 11 20-23"/></svg>
+          <span class="step-no">3</span>
+          <h3 data-en="Verify and revise">확인하고 고치기</h3>
+          <p data-en="Measure what can be measured and distinguish implemented behavior from future plans.">측정 가능한 결과를 확인하고, 구현된 내용과 앞으로의 계획을 구분합니다.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-  <!-- PROJECTS -->
-<section id="projects" class="section section-alt"><div class="section-inner">
-<p class="section-tag">02 · Selected Work</p><h2 class="section-title" data-en="Focused work, not a repository count">프로젝트 수보다 문제 해결의 깊이</h2>
-<p class="section-intro" data-en="Four directions that show my systems focus and product breadth. Private projects are clearly labeled.">시스템 설계라는 중심축과 제품·연구로 확장한 시도를 골랐습니다. 비공개 프로젝트는 별도로 표기했습니다.</p>
-<div class="project-grid" id="project-grid">
-<article class="project-card"><div class="project-thumb" style="--c1:#415b88;--c2:#45aba2">⚙️</div><div class="project-body"><p class="case-kicker">SYSTEMS · PUBLIC</p><h3>RamFlow</h3><p data-en="Protecting foreground work by letting selected background jobs yield resources. Five paired Chrome/VS Code sessions per app: 45–49% lower feature p95 medians, with about 60% lower background processing under synthetic CPU/memory contention.">지정한 배경 작업이 자원을 양보해 현재 사용하는 앱의 응답을 보호합니다. 합성 CPU·메모리 경쟁 부하에서 Chrome·VS Code를 앱별 5회 교차 비교해 기능별 p95 지연 중앙값 45–49% 감소, 배경 처리량 약 60% 감소를 확인했습니다.</p><div class="tags"><span>C# / .NET</span><span>Windows</span><span>Validation</span></div><div class="project-links"><a href="work.html#ramflow">Case study ↗</a><a href="https://github.com/homesweetlove/RamFlow" target="_blank" rel="noopener">Source ↗</a></div></div></article>
-<article class="project-card"><div class="project-thumb" style="--c1:#7c6cff;--c2:#4c9aca">◈</div><div class="project-body"><p class="case-kicker">DESKTOP · PRIVATE SOURCE</p><h3>Luma</h3><p data-en="A lightweight personal browser exploring visible, user-controlled automation on constrained Windows devices.">제한된 사양에서도 사용할 수 있는 개인 브라우저. 자동화 편의성과 사용자 통제 사이의 균형을 탐색합니다.</p><div class="tags"><span>WinUI 3</span><span>WebView2</span><span>Automation</span></div><div class="project-links"><a href="work.html#luma">Design notes ↗</a></div></div></article>
-<article class="project-card"><div class="project-thumb" style="--c1:#cc8f5d;--c2:#70b0ab">✦</div><div class="project-body"><p class="case-kicker">MOBILE · PRIVATE SOURCE</p><h3>Subject Japan</h3><p data-en="A travel companion addressing translation, personal size information, reminders and unreliable external data.">여행 중 흩어진 번역·사이즈·이동 정보를 연결하고 외부 데이터의 최신성과 실패 상황을 고려한 모바일 경험.</p><div class="tags"><span>Cross-platform</span><span>Data</span><span>UX</span></div><div class="project-links"><a href="work.html#subject-japan">Design notes ↗</a></div></div></article>
-<article class="project-card"><div class="project-thumb" style="--c1:#5eaa7e;--c2:#7999d6">∿</div><div class="project-body"><p class="case-kicker">RESEARCH · IN PROGRESS</p><h3>sEMG Muscle Fatigue</h3><p data-en="Undergraduate research investigating upper-arm muscle fatigue signals and individual variation; no classification outcome is claimed yet.">상완 근피로 신호의 특징과 개인차를 탐구하는 학부 연구. 아직 확정되지 않은 성능 결과는 주장하지 않습니다.</p><div class="tags"><span>sEMG</span><span>Signal Processing</span><span>Research</span></div><div class="project-links"><a href="work.html#semg">Research questions ↗</a></div></div></article>
-</div><p class="projects-more" data-en="Looking for the smaller experiments and tools?"><a href="labs.html">Labs & Tools →</a> · <a href="work.html">All case studies →</a></p>
-</div></section>
+  <!-- 대표 프로젝트 -->
+  <section id="projects" class="blk blk-alt">
+    <div class="wrap">
+      <h2 class="blk-title" data-words data-en="Focused work, not a repository count">프로젝트 수보다 문제 해결의 깊이</h2>
+      <p class="blk-intro" data-rv data-en="Four directions that show my systems focus and product breadth. Private projects are clearly labeled.">시스템 설계라는 중심축과 제품·연구로 확장한 시도를 골랐습니다. 비공개 프로젝트는 별도로 표기했습니다.</p>
 
-  <!-- SKILLS -->
-<section id="skills" class="section"><div class="section-inner"><p class="section-tag">03 · Engineering Breadth</p>
-<h2 class="section-title" data-en="Depth in systems, breadth across products">시스템의 깊이, 제품 경험의 폭</h2>
-<div class="skills-grid">
-<div class="skill-group"><h3>Core · Systems</h3><div class="skill-pills"><span>C# / .NET</span><span>Windows APIs</span><span>Process & Memory</span><span>Testing</span></div></div>
-<div class="skill-group"><h3>Product · Web & Mobile</h3><div class="skill-pills"><span>TypeScript</span><span>React</span><span>Kotlin</span><span>WinUI 3</span></div></div>
-<div class="skill-group"><h3>Exploration · Research</h3><div class="skill-pills"><span>Python</span><span>Linux</span><span>Automation</span><span>sEMG</span></div></div>
-</div></div></section>
+      <article class="lead" data-rv data-glow>
+        <div class="lead-copy">
+          <p class="kind"><span data-en="Systems">시스템</span><span class="open" data-en="Public source">소스 공개</span></p>
+          <h3>RamFlow</h3>
+          <p class="lead-desc" data-en="Protecting foreground work by letting selected background jobs yield resources. Under synthetic CPU and memory contention, Chrome and VS Code were compared in five paired sessions per app.">지정한 배경 작업이 자원을 양보해 현재 사용하는 앱의 응답을 보호합니다. 합성 CPU·메모리 경쟁 부하에서 Chrome과 VS Code를 앱별 5회 교차 비교했습니다.</p>
+          <ul class="stack"><li>C# / .NET</li><li>Windows</li><li data-en="Validation">검증</li></ul>
+          <p class="links">
+            <a href="work.html#ramflow"><span data-en="Read the case study">사례 자세히 보기</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="https://github.com/homesweetlove/RamFlow" target="_blank" rel="noopener"><span data-en="Source code">소스 코드</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </p>
+        </div>
+        <figure class="meter" id="meter">
+          <figcaption data-en="With RamFlow on, compared with off (off = 100)">RamFlow를 켰을 때와 껐을 때 비교 (끈 상태 = 100)</figcaption>
+          <div class="m-row">
+            <p class="m-name" data-en="App response delay (median of per-feature p95)">앱 응답 지연 (기능별 p95 중앙값)</p>
+            <div class="m-track"><i class="m-bar m-off" style="--w:100%"></i><span data-en="Off">끔</span></div>
+            <div class="m-track"><i class="m-bar m-on" style="--w:53%"></i><i class="m-range" style="--l:51%;--r:55%"></i><span data-en="On">켬</span></div>
+            <p class="m-num"><b data-count="45">45</b>–<b data-count="49">49</b>%<span data-en="lower">감소</span></p>
+          </div>
+          <div class="m-row m-cost">
+            <p class="m-name" data-en="Background throughput (the cost of yielding)">배경 작업 처리량 (양보한 대가)</p>
+            <div class="m-track"><i class="m-bar m-off" style="--w:100%"></i><span data-en="Off">끔</span></div>
+            <div class="m-track"><i class="m-bar m-on" style="--w:40%"></i><span data-en="On">켬</span></div>
+            <p class="m-num"><small data-en="about">약</small><b data-count="60">60</b>%<span data-en="lower">감소</span></p>
+          </div>
+        </figure>
+      </article>
 
-  <!-- EXPLORATIONS -->
-<section class="section section-alt" id="explorations"><div class="section-inner">
-<p class="section-tag">04 · Beyond selected work</p><h2 class="section-title" data-en="Smaller work still has a place">작은 실험도 제자리가 있습니다</h2>
-<p class="section-intro" data-en="Utilities, interface experiments and coursework remain accessible without crowding the main portfolio.">유틸리티·UI 실험·수업 코드는 삭제하지 않고 별도로 분류했습니다. 홈페이지에서는 대표작에 집중합니다.</p>
-<div class="hero-actions"><a class="btn btn-primary" href="labs.html">Labs & Tools ↗</a><a class="btn btn-ghost" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news" target="_blank" rel="noopener">Writing / News ↗</a><a class="btn btn-ghost" href="cv.html">Full CV ↗</a></div></div></section>
+      <div class="cards">
+        <article class="card" data-rv data-glow>
+          <svg class="card-fig fig-luma" viewBox="0 0 320 170" aria-hidden="true">
+            <rect class="c-line" x="20" y="16" width="280" height="138" rx="12"/>
+            <rect class="c-soft" x="36" y="30" width="190" height="16" rx="8"/>
+            <g class="c-switch"><rect class="c-line" x="246" y="29" width="38" height="18" rx="9"/><circle class="c-knob" cx="255" cy="38" r="6"/></g>
+            <rect class="c-soft" x="36" y="64" width="110" height="10" rx="5"/><rect class="c-soft" x="36" y="84" width="160" height="10" rx="5"/><rect class="c-soft" x="36" y="104" width="130" height="10" rx="5"/>
+            <rect class="c-btn" x="212" y="112" width="72" height="26" rx="13"/>
+            <g class="c-ptr"><circle class="c-ping" cx="0" cy="0" r="10"/><path class="c-arrow" d="M0 0l0 20 5.5-5 4 9 4-2-4-8.5 7 0z"/></g>
+          </svg>
+          <p class="kind"><span data-en="Desktop">데스크톱</span><span class="shut" data-en="Private source">소스 비공개</span></p>
+          <h3>Luma</h3>
+          <p class="card-desc" data-en="A lightweight personal browser exploring visible, user-controlled automation on constrained Windows devices.">제한된 사양에서도 사용할 수 있는 개인 브라우저. 자동화 편의성과 사용자 통제 사이의 균형을 탐색합니다.</p>
+          <ul class="stack"><li>WinUI 3</li><li>WebView2</li><li data-en="Automation">자동화</li></ul>
+          <p class="links"><a href="work.html#luma"><span data-en="Design notes">설계 노트</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </article>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section section-alt contact">
-    <div class="section-inner">
-      <p class="section-tag">05 · Contact</p>
-      <h2 class="section-title" data-en="Let's meet on GitHub">GitHub에서 만나요</h2>
-      <p class="contact-desc" data-en="GitHub is the surest way to reach me.&lt;br&gt;Code, issues, PRs — all welcome.">
-        가장 확실한 연락 방법은 GitHub입니다.<br>
-        코드, 이슈, PR — 어디서든 환영합니다.
-      </p>
-      <a href="https://github.com/homesweetlove" target="_blank" rel="noopener" class="btn btn-primary btn-lg">@homesweetlove</a>
+        <article class="card" data-rv data-glow>
+          <svg class="card-fig fig-japan" viewBox="0 0 320 170" aria-hidden="true">
+            <path class="c-route" d="M40 120C80 40 130 150 170 86S250 30 284 70"/>
+            <circle class="c-go" r="7"/>
+            <g class="c-stop"><circle cx="40" cy="120" r="9"/><text x="40" y="150" data-en="Translate">번역</text></g>
+            <g class="c-stop"><circle cx="170" cy="86" r="9"/><text x="170" y="118" data-en="Sizes">사이즈</text></g>
+            <g class="c-stop"><circle cx="284" cy="70" r="9"/><text x="284" y="100" data-en="Transit">이동</text></g>
+          </svg>
+          <p class="kind"><span data-en="Mobile">모바일</span><span class="shut" data-en="Private source">소스 비공개</span></p>
+          <h3>Subject Japan</h3>
+          <p class="card-desc" data-en="A travel companion addressing translation, personal size information, reminders and unreliable external data.">여행 중 흩어진 번역·사이즈·이동 정보를 연결하고 외부 데이터의 최신성과 실패 상황을 고려한 모바일 경험.</p>
+          <ul class="stack"><li data-en="Cross-platform">크로스 플랫폼</li><li data-en="Data">데이터</li><li data-en="UX">사용 경험</li></ul>
+          <p class="links"><a href="work.html#subject-japan"><span data-en="Design notes">설계 노트</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </article>
+
+        <article class="card" data-rv data-glow>
+          <svg class="card-fig fig-semg" viewBox="0 0 320 170" aria-hidden="true">
+            <path class="c-base" d="M16 85h288"/>
+            <path class="c-env" id="semg-env" d=""/>
+            <path class="c-raw" id="semg-raw" pathLength="1" d=""/>
+          </svg>
+          <p class="kind"><span data-en="Research">연구</span><span class="wip" data-en="In progress">진행 중</span></p>
+          <h3 data-en="sEMG Muscle Fatigue">sEMG 근피로 연구</h3>
+          <p class="card-desc" data-en="Undergraduate research investigating upper-arm muscle fatigue signals and individual variation; no classification outcome is claimed yet.">상완 근피로 신호의 특징과 개인차를 탐구하는 학부 연구. 아직 확정되지 않은 성능 결과는 주장하지 않습니다.</p>
+          <ul class="stack"><li>sEMG</li><li data-en="Signal processing">신호 처리</li><li data-en="Research">연구</li></ul>
+          <p class="links"><a href="work.html#semg"><span data-en="Research questions">연구 질문</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </article>
+      </div>
+
+      <p class="more" data-rv><a href="work.html" data-en="All case studies">모든 사례 보기</a><a href="labs.html" data-en="Labs & tools">실험실과 도구</a></p>
+    </div>
+  </section>
+
+  <!-- 기술 -->
+  <section id="skills" class="blk">
+    <div class="wrap">
+      <h2 class="blk-title" data-words data-en="Depth in systems, breadth across products">시스템의 깊이, 제품 경험의 폭</h2>
+      <dl class="range">
+        <div class="range-row" data-rv><dt><b data-en="Core">중심</b><span data-en="Systems">시스템</span></dt><dd><span>C# / .NET</span><span>Windows APIs</span><span>Process & Memory</span><span>Testing</span></dd></div>
+        <div class="range-row" data-rv><dt><b data-en="Product">제품</b><span data-en="Web & mobile">웹과 모바일</span></dt><dd><span>TypeScript</span><span>React</span><span>Kotlin</span><span>WinUI 3</span></dd></div>
+        <div class="range-row" data-rv><dt><b data-en="Exploration">탐구</b><span data-en="Research">연구</span></dt><dd><span>Python</span><span>Linux</span><span>Automation</span><span>sEMG</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 그 밖의 작업 -->
+  <section id="explorations" class="blk blk-alt">
+    <div class="wrap">
+      <h2 class="blk-title" data-words data-en="Smaller work still has a place">작은 실험도 제자리가 있습니다</h2>
+      <p class="blk-intro" data-rv data-en="Utilities, interface experiments and coursework remain accessible without crowding the main portfolio.">유틸리티·UI 실험·수업 코드는 삭제하지 않고 별도로 분류했습니다. 홈페이지에서는 대표작에 집중합니다.</p>
+      <ul class="doors">
+        <li data-rv><a href="labs.html"><b data-en="Labs & tools">실험실과 도구</b><span data-en="Utilities and interface experiments that run in the browser">브라우저에서 바로 쓰는 유틸리티와 화면 실험</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li data-rv><a href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news" target="_blank" rel="noopener"><b data-en="Writing & news">글과 뉴스</b><span data-en="A daily archive of IT news summaries">매일 정리하는 IT 뉴스 기록</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></li>
+        <li data-rv><a href="cv.html"><b data-en="Full CV">전체 이력</b><span data-en="Everything, including the smaller projects">작은 프로젝트까지 모두 담은 기록</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 연락 -->
+  <section id="contact" class="blk reach">
+    <div class="wrap">
+      <h2 class="blk-title" data-words data-en="Let's meet on GitHub">GitHub에서 만나요</h2>
+      <a class="reach-name" id="reach-name" href="https://github.com/homesweetlove" target="_blank" rel="noopener" aria-label="GitHub @homesweetlove">@homesweetlove</a>
+      <p class="reach-desc" data-rv data-en="GitHub is the surest way to reach me. Code, issues and pull requests are all welcome.">가장 확실한 연락 방법은 GitHub입니다. 코드, 이슈, PR 어디서든 환영합니다.</p>
     </div>
   </section>
 
@@ -137,7 +243,7 @@
 </footer>
 
 <script>i18n.apply()</script>
-<script src="assets/script.js?v=10"></script>
+<script src="assets/home.js?v=1"></script>
 <script src="assets/terminal.js?v=4"></script>
 </body>
 </html>
