@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css?v=13">
-<link rel="stylesheet" href="assets/home.css?v=1">
+<link rel="stylesheet" href="assets/home.css?v=2">
 <script src="assets/i18n.js?v=1"></script>
 <script>try{if(localStorage.getItem('skin')==='mac')document.documentElement.dataset.skin='mac';var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}document.documentElement.classList.add('js')</script>
 </head>
@@ -59,6 +59,7 @@
 
   <!-- 첫 화면 -->
   <section id="home" class="top">
+    <canvas class="top-flow" id="flow" aria-hidden="true"></canvas>
     <div class="wrap top-copy">
       <p class="top-hello">
         <img src="https://avatars.githubusercontent.com/u/232012965?v=4&amp;s=120" width="44" height="44" alt="">
@@ -76,14 +77,6 @@
         <a href="resume.html" class="btn btn-ghost" data-en="Resume">이력서</a>
         <a href="https://github.com/homesweetlove" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
       </div>
-    </div>
-    <div class="top-band" aria-hidden="true"><canvas class="top-signal" id="signal"></canvas></div>
-    <div class="wrap top-readout">
-      <p class="top-hint">
-        <span class="hint-mouse" data-en="Move your mouse. Like the muscle signals in my sEMG research, this line follows your hand.">마우스를 움직여 보세요. sEMG 연구에서 다루는 근육 신호처럼, 이 선은 손의 움직임을 따라 그려집니다.</span>
-        <span class="hint-touch" data-en="Swipe the screen. Like the muscle signals in my sEMG research, this line follows your hand.">화면을 쓸어 보세요. sEMG 연구에서 다루는 근육 신호처럼, 이 선은 손의 움직임을 따라 그려집니다.</span>
-      </p>
-      <p class="top-level" aria-hidden="true"><span data-en="Strength">세기</span><b id="sig-amp">0.00</b><i class="level"><i id="sig-bar"></i></i></p>
     </div>
   </section>
 
@@ -227,9 +220,15 @@
   <!-- 연락 -->
   <section id="contact" class="blk reach">
     <div class="wrap">
-      <h2 class="blk-title" data-words data-en="Let's meet on GitHub">GitHub에서 만나요</h2>
-      <a class="reach-name" id="reach-name" href="https://github.com/homesweetlove" target="_blank" rel="noopener" aria-label="GitHub @homesweetlove">@homesweetlove</a>
-      <p class="reach-desc" data-rv data-en="GitHub is the surest way to reach me. Code, issues and pull requests are all welcome.">가장 확실한 연락 방법은 GitHub입니다. 코드, 이슈, PR 어디서든 환영합니다.</p>
+      <h2 class="blk-title" data-words data-en="Get in touch by email">이메일로 연락 주세요</h2>
+      <a class="reach-name" id="reach-name" href="mailto:xxibgoasis@gmail.com" aria-label="xxibgoasis@gmail.com">xxibgoasis@gmail.com</a>
+      <p class="reach-desc" data-rv data-en="Email is the surest way to reach me. Code, issues and pull requests are welcome on GitHub too.">가장 확실한 연락 방법은 이메일입니다. 코드와 이슈, PR은 GitHub에서도 환영합니다.</p>
+      <div class="reach-actions" data-rv>
+        <button class="btn btn-primary" type="button" id="copy-mail" data-mail="xxibgoasis@gmail.com" data-done="복사했습니다" data-en-data-done="Copied"><span data-en="Copy address">주소 복사</span></button>
+        <a class="btn btn-ghost" href="mailto:xxibgoasis@gmail.com" data-en="Write an email">메일 쓰기</a>
+        <a class="btn btn-ghost" href="https://github.com/homesweetlove" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="sr-note" id="copy-note" role="status" aria-live="polite"></p>
     </div>
   </section>
 
@@ -243,7 +242,7 @@
 </footer>
 
 <script>i18n.apply()</script>
-<script src="assets/home.js?v=1"></script>
+<script src="assets/home.js?v=2"></script>
 <script src="assets/terminal.js?v=4"></script>
 </body>
 </html>

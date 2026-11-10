@@ -233,150 +233,124 @@
     }).observe(el);
   })();
 
-  /* ---------- 첫 화면: 손 움직임을 근육 신호처럼 그리는 선 ---------- */
-  (function signal() {
-    const canvas = $('#signal');
+  /* ---------- 연락: 이메일 주소 복사 ---------- */
+  (function copyMail() {
+    const btn = $('#copy-mail');
+    if (!btn) return;
+    const label = $('span', btn), note = $('#copy-note');
+    const idle = label.textContent;
+    let timer = 0;
+    btn.addEventListener('click', async () => {
+      const mail = btn.dataset.mail;
+      let ok = false;
+      try { await navigator.clipboard.writeText(mail); ok = true; } catch (_) {
+        const ta = document.createElement('textarea');
+        ta.value = mail; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.append(ta); ta.select();
+        try { ok = document.execCommand('copy'); } catch (_) {}
+        ta.remove();
+      }
+      if (!ok) { location.href = `mailto:${mail}`; return; }
+      label.textContent = btn.dataset.done;
+      btn.classList.add('done');
+      if (note) note.textContent = btn.dataset.done;
+      clearTimeout(timer);
+      timer = setTimeout(() => { label.textContent = idle; btn.classList.remove('done'); if (note) note.textContent = ''; }, 2000);
+    });
+  })();
+
+  /* ---------- 첫 화면: 부드럽게 흐르는 선 다발 ---------- */
+  (function flow() {
+    const canvas = $('#flow');
     const ctx = canvas?.getContext('2d');
     if (!ctx) return;
-    const ampText = $('#sig-amp'), ampBar = $('#sig-bar');
-    const STEP = 2;            // 표본 하나가 차지하는 가로 길이(px)
-    const RATE = 150;          // 1초에 그리는 표본 수
-    let W = 0, H = 0, dpr = 1, raw = [], env = [];
-    let energy = 0, envelope = 0, touched = false, onScreen = true, tabOpen = !document.hidden, raf = 0;
-    let last = performance.now(), carry = 0, shift = 0, demoAt = last + 900, demoUntil = 0;
-    let colors = {};
+    const host = canvas.parentElement;
+    const LINES = 40;
+    let W = 0, H = 0, dpr = 1, raf = 0, onScreen = true, tabOpen = !document.hidden;
+    let grad = null, dark = true, t = 0, last = performance.now();
+    let px = 0, py = 0, tx = 0, ty = 0, near = 0, nearTo = 0, boost = 0;
 
-    const readColors = () => {
+    const paint = () => {
       const cs = getComputedStyle(document.body);
-      colors = {
-        trace: cs.getPropertyValue('--trace').trim() || '#ffb547',
-        envelope: cs.getPropertyValue('--envelope').trim() || '#6fd6c4',
-        grid: cs.getPropertyValue('--border').trim() || '#1e4656',
-        bg: cs.getPropertyValue('--bg').trim() || '#08202b',
-      };
+      const a = cs.getPropertyValue('--trace').trim() || '#ffb547';
+      const b = cs.getPropertyValue('--envelope').trim() || '#6fd6c4';
+      grad = ctx.createLinearGradient(0, 0, W, 0);
+      grad.addColorStop(0, a); grad.addColorStop(0.55, a); grad.addColorStop(1, b);
+      const m = /^#?([0-9a-f]{6})$/i.exec(cs.getPropertyValue('--bg').trim());
+      if (m) { const n = parseInt(m[1], 16); dark = ((n >> 16) * 299 + ((n >> 8) & 255) * 587 + (n & 255) * 114) / 1000 < 128; }
     };
-    onTheme = () => { readColors(); if (still.matches || !raf) draw(); };
+    onTheme = () => { paint(); if (!raf) draw(); };
 
     function resize() {
       const r = canvas.getBoundingClientRect();
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height));
       canvas.width = W * dpr; canvas.height = H * dpr;
-      const n = Math.ceil(W / STEP) + 2;
-      while (raw.length < n) { raw.unshift((Math.random() * 2 - 1) * 0.03); env.unshift(0.04); }
-      if (raw.length > n) { raw = raw.slice(-n); env = env.slice(-n); }
-      if (still.matches) fillStill();
-      draw();
-    }
-
-    function push() {
-      const now = performance.now();
-      if (!touched) {            // 아무도 건드리기 전에는 가끔 스스로 힘을 줘서 보여 줍니다.
-        if (now > demoAt) { demoUntil = now + 520; demoAt = now + 3600 + Math.random() * 1600; }
-        if (now < demoUntil) energy = Math.max(energy, 0.5);
-      }
-      energy = Math.max(energy, scrollKick);
-      scrollKick *= 0.9;
-      const noise = (Math.random() + Math.random() + Math.random()) / 1.5 - 1;
-      const v = noise * (0.035 + energy * 0.96);
-      envelope += (Math.min(1, Math.abs(v) * 2.1) - envelope) * 0.05;
-      raw.push(v); env.push(envelope);
-      raw.shift(); env.shift();
-      energy *= 0.955;
-    }
-
-    function fillStill() {       // 움직임을 줄인 환경: 멈춰 있는 한 장면
-      let s = 11;
-      const rand = () => (s = (s * 16807) % 2147483647) / 2147483647;
-      const n = raw.length;
-      for (let i = 0; i < n; i++) {
-        const t = i / n;
-        const a = 0.04 + 0.8 * Math.exp(-Math.pow((t - 0.42) / 0.09, 2)) + 0.5 * Math.exp(-Math.pow((t - 0.78) / 0.07, 2));
-        raw[i] = (rand() * 2 - 1) * a; env[i] = a * 0.8;
-      }
+      paint(); draw();
     }
 
     function draw() {
-      const mid = H * 0.5, amp = H * 0.43, n = raw.length;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, H);
-
-      // 모눈
-      ctx.lineWidth = 1; ctx.strokeStyle = colors.grid; ctx.globalAlpha = 0.5;
-      ctx.beginPath();
-      const gap = 96;
-      for (let x = W - (shift % gap); x > 0; x -= gap) { ctx.moveTo(Math.round(x) + 0.5, 0); ctx.lineTo(Math.round(x) + 0.5, H); }
-      for (let k = -2; k <= 2; k++) { const y = Math.round(mid + k * amp * 0.5) + 0.5; ctx.moveTo(0, y); ctx.lineTo(W, y); }
-      ctx.stroke();
-
-      const xAt = i => W - (n - 1 - i) * STEP;
-      // 포락선(신호의 세기를 부드럽게 이은 띠)
-      ctx.globalAlpha = 0.16; ctx.fillStyle = colors.envelope;
-      ctx.beginPath();
-      for (let i = 0; i < n; i++) ctx.lineTo(xAt(i), mid - env[i] * amp);
-      for (let i = n - 1; i >= 0; i--) ctx.lineTo(xAt(i), mid + env[i] * amp);
-      ctx.closePath(); ctx.fill();
-      ctx.globalAlpha = 0.9; ctx.strokeStyle = colors.envelope; ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      for (let i = 0; i < n; i++) ctx.lineTo(xAt(i), mid - env[i] * amp);
-      ctx.stroke();
-
-      // 원래 신호
-      ctx.globalAlpha = 1; ctx.strokeStyle = colors.trace; ctx.lineWidth = 1.25; ctx.lineJoin = 'round';
-      ctx.beginPath();
-      for (let i = 0; i < n; i++) ctx.lineTo(xAt(i), mid + raw[i] * amp);
-      ctx.stroke();
-
-      // 펜 끝
-      const y = mid + raw[n - 1] * amp;
-      ctx.fillStyle = colors.trace;
-      ctx.globalAlpha = 0.22; ctx.beginPath(); ctx.arc(W - 1, y, 12, 0, 6.3); ctx.fill();
-      ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(W - 1, y, 3.5, 0, 6.3); ctx.fill();
+      ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over';
+      ctx.strokeStyle = grad; ctx.lineWidth = 1.1; ctx.lineJoin = 'round';
+      const narrow = W < 760;
+      const cy = H * (narrow ? 0.86 : 0.74);
+      const spread = H * (narrow ? 0.2 : 0.36);
+      const swing = H * (narrow ? 0.05 : 0.085) * (1 + boost * 0.9);
+      const reach = Math.max(140, W * 0.14);
+      const stepX = narrow ? 6 : 8;
+      for (let j = 0; j < LINES; j++) {
+        const u = j / (LINES - 1), c = u - 0.5;
+        ctx.globalAlpha = (dark ? 0.5 : 0.62) * (0.35 + 0.65 * (1 - Math.abs(c) * 1.6));
+        ctx.beginPath();
+        for (let x = -stepX; x <= W + stepX; x += stepX) {
+          const k = clamp(x / W, 0, 1);
+          const open = k * k * (3 - 2 * k);                       // 왼쪽은 모이고 오른쪽으로 갈수록 펼쳐짐
+          let y = cy + c * spread * (0.12 + 0.88 * open)
+            + swing * (0.3 + 0.7 * open) * (
+                Math.sin(x * 0.0042 + t * 0.55 + u * 2.4) * 0.55 +
+                Math.sin(x * 0.0019 - t * 0.34 + u * 4.2) * 0.45 +
+                Math.sin(x * 0.0093 + t * 0.8 - u * 1.3) * 0.12);
+          if (near > 0.01) {                                       // 마우스 근처에서 선이 벌어지며 따라옴
+            const d = (x - px) / reach, g = Math.exp(-d * d) * near;
+            y += g * ((py - y) * 0.22 + c * 150);
+          }
+          if (x < 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
     }
 
-    let shown = -1;
     function loop(now) {
       raf = 0;
       if (!onScreen || !tabOpen || still.matches) return;
-      const dt = Math.min(now - last, 80); last = now;
-      carry += dt * RATE / 1000;
-      let pushed = 0;
-      while (carry >= 1 && pushed < 24) { push(); carry -= 1; pushed++; }
-      shift += pushed * STEP;
+      const dt = Math.min(now - last, 60) / 1000; last = now;
+      boost = Math.max(boost * 0.94, scrollKick); scrollKick *= 0.9;
+      t += dt * (1 + boost * 2.2);
+      px += (tx - px) * 0.08; py += (ty - py) * 0.08; near += (nearTo - near) * 0.06;
       draw();
-      const v = Math.round(envelope * 100);
-      if (v !== shown) {
-        shown = v;
-        if (ampText) ampText.textContent = (v / 100).toFixed(2);
-        ampBar?.style.setProperty('--v', (v / 100).toFixed(2));
-      }
       raf = requestAnimationFrame(loop);
     }
     const start = () => { if (!raf && onScreen && tabOpen && !still.matches) { last = performance.now(); raf = requestAnimationFrame(loop); } };
 
-    // 손 움직임 → 신호의 세기
-    let px = 0, py = 0, pt = 0;
-    window.addEventListener('pointermove', e => {
-      const now = performance.now();
-      if (pt) {
-        const speed = Math.hypot(e.clientX - px, e.clientY - py) / Math.max(now - pt, 1); // px/ms
-        if (speed > 0.05) touched = true;
-        energy = Math.max(energy, clamp(speed / 2.4, 0, 1));
-      }
-      px = e.clientX; py = e.clientY; pt = now;
-    }, { passive: true });
-    window.addEventListener('pointerdown', () => { touched = true; energy = Math.max(energy, 0.7); }, { passive: true });
+    if (fine) {
+      host.addEventListener('pointermove', e => {
+        const r = canvas.getBoundingClientRect();
+        tx = e.clientX - r.left; ty = e.clientY - r.top;
+        if (!nearTo) { px = tx; py = ty; }
+        nearTo = 1;
+      }, { passive: true });
+      host.addEventListener('pointerleave', () => { nearTo = 0; });
+    }
 
-    readColors();
+    t = 2.4;
     resize();
     window.addEventListener('resize', resize, { passive: true });
     new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; start(); }).observe(canvas);
     document.addEventListener('visibilitychange', () => { tabOpen = !document.hidden; start(); });
-    still.addEventListener?.('change', () => { if (still.matches) { fillStill(); draw(); } else start(); });
-    if (still.matches) {
-      if (ampText) ampText.textContent = '0.64';
-      ampBar?.style.setProperty('--v', '0.64');
-    }
+    still.addEventListener?.('change', () => { if (still.matches) draw(); else start(); });
     start();
   })();
 })();
