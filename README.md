@@ -56,9 +56,9 @@ If GitHub API requests fail, are rate-limited, or are slow, existing hard-coded 
 
 ## GitHub Profile README
 
-This site is the main introduction page, and a separate profile README repository (`homesweetlove/homesweetlove`) is not currently used.
+The public GitHub profile uses [`homesweetlove/homesweetlove`](https://github.com/homesweetlove/homesweetlove). `PROFILE_README.md` mirrors its current introduction and measured RamFlow results.
 
-`PROFILE_README.md` remains as a template that can be moved into a profile README repository later.
+The homepage project card and [`work.html#ramflow`](https://homesweetlove.github.io/work.html#ramflow) connect the user problem, implemented controller/queue/tray, paired Chrome/VS Code measurements, background processing cost, and source evidence.
 
 ## Design / Interaction
 

@@ -53,8 +53,9 @@ GitHub API 요청이 실패하거나(오프라인, API rate limit 등) 느릴 �
 
 ## GitHub 프로필 README
 
-이 사이트가 메인 소개 페이지이며, 별도의 프로필 README 저장소(`homesweetlove/homesweetlove`)는 사용하지 않습니다.
-`PROFILE_README.md`는 필요할 때 프로필 README로 옮겨 쓸 수 있도록 남겨 둔 템플릿입니다.
+공개 GitHub 프로필은 [`homesweetlove/homesweetlove`](https://github.com/homesweetlove/homesweetlove) 저장소를 사용합니다. `PROFILE_README.md`에도 동일한 소개와 RamFlow 실측 결과를 반영했습니다.
+
+홈의 프로젝트 카드와 [`work.html#ramflow`](https://homesweetlove.github.io/work.html#ramflow)는 사용자 문제, 구현한 배경 제어·큐·트레이, Chrome·VS Code 대응 비교, 배경 처리량 비용과 근거 자료를 연결합니다.
 
 ## 디자인 / 인터랙션
 
