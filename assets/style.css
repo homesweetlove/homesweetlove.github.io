@@ -1,50 +1,50 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 /* ---------- tokens ---------- */
 :root{
-  --bg: #eef3f2;
-  --bg-alt: #e3ebea;
-  --surface: #fbfdfc;
-  --border: #c9d6d5;
-  --text: #0c2733;
-  --text-dim: #456069;
-  --text-faint: #5a737b;
-  --accent: #0b6b80;
-  --accent-2: #c2740c;
+  --bg: #ffffff;
+  --bg-alt: #f5f5f7;
+  --surface: #ffffff;
+  --border: #d2d2d7;
+  --text: #1d1d1f;
+  --text-dim: #6e6e73;
+  --text-faint: #86868b;
+  --accent: #0066cc;
+  --accent-2: #bf5af2;
   --on-accent: #ffffff;
-  --accent-grad: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 78%, var(--accent-2)));
-  --shadow: 0 10px 34px rgba(12, 39, 51, 0.10);
-  --radius: 16px;
+  --accent-grad: linear-gradient(135deg, #0071e3, #0071e3);
+  --shadow: 0 10px 34px rgba(0, 0, 0, 0.08);
+  --radius: 18px;
   --nav-h: 72px;
 }
 
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]) {
-    --bg: #08202b;
-    --bg-alt: #0b2835;
-    --surface: #0f3140;
-    --border: #1e4656;
-    --text: #eaf2f1;
-    --text-dim: #a3bbc1;
-    --text-faint: #7c979f;
-    --accent: #ffb547;
-    --accent-2: #6fd6c4;
-    --on-accent: #08202b;
-    --shadow: 0 10px 34px rgba(0,0,0,0.35);
+    --bg: #000000;
+    --bg-alt: #101012;
+    --surface: #1c1c1e;
+    --border: #38383a;
+    --text: #f5f5f7;
+    --text-dim: #a1a1a6;
+    --text-faint: #86868b;
+    --accent: #2997ff;
+    --accent-2: #bf5af2;
+    --on-accent: #ffffff;
+    --shadow: 0 10px 34px rgba(0,0,0,0.5);
   }
 }
 
 :root[data-theme="dark"]{
-  --bg: #08202b;
-  --bg-alt: #0b2835;
-  --surface: #0f3140;
-  --border: #1e4656;
-  --text: #eaf2f1;
-  --text-dim: #a3bbc1;
-  --text-faint: #7c979f;
-  --accent: #ffb547;
-  --accent-2: #6fd6c4;
-  --on-accent: #08202b;
-  --shadow: 0 10px 34px rgba(0,0,0,0.35);
+  --bg: #000000;
+  --bg-alt: #101012;
+  --surface: #1c1c1e;
+  --border: #38383a;
+  --text: #f5f5f7;
+  --text-dim: #a1a1a6;
+  --text-faint: #86868b;
+  --accent: #2997ff;
+  --accent-2: #bf5af2;
+  --on-accent: #ffffff;
+  --shadow: 0 10px 34px rgba(0,0,0,0.5);
 }
 
 *{ box-sizing: border-box; }

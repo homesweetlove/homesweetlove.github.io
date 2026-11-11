@@ -44,35 +44,48 @@
   const year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
 
-  /* ---------- 스크롤: 진행 막대, 메뉴 숨김, 단계 선 ---------- */
-  const meter = $('#scroll-meter');
-  const steps = $('#steps');
-  const stepItems = $$('.step', steps || document);
-  let lastY = window.scrollY, ticking = false, scrollKick = 0;
+  /* ---------- 스크롤: 첫 화면이 물러나고, 문장이 낱말씩 켜짐 ---------- */
+  const top = $('.top');
+  const say = $('#say');
+  let sayWords = [];
+  if (say) {
+    const text = say.textContent.trim();
+    say.setAttribute('aria-label', text);
+    say.textContent = '';
+    sayWords = text.split(/\s+/).map((word, i, all) => {
+      const w = document.createElement('span');
+      w.className = 'sw';
+      w.setAttribute('aria-hidden', 'true');
+      w.textContent = word;
+      say.append(w, i < all.length - 1 ? ' ' : '');
+      return w;
+    });
+  }
+  let ticking = false;
   function onScroll() {
     ticking = false;
-    const y = window.scrollY;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    meter?.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
-    if (nav) {
-      nav.classList.toggle('is-raised', y > 10);
-      const menuOpen = mobile?.classList.contains('open');
-      if (y > lastY + 4 && y > 240 && !menuOpen) nav.classList.add('is-away');
-      else if (y < lastY - 4 || y <= 240) nav.classList.remove('is-away');
-    }
-    scrollKick = Math.max(scrollKick, clamp(Math.abs(y - lastY) / 70, 0, 1));
-    lastY = y;
-    if (steps) {
-      const r = steps.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const p = clamp((vh * 0.82 - r.top) / (r.height + vh * 0.3), 0, 1);
-      steps.style.setProperty('--p', p.toFixed(4));
-      stepItems.forEach((el, i) => el.classList.toggle('on', p >= (i * 2 + 1) / (stepItems.length * 2) - 0.12));
+    const y = window.scrollY, vh = window.innerHeight;
+    nav?.classList.toggle('is-raised', y > 10);
+    if (top && !still.matches) top.style.setProperty('--hs', clamp(y / (top.offsetHeight * 0.75), 0, 1).toFixed(3));
+    if (sayWords.length) {
+      const r = say.getBoundingClientRect();
+      const p = clamp((vh * 0.88 - r.top) / (r.height + vh * 0.4), 0, 1);
+      const n = Math.round(p * sayWords.length * 1.06);
+      sayWords.forEach((w, i) => w.classList.toggle('lit', i < n));
     }
   }
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
+
+  /* ---------- 첫 화면 빛: 마우스를 살짝 따라옴 ---------- */
+  if (top && fine && !still.matches) {
+    top.addEventListener('pointermove', e => {
+      const r = top.getBoundingClientRect();
+      top.style.setProperty('--gx', `${(((e.clientX - r.left) / r.width - 0.5) * 90).toFixed(1)}px`);
+      top.style.setProperty('--gy', `${(((e.clientY - r.top) / r.height - 0.5) * 60).toFixed(1)}px`);
+    }, { passive: true });
+  }
 
   /* ---------- 제목을 낱말 단위로 나눠 올리기 ---------- */
   $$('[data-words]').forEach(h => {
@@ -139,14 +152,6 @@
         fig?.style.setProperty('--rx', '0deg');
         fig?.style.setProperty('--ry', '0deg');
       });
-    });
-    $$('[data-magnet]').forEach(btn => {
-      btn.addEventListener('pointermove', e => {
-        if (still.matches) return;
-        const r = btn.getBoundingClientRect();
-        btn.style.transform = `translate(${((e.clientX - r.left - r.width / 2) * 0.22).toFixed(1)}px, ${((e.clientY - r.top - r.height / 2) * 0.3).toFixed(1)}px)`;
-      });
-      btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
     });
   }
 
@@ -257,100 +262,5 @@
       clearTimeout(timer);
       timer = setTimeout(() => { label.textContent = idle; btn.classList.remove('done'); if (note) note.textContent = ''; }, 2000);
     });
-  })();
-
-  /* ---------- 첫 화면: 부드럽게 흐르는 선 다발 ---------- */
-  (function flow() {
-    const canvas = $('#flow');
-    const ctx = canvas?.getContext('2d');
-    if (!ctx) return;
-    const host = canvas.parentElement;
-    const LINES = 40;
-    let W = 0, H = 0, dpr = 1, raf = 0, onScreen = true, tabOpen = !document.hidden;
-    let grad = null, dark = true, t = 0, last = performance.now();
-    let px = 0, py = 0, tx = 0, ty = 0, near = 0, nearTo = 0, boost = 0;
-
-    const paint = () => {
-      const cs = getComputedStyle(document.body);
-      const a = cs.getPropertyValue('--trace').trim() || '#ffb547';
-      const b = cs.getPropertyValue('--envelope').trim() || '#6fd6c4';
-      grad = ctx.createLinearGradient(0, 0, W, 0);
-      grad.addColorStop(0, a); grad.addColorStop(0.55, a); grad.addColorStop(1, b);
-      const m = /^#?([0-9a-f]{6})$/i.exec(cs.getPropertyValue('--bg').trim());
-      if (m) { const n = parseInt(m[1], 16); dark = ((n >> 16) * 299 + ((n >> 8) & 255) * 587 + (n & 255) * 114) / 1000 < 128; }
-    };
-    onTheme = () => { paint(); if (!raf) draw(); };
-
-    function resize() {
-      const r = canvas.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height));
-      canvas.width = W * dpr; canvas.height = H * dpr;
-      paint(); draw();
-    }
-
-    function draw() {
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, W, H);
-      ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over';
-      ctx.strokeStyle = grad; ctx.lineWidth = 1.1; ctx.lineJoin = 'round';
-      const narrow = W < 760;
-      const cy = H * (narrow ? 0.86 : 0.74);
-      const spread = H * (narrow ? 0.2 : 0.36);
-      const swing = H * (narrow ? 0.05 : 0.085) * (1 + boost * 0.9);
-      const reach = Math.max(140, W * 0.14);
-      const stepX = narrow ? 6 : 8;
-      for (let j = 0; j < LINES; j++) {
-        const u = j / (LINES - 1), c = u - 0.5;
-        ctx.globalAlpha = (dark ? 0.5 : 0.62) * (0.35 + 0.65 * (1 - Math.abs(c) * 1.6));
-        ctx.beginPath();
-        for (let x = -stepX; x <= W + stepX; x += stepX) {
-          const k = clamp(x / W, 0, 1);
-          const open = k * k * (3 - 2 * k);                       // 왼쪽은 모이고 오른쪽으로 갈수록 펼쳐짐
-          let y = cy + c * spread * (0.12 + 0.88 * open)
-            + swing * (0.3 + 0.7 * open) * (
-                Math.sin(x * 0.0042 + t * 0.55 + u * 2.4) * 0.55 +
-                Math.sin(x * 0.0019 - t * 0.34 + u * 4.2) * 0.45 +
-                Math.sin(x * 0.0093 + t * 0.8 - u * 1.3) * 0.12);
-          if (near > 0.01) {                                       // 마우스 근처에서 선이 벌어지며 따라옴
-            const d = (x - px) / reach, g = Math.exp(-d * d) * near;
-            y += g * ((py - y) * 0.22 + c * 150);
-          }
-          if (x < 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
-    }
-
-    function loop(now) {
-      raf = 0;
-      if (!onScreen || !tabOpen || still.matches) return;
-      const dt = Math.min(now - last, 60) / 1000; last = now;
-      boost = Math.max(boost * 0.94, scrollKick); scrollKick *= 0.9;
-      t += dt * (1 + boost * 2.2);
-      px += (tx - px) * 0.08; py += (ty - py) * 0.08; near += (nearTo - near) * 0.06;
-      draw();
-      raf = requestAnimationFrame(loop);
-    }
-    const start = () => { if (!raf && onScreen && tabOpen && !still.matches) { last = performance.now(); raf = requestAnimationFrame(loop); } };
-
-    if (fine) {
-      host.addEventListener('pointermove', e => {
-        const r = canvas.getBoundingClientRect();
-        tx = e.clientX - r.left; ty = e.clientY - r.top;
-        if (!nearTo) { px = tx; py = ty; }
-        nearTo = 1;
-      }, { passive: true });
-      host.addEventListener('pointerleave', () => { nearTo = 0; });
-    }
-
-    t = 2.4;
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-    new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; start(); }).observe(canvas);
-    document.addEventListener('visibilitychange', () => { tabOpen = !document.hidden; start(); });
-    still.addEventListener?.('change', () => { if (still.matches) draw(); else start(); });
-    start();
   })();
 })();
