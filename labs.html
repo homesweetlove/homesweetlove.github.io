@@ -1,13 +1,79 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>Labs & Tools · homesweetlove</title><meta name="description" content="작은 실험, 유틸리티, 학습 기록을 분류한 포트폴리오 보조 페이지"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css?v=14"><style>.detail-wrap{width:min(980px,calc(100% - 36px));margin:0 auto;padding:100px 0 80px}.detail-top{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:65px}.detail-top a,.detail-link{color:var(--accent);font-weight:600;text-decoration:none}.detail-lead{font-size:clamp(1.25rem,3vw,1.85rem);line-height:1.48;max-width:740px;color:var(--text-dim)}.detail-panel{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:clamp(20px,4vw,36px);margin:24px 0 55px}.detail-panel h2{font-size:1.75rem;margin:0 0 16px}.detail-panel h3{font-size:1.05rem;margin:26px 0 8px}.detail-panel p,.detail-panel li{color:var(--text-dim);line-height:1.85}.detail-panel ul{padding-left:22px}.detail-meta{font-size:.8rem;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}.detail-metric{display:inline-flex;flex-direction:column;border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin:10px 12px 12px 0}.detail-metric strong{font-size:1.3rem}.detail-metric span{color:var(--text-faint);font-size:.8rem}.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.detail-mini{background:var(--bg-alt);border:1px solid var(--border);border-radius:16px;padding:22px}.detail-mini h3{margin-top:0}.detail-mini a{color:var(--accent)}.detail-note{border-left:3px solid var(--accent);padding:12px 20px;background:var(--bg-alt);color:var(--text-dim);font-size:.93rem}@media print{.detail-wrap{padding:0}.detail-top{display:none}.detail-panel{break-inside:avoid}}</style></head><body><main class="detail-wrap"><div class="detail-top"><a href="index.html">← Portfolio</a><span>Labs & Tools</span><a href="resume.html">Resume ↗</a></div>
-<p class="detail-meta">Breadth · Tools · Experiments</p><h1 class="section-title">Labs & Tools</h1><p class="detail-lead">대표 프로젝트 외의 실험과 사용 가능한 도구는 이곳에 모았습니다. 구현 범위가 다른 프로젝트를 같은 수준의 완성품처럼 표현하지 않습니다.</p>
-<section class="detail-panel"><h2>도구 / Utilities</h2><div class="detail-grid">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>실험실과 도구 · homesweetlove</title>
+<meta name="description" content="작은 실험, 유틸리티, 학습 기록을 분류한 포트폴리오 보조 페이지">
+<link rel="canonical" href="https://homesweetlove.github.io/labs.html">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=14">
+<link rel="stylesheet" href="assets/home.css?v=4">
+<script src="assets/i18n.js?v=1"></script>
+<script>try{if(localStorage.getItem('skin')==='mac')document.documentElement.dataset.skin='mac';var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}document.documentElement.classList.add('js')</script>
+</head>
+<body class="home sub">
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">homesweetlove<span class="dot">.</span>dev</a>
+    <ul class="nav-links"><li><a href="index.html#projects" data-en="Work">작업</a></li><li><a href="work.html#semg" data-en="Research">연구</a></li><li><a href="labs.html" data-en="Labs">실험실</a></li><li><a href="resume.html" data-en="Resume">이력서</a></li><li><a href="index.html#contact" data-en="Contact">연락</a></li></ul>
+    <div class="nav-actions">
+      <button id="theme-toggle" class="icon-btn" aria-label="테마 전환" data-en-aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button id="nav-toggle" class="icon-btn nav-burger" aria-label="메뉴" data-en-aria-label="Menu" aria-expanded="false" aria-controls="nav-links-mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <ul class="nav-links-mobile" id="nav-links-mobile"><li><a href="index.html#projects" data-en="Work">작업</a></li><li><a href="work.html#semg" data-en="Research">연구</a></li><li><a href="labs.html" data-en="Labs">실험실</a></li><li><a href="resume.html" data-en="Resume">이력서</a></li><li><a href="index.html#contact" data-en="Contact">연락</a></li></ul>
+</nav>
+
+<main>
+<div class="wrap">
+<header class="page-head">
+<h1 class="blk-title" data-words>실험실과 도구</h1>
+<p class="blk-intro" data-rv>대표 프로젝트 외의 실험과 사용 가능한 도구는 이곳에 모았습니다. 구현 범위가 다른 프로젝트를 같은 수준의 완성품처럼 표현하지 않습니다.</p>
+</header>
+<ul class="gallery three">
+<li data-rv><a class="shot" href="tools.html"><span class="shot-text"><b>업무 도구</b><span>문서 작성, JSON 정리, 텍스트 작업을 브라우저에서 바로</span></span><img src="assets/shots/tools.webp" width="1120" height="700" loading="lazy" alt="업무 도구 화면"></a></li>
+<li data-rv><a class="shot" href="readme-generator.html"><span class="shot-text"><b>README 생성기</b><span>몇 가지만 입력하면 GitHub 프로필 소개 글이 완성</span></span><img src="assets/shots/readme.webp" width="1120" height="700" loading="lazy" alt="README 생성기 화면"></a></li>
+<li data-rv><a class="shot" href="pdf-tools.html"><span class="shot-text"><b>PDF 도구</b><span>PPTX 변환과 PDF 합치기를 서버 전송 없이</span></span><img src="assets/shots/pdf.webp" width="1120" height="700" loading="lazy" alt="PDF 도구 화면"></a></li>
+</ul>
+<section class="detail-panel" data-rv><h2>도구</h2><div class="detail-grid">
 <div class="detail-mini"><h3>ClaudeCodexUsageWidget</h3><p>로컬 상태를 기반으로 사용량 정보를 보여주는 Windows 위젯. API 호출 없이 표시할 수 있는 정보의 한계를 문서화했습니다.</p><a href="https://github.com/homesweetlove/ClaudeCodexUsageWidget">GitHub ↗</a></div>
 <div class="detail-mini"><h3>Paper Assistant</h3><p>한국어 보고서·논문의 장문과 반복 표현을 오프라인에서 점검하는 도구.</p><a href="https://github.com/homesweetlove/paper-assistant">GitHub ↗</a></div>
 <div class="detail-mini"><h3>JP Play</h3><p>지역 제한 Android 앱의 검색·다운로드·기기 설치를 지원하는 개인용 도구.</p><a href="https://github.com/homesweetlove/jp_play">GitHub ↗</a></div>
-<div class="detail-mini"><h3>Browser Tools</h3><p>문서 편집, HWP 보조 기능과 작은 웹 유틸리티 모음.</p><a href="tools.html">Tools ↗</a> · <a href="hwp-editor.html">HWP ↗</a></div></div></section>
-<section class="detail-panel"><h2>UI / Interaction Experiments</h2><div class="detail-grid">
+<div class="detail-mini"><h3>브라우저 도구</h3><p>문서 편집, HWP 보조 기능과 작은 웹 유틸리티 모음.</p><a href="tools.html">업무 도구 ↗</a> · <a href="hwp-editor.html">HWP 편집기 ↗</a></div></div></section>
+<section class="detail-panel" data-rv><h2>화면 실험</h2><div class="detail-grid">
 <div class="detail-mini"><h3>Wading</h3><p>세 가지 테마를 가진 반응형 디지털 청첩장.</p><a href="https://github.com/homesweetlove/wading">GitHub ↗</a></div>
 <div class="detail-mini"><h3>Nocturne Mail</h3><p>실제 메일 서버와 연결되지 않은 웹메일 UI 프로토타입.</p><a href="https://github.com/homesweetlove/open_web_mail">GitHub ↗</a></div>
 <div class="detail-mini"><h3>macos_dis</h3><p>Windows에서 사용하는 macOS 스타일 Rainmeter 스킨.</p><a href="https://github.com/homesweetlove/macos_dis">GitHub ↗</a></div>
 <div class="detail-mini"><h3>Antigravity Korean Pack</h3><p>IDE 한글화·도구 개선 실험.</p><a href="https://github.com/homesweetlove/antigravity-korean-langpack">GitHub ↗</a></div></div></section>
-<section class="detail-panel"><h2>Writing & Coursework</h2><p><a class="detail-link" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news">IT·보안 뉴스 노트 ↗</a> — 날짜별 기록</p><p><a class="detail-link" href="https://github.com/homesweetlove/java_archive">Java coursework ↗</a> · <a class="detail-link" href="https://github.com/homesweetlove/syspro">System Programming coursework ↗</a> — 현재 수업용 저장소는 분리 유지</p></section><footer style="padding-top:40px;border-top:1px solid var(--border);color:var(--text-faint)">© 2026 homesweetlove · <a class="detail-link" href="https://github.com/homesweetlove">GitHub</a></footer></main></body></html>
+<section class="detail-panel" data-rv><h2>글과 수업 코드</h2><p><a class="detail-link" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news">IT·보안 뉴스 노트 ↗</a> — 날짜별 기록</p><p><a class="detail-link" href="https://github.com/homesweetlove/java_archive">Java 수업 코드 ↗</a> · <a class="detail-link" href="https://github.com/homesweetlove/syspro">시스템 프로그래밍 수업 코드 ↗</a> — 현재 수업용 저장소는 분리 유지</p></section><p class="more" data-rv><a href="work.html">대표 사례</a><a href="resume.html">이력서</a></p>
+</div>
+</main>
+
+<footer class="footer">
+  <div class="section-inner footer-inner">
+    <span>© <span id="year"></span> homesweetlove. All rights reserved.</span>
+    <button class="footer-term" type="button" data-open-terminal title="터미널 열기" data-en-title="Open terminal">&gt;_ <kbd>`</kbd></button>
+  </div>
+</footer>
+
+<script>i18n.apply()</script>
+<script src="assets/home.js?v=4"></script>
+<script src="assets/terminal.js?v=4"></script>
+</body>
+</html>

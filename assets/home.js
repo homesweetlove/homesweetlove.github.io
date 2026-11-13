@@ -115,7 +115,7 @@
         if (entry.target.id === 'meter') countUp(entry.target);
         io.unobserve(entry.target);
       });
-    }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
+    }, { threshold: 0.04, rootMargin: '0px 0px -8% 0px' });
     seen.forEach(el => io.observe(el));
   } else seen.forEach(el => el.classList.add('in'));
 

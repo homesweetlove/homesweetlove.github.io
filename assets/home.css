@@ -110,7 +110,6 @@
 .blk-title .w{ display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .12em; margin-bottom: -.12em; }
 .blk-title .w > span{ display: inline-block; }
 .blk-intro{ margin: 20px auto 0; max-width: 34em; text-align: center; font-size: clamp(1.05rem, 1.7vw, 1.3rem); line-height: 1.45; font-weight: 500; color: var(--text-dim); letter-spacing: -0.02em; }
-.blk-small{ margin: 0 0 18px; font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text-dim); }
 
 @media (prefers-reduced-motion: no-preference){
   .js .blk-title .w > span{ transform: translateY(112%); transition: transform 1s var(--ease); transition-delay: calc(var(--i) * 60ms); }
@@ -120,7 +119,7 @@
 }
 
 /* ---------- 일하는 방식 ---------- */
-.say{ margin: 0; max-width: 17em; font-size: clamp(1.9rem, 5vw, 3.7rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.2; }
+.say{ margin: 22px auto 0; max-width: 21em; text-align: center; font-size: clamp(1.35rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.32; }
 @media (prefers-reduced-motion: no-preference){
   .js .say .sw{ color: color-mix(in srgb, var(--text) 18%, transparent); transition: color .5s ease; }
   .js .say .sw.lit{ color: var(--text); }
@@ -263,15 +262,64 @@
   .js .range-row.in dd span{ opacity: 1; transform: none; }
 }
 
-/* ---------- 그 밖의 작업 ---------- */
-.doors{ list-style: none; margin: clamp(40px, 5vw, 64px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.doors li:nth-child(2){ --d: 1; } .doors li:nth-child(3){ --d: 2; }
-.doors a{ position: relative; display: grid; align-content: start; gap: 8px; height: 100%; min-height: 200px; padding: clamp(24px, 3vw, 34px); border-radius: 28px; background: var(--tile); transition: transform .5s var(--ease), box-shadow .5s ease; }
-.doors a:hover, .doors a:focus-visible{ transform: scale(1.025); box-shadow: 0 24px 60px rgba(0,0,0,.12); }
-.doors b{ font-size: clamp(1.4rem, 2.4vw, 1.8rem); font-weight: 700; letter-spacing: -0.035em; }
-.doors span{ color: var(--text-dim); font-size: 1.02rem; line-height: 1.45; }
-.doors svg{ position: absolute; right: 22px; bottom: 22px; width: 36px; height: 36px; padding: 8px; border-radius: 50%; background: color-mix(in srgb, var(--text) 8%, transparent); transition: background .3s ease, color .3s ease, transform .4s var(--ease); }
-.doors a:hover svg{ background: var(--blue); color: #fff; }
+/* ---------- 그림이 들어간 타일 ---------- */
+.gallery{ list-style: none; margin: clamp(40px, 5vw, 64px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.gallery.three{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.gallery li:nth-child(even){ --d: 1; }
+.shot{ display: flex; flex-direction: column; height: 100%; border-radius: 28px; background: var(--tile); overflow: hidden; color: var(--text); transition: transform .6s var(--ease), box-shadow .6s ease; }
+.shot-text{ display: grid; gap: 6px; padding: clamp(24px, 3vw, 36px) clamp(24px, 3vw, 36px) clamp(20px, 2.4vw, 28px); }
+.shot-text b{ font-size: clamp(1.4rem, 2.4vw, 1.8rem); font-weight: 700; letter-spacing: -0.035em; }
+.shot-text span{ color: var(--text-dim); font-size: 1.02rem; line-height: 1.45; }
+.shot img{ display: block; width: calc(100% - clamp(24px, 3vw, 36px)); height: auto; margin: auto 0 0 clamp(24px, 3vw, 36px); border-radius: 14px 0 0 0;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--text) 10%, transparent), 0 20px 50px rgba(0,0,0,.14); transform-origin: 100% 100%; transition: transform .8s var(--ease); }
+.shot:hover, .shot:focus-visible{ transform: scale(1.012); box-shadow: 0 24px 60px rgba(0,0,0,.1); }
+.shot:hover img, .shot:focus-visible img{ transform: scale(1.045); }
+@media (prefers-reduced-motion: no-preference){
+  .js li[data-rv] .shot img{ translate: 0 40px; transition: transform .8s var(--ease), translate 1.2s var(--ease) .15s; }
+  .js li[data-rv].in .shot img{ translate: 0 0; }
+}
+
+.proof{ grid-column: 1 / -1; margin: 0; }
+.proof img{ display: block; width: 100%; height: auto; border-radius: 20px; background: #fff; }
+.proof figcaption{ margin-top: 12px; font-size: .88rem; color: var(--text-faint); text-align: center; }
+.app.real{ background: none; box-shadow: 0 14px 30px rgba(0,0,0,.18); overflow: hidden; }
+.app.real img{ display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- 실험실·사례 페이지 (홈과 같은 틀) ---------- */
+.sub main{ padding: calc(var(--nav-h) + clamp(52px, 9vh, 100px)) 0 clamp(64px, 9vw, 110px); }
+.page-head{ margin-bottom: clamp(40px, 6vw, 72px); }
+.sub .detail-panel{ margin: 20px 0 0; padding: clamp(24px, 4.4vw, 56px); border-radius: 28px; background: var(--tile); border: 0; scroll-margin-top: calc(var(--nav-h) + 16px); }
+.sub .detail-panel h2{ margin: 0 0 16px; font-size: clamp(1.6rem, 3.4vw, 2.5rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.2; }
+.sub .detail-panel h3{ margin: 36px 0 10px; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
+.sub .detail-panel p, .sub .detail-panel li{ color: var(--text-dim); font-size: 1.04rem; line-height: 1.7; }
+.sub .detail-panel > p{ max-width: 46em; }
+.sub .detail-panel ul{ padding-left: 22px; }
+.sub .detail-panel strong{ color: var(--text); }
+.sub .detail-meta{ margin: 0 0 12px; font-size: .92rem; font-weight: 600; color: var(--text-faint); letter-spacing: 0; text-transform: none; }
+.sub .detail-metric{ display: inline-flex; flex-direction: column; gap: 4px; margin: 12px 12px 4px 0; padding: 18px 24px; border-radius: 20px; background: var(--bg); border: 0; }
+.sub .detail-metric strong{ font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; letter-spacing: -0.035em; width: fit-content; background: var(--rainbow); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub .detail-metric span{ color: var(--text-dim); font-size: .88rem; }
+.sub .detail-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 14px; }
+.sub .detail-mini{ padding: 24px; border-radius: 20px; background: var(--bg); border: 0; }
+.sub .detail-mini h3{ margin: 0 0 8px; font-size: 1.12rem; }
+.sub .detail-mini p{ margin: 0 0 12px; font-size: .98rem; line-height: 1.6; }
+.sub .detail-mini p:last-child{ margin-bottom: 0; }
+.sub .detail-link, .sub .detail-mini a{ color: var(--accent); font-weight: 500; text-decoration: none; }
+.sub .detail-link:hover, .sub .detail-mini a:hover{ text-decoration: underline; text-underline-offset: 3px; }
+.sub .detail-note{ margin: 18px 0 0; padding: 16px 20px; border: 0; border-radius: 16px; background: color-mix(in srgb, var(--text) 6%, transparent); font-size: .96rem !important; max-width: none !important; }
+.sub .detail-results{ overflow-x: auto; margin: 20px 0; border-radius: 20px; background: var(--bg); padding: 8px 20px 4px; }
+.sub .detail-results table{ width: 100%; min-width: 520px; border-collapse: collapse; font-size: .95rem; font-variant-numeric: tabular-nums; }
+.sub .detail-results caption{ text-align: left; padding: 12px 0; color: var(--text-dim); font-weight: 600; }
+.sub .detail-results th, .sub .detail-results td{ padding: 13px 8px; text-align: left; border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent); }
+.sub .detail-results thead th{ color: var(--text-faint); font-weight: 600; font-size: .86rem; }
+.sub .detail-results td{ white-space: nowrap; }
+.sub .detail-results td:last-child{ font-weight: 700; color: var(--text); }
+.sub .detail-figure{ margin: 24px 0; }
+.sub .detail-figure img{ display: block; width: 100%; height: auto; border-radius: 20px; background: #fff; }
+.sub .detail-figure figcaption{ margin-top: 12px; font-size: .88rem; color: var(--text-faint); text-align: center; }
+.sub .gallery{ margin-top: 0; }
+.sub .more{ margin-top: clamp(36px, 5vw, 56px); }
+@media print{ .sub .nav, .sub .footer{ display: none; } .sub main{ padding: 0; } .sub .detail-panel{ break-inside: avoid; } }
 
 /* ---------- 연락 ---------- */
 .reach{ overflow: hidden; text-align: center; padding-bottom: clamp(72px, 10vw, 130px); }
@@ -298,10 +346,12 @@
 /* ---------- 좁은 화면 ---------- */
 @media (max-width: 960px){
   .lead{ grid-template-columns: 1fr; }
-  .cards, .range, .doors, .steps{ grid-template-columns: 1fr; }
+  .cards, .range, .steps, .gallery.three{ grid-template-columns: 1fr; }
   .card-fig{ max-width: 440px; }
-  .doors a{ min-height: 150px; }
   .step-fig{ margin-bottom: 22px; }
+}
+@media (max-width: 700px){
+  .gallery{ grid-template-columns: 1fr; }
 }
 @media (max-width: 560px){
   .dock{ border-radius: 30px; padding: 16px 14px; gap: 12px; }
