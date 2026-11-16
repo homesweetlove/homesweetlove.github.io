@@ -52,12 +52,12 @@
   function draw(p) {
     const { svg, d, i } = p;
     const w = Math.max(120, Math.round(svg.parentNode.clientWidth));
-    const h = w < 170 ? 170 : 200;
+    const h = w < 170 ? 170 : w < 300 ? 200 : 230;
     const narrow = w < 190;            // 좁으면 세로축 숫자를 빼고 격자선만 남김
     const padT = 14, padB = 28, padL = narrow ? 4 : 26;
     const y = v => padT + (1 - v / MAX) * (h - padT - padB);
     const inner = w - padL;
-    const xOff = padL + inner * (narrow ? 0.32 : 0.27), xOn = padL + inner * (narrow ? 0.66 : 0.73);
+    const xOff = padL + inner * (narrow ? 0.32 : 0.3), xOn = padL + inner * (narrow ? 0.66 : 0.7);
     svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
     svg.setAttribute('width', w);
     svg.setAttribute('height', h);
