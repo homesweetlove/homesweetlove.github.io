@@ -282,6 +282,74 @@
 .proof{ grid-column: 1 / -1; margin: 0; }
 .proof img{ display: block; width: 100%; height: auto; border-radius: 20px; background: #fff; }
 .proof figcaption{ margin-top: 12px; font-size: .88rem; color: var(--text-faint); text-align: center; }
+
+/* RamFlow 실측 그래프 (사진 대신 직접 그림) */
+.rf{ --rf-panel: rgba(255,255,255,.055); --rf-ring: #0e0e0e; padding-top: clamp(8px, 2vw, 20px); border-top: 1px solid var(--border); }
+:root[data-theme="dark"] .rf{ --rf-ring: #28282a; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rf{ --rf-ring: #28282a; } }
+.rf-head{ display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 24px; margin: 18px 0 16px; }
+.rf-title{ margin: 0; font-weight: 600; font-size: .98rem; }
+.rf-key{ list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; font-size: .82rem; color: var(--text-dim); }
+.rf-key li{ display: inline-flex; align-items: center; gap: 7px; }
+.rf-key i{ display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
+.rf-key .k-off{ background: #8e8e93; } .rf-key .k-on{ background: #0a84ff; }
+.rf-key .k-med{ width: 16px; height: 3px; border-radius: 2px; background: var(--text); }
+.rf-grid{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.rf-panel{ position: relative; display: flex; flex-direction: column; padding: 16px 14px 6px 10px; border-radius: 20px; background: var(--rf-panel); outline: none; }
+.rf-panel:focus-visible{ box-shadow: 0 0 0 2px var(--accent); }
+.rf-top{ display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; padding-left: 6px; }
+.rf-name{ margin: 0; font-weight: 600; font-size: .92rem; line-height: 1.3; letter-spacing: -0.01em; }
+.rf-name small{ display: block; margin-top: 3px; font-size: .76rem; font-weight: 500; color: var(--text-faint); }
+.rf-drop{ margin: 0; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.03em; line-height: 1.1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rf-drop em{ font-style: normal; background: linear-gradient(90deg, #0a84ff, #bf5af2); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rf-plot{ position: relative; margin-top: auto; padding-top: 6px; }
+.rf-plot svg{ display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; cursor: crosshair; }
+.rf-axis text{ fill: var(--text-faint); font-size: 10.5px; font-variant-numeric: tabular-nums; }
+.rf-axis .rf-xl{ fill: var(--text-dim); font-size: 12px; font-weight: 600; }
+.rf-gl{ stroke: rgba(255,255,255,.07); stroke-width: 1; }
+.rf-base{ stroke: rgba(255,255,255,.22); stroke-width: 1; }
+.rf-link{ stroke-width: 2; stroke-linecap: round; opacity: .55; transition: opacity .2s ease, stroke-width .2s ease; }
+.rf-dot{ stroke: var(--rf-ring); stroke-width: 2; transition: opacity .2s ease; }
+.rf-off{ fill: #8e8e93; } .rf-on{ fill: #0a84ff; }
+.rf-pair{ transition: opacity .2s ease; }
+.rf-panel.is-focus .rf-pair{ opacity: .18; }
+.rf-panel.is-focus .rf-pair.on{ opacity: 1; }
+.rf-pair.on .rf-link{ opacity: 1; stroke-width: 2.5; }
+.rf-med line{ stroke: var(--text); stroke-width: 3; stroke-linecap: round; }
+.rf-med text{ fill: var(--text); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--rf-ring); stroke-width: 3px; stroke-linejoin: round; }
+.rf-med > *{ transition: opacity .2s ease; }
+.rf-panel.is-focus .rf-med > *{ opacity: .35; }
+.rf-tip{ position: absolute; z-index: 2; translate: -50% -100%; display: grid; gap: 2px; min-width: max-content; padding: 8px 11px; border-radius: 12px; background: rgba(44,44,46,.96); box-shadow: 0 10px 24px rgba(0,0,0,.45); font-size: .76rem; line-height: 1.35; pointer-events: none; font-variant-numeric: tabular-nums; }
+.rf-tip[hidden]{ display: none; }
+.rf-tip b{ font-weight: 600; color: var(--text-dim); }
+.rf-tip em{ font-style: normal; font-weight: 700; color: #64b5ff; }
+.rf figcaption{ margin-top: 14px; }
+.rf-table{ margin-top: 10px; text-align: center; }
+.rf-table summary{ display: inline-block; cursor: pointer; color: var(--accent); font-size: .88rem; font-weight: 500; list-style: none; padding: 4px 8px; border-radius: 8px; }
+.rf-table summary::-webkit-details-marker{ display: none; }
+.rf-table summary::after{ content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 0 3px 8px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; rotate: 45deg; transition: rotate .2s ease; }
+.rf-table[open] summary::after{ rotate: -135deg; margin-bottom: -1px; }
+.rf-table summary:focus-visible{ outline: 2px solid var(--accent); }
+.rf-scroll{ overflow-x: auto; margin-top: 12px; }
+.rf-table table{ width: 100%; min-width: 560px; border-collapse: collapse; font-size: .82rem; font-variant-numeric: tabular-nums; text-align: right; }
+.rf-table th, .rf-table td{ padding: 7px 10px; border-bottom: 1px solid var(--border); }
+.rf-table thead th{ color: var(--text-faint); font-weight: 600; }
+.rf-table tbody th{ text-align: left; font-weight: 600; }
+.rf-table thead th:first-child{ text-align: left; }
+.rf-table .rf-cond{ text-align: left; font-weight: 600; }
+.rf-sr{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.rf-table .rf-r-on td{ color: #64b5ff; }
+.rf-table td em{ font-style: normal; font-weight: 700; margin-left: 4px; }
+.rf-table tbody tr:not(.rf-r-on) td{ color: var(--text-dim); border-bottom-color: transparent; }
+@media (prefers-reduced-motion: no-preference){
+  .js .rf .rf-link{ stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1s var(--ease) calc(.15s + var(--k) * .09s), opacity .2s ease, stroke-width .2s ease; }
+  .js .rf .rf-on{ opacity: 0; transition: opacity .35s ease calc(.85s + var(--k) * .09s); }
+  .js .rf .rf-med{ opacity: 0; transition: opacity .4s ease 1.4s; }
+  .js .rf.in .rf-link{ stroke-dashoffset: 0; }
+  .js .rf.in .rf-on, .js .rf.in .rf-med{ opacity: 1; }
+}
+@media (max-width: 820px){ .rf-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px){ .rf-panel{ padding: 14px 8px 4px 4px; } .rf-drop{ font-size: 1.05rem; } .rf-top{ flex-direction: column; gap: 4px; } }
 .app.real{ background: none; box-shadow: 0 14px 30px rgba(0,0,0,.18); overflow: hidden; }
 .app.real img{ display: block; width: 100%; height: 100%; object-fit: cover; }
 

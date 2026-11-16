@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css?v=14">
-<link rel="stylesheet" href="assets/home.css?v=4">
+<link rel="stylesheet" href="assets/home.css?v=5">
 <script src="assets/i18n.js?v=1"></script>
 <script>try{if(localStorage.getItem('skin')==='mac')document.documentElement.dataset.skin='mac';var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}document.documentElement.classList.add('js')</script>
 </head>
@@ -144,9 +144,22 @@
             <p class="m-num"><small data-en="about">약</small><em><b data-count="60">60</b>%</em><span data-en="lower">감소</span></p>
           </div>
         </figure>
-        <figure class="proof">
-          <img src="assets/ramflow/real-apps-comparison.png" width="1980" height="1350" loading="lazy" alt="Chrome 검색·정렬과 VS Code 코드 완성·저장에서 RamFlow를 껐을 때와 켰을 때를 비교한 그래프. 네 기능 모두 지연이 줄었습니다." data-en-alt="Graph comparing Chrome search and sort and VS Code completion and save with RamFlow off and on. Delay dropped in all four.">
-          <figcaption data-en="The measured results. Each dot is the p95 of 30 runs; lines join the same app session.">실제 측정 결과입니다. 점 하나는 30회 작업의 p95, 선은 같은 앱 세션끼리 이은 것입니다.</figcaption>
+        <figure class="proof rf" id="rf-chart">
+          <div class="rf-head">
+            <p class="rf-title" data-en="Response delay in four real tasks (p95, ms)">실제 작업 네 가지의 응답 지연 (p95, 밀리초)</p>
+            <ul class="rf-key">
+              <li><i class="k-off"></i><span data-en="Off">끔</span></li>
+              <li><i class="k-on"></i><span data-en="On">켬</span></li>
+              <li><i class="k-med"></i><span data-en="Median of 5">5회 중앙값</span></li>
+            </ul>
+          </div>
+          <div class="rf-grid"></div>
+          <noscript><img src="assets/ramflow/real-apps-comparison.png" width="1980" height="1350" alt="Chrome 검색·정렬과 VS Code 코드 완성·저장에서 RamFlow를 껐을 때와 켰을 때를 비교한 그래프. 네 기능 모두 지연이 줄었습니다."></noscript>
+          <figcaption data-en="Each dot is the p95 of 30 runs; a line joins the off and on runs of the same app session. Hover or tap a line to see its numbers.">점 하나는 30회 작업의 p95, 선은 같은 앱 세션의 끔·켬을 이은 것입니다. 선에 마우스를 올리거나 누르면 숫자가 보입니다.</figcaption>
+          <details class="rf-table">
+            <summary data-en="See the numbers">숫자로 보기</summary>
+            <div class="rf-scroll"><table></table></div>
+          </details>
         </figure>
       </article>
 
@@ -254,6 +267,7 @@
 
 <script>i18n.apply()</script>
 <script src="assets/home.js?v=4"></script>
+<script src="assets/ramflow-chart.js?v=1"></script>
 <script src="assets/terminal.js?v=4"></script>
 </body>
 </html>
