@@ -2,70 +2,46 @@
 
 # homesweetlove.github.io
 
-Personal portfolio / homepage hosted with GitHub Pages.
+A lightweight, bilingual portfolio of verified engineering work, open-source projects, research notes and useful browser tools.
 
-**Site: https://homesweetlove.github.io**
+**Live site:** https://homesweetlove.github.io/
 
-## Preview
+## Main pages
 
-Open `index.html` in a browser or deploy with GitHub Pages.
+| Page | Contents |
+| --- | --- |
+| [Home](index.html) | Featured work, RamFlow measurement visualization, selected public projects and contact |
+| [Engineering case studies](work.html) | RamFlow, Luma, Subject Japan, sEMG elbow-angle research and additional public projects |
+| [Labs & tools](labs.html) | Android apps, web demos, writing tools, coursework and bilingual IT news |
+| [Resume](resume.html) · [CV](cv.html) | Concise and extended engineering background |
+| [Browser tools](tools.html) | Local-first document and text utilities |
 
-## GitHub Pages Deployment
+## Accurate project status
 
-This repository is a **user-site repository** in the `<username>.github.io` format, so it is deployed at the root URL without an extra subpath.
+- **RamFlow:** MIT-licensed Windows source with a reproducible, single-PC Chrome/VS Code study. Its 45–49% lower median p95 foreground latency was measured under specified synthetic contention, accompanied by a background-throughput cost.
+- **Subject Japan:** MIT-licensed source and ARM64 Android **test-signed** APK. Real-device NFC, camera, microphone and translation checks are not claimed as complete.
+- **Luma:** MIT-licensed WinUI 3/WebView2 browser **source preview**; no stable installer.
+- **YeaAnBus Open Source:** Public Android portfolio source, without private API credentials; real-device and API setup remain separate.
+- **IDEONQ Clinic:** Fictional-data-only interactive UI demo, not an operational medical system.
+- **sEMG research:** Ongoing continuous elbow-angle regression using public datasets; no unverified accuracy or robot-control claims.
 
-1. Open **Settings → Pages** for this repository.
-2. Set **Source** to the `main` branch and `/ (root)` folder.
-3. Push to `main`; the site is usually updated at `https://homesweetlove.github.io` within a few minutes.
+The featured portfolio is **curated in static HTML**. It does not automatically turn every new repository into a featured case study. Some page widgets fetch public GitHub metadata when available.
 
-> The old URL `https://homesweetlove.github.io/my_dev.io/` is no longer used after the repository rename.
+## Development and deployment
 
-## Current Behavior
+This is a static GitHub Pages site using HTML, CSS and JavaScript; no site build step or server-side service is required.
 
-The page reads repositories and language usage from the GitHub API in real time. Static HTML fallback content is shown only when the API is unavailable.
+1. Edit `index.html`, `work.html`, `labs.html` and the appropriate `assets/*.css` or `assets/*.js` files.
+2. Check links, mobile layout, keyboard navigation and light/dark themes.
+3. Commit to `main`; the user-site repository is deployed at `https://homesweetlove.github.io/` by GitHub Pages.
 
-## Contents
+The productivity utilities run in the browser; read their individual pages before relying on format conversion or persistent browser storage. This repository does not host the private backend of IDEONQ Clinic or any private API credentials.
 
-The site is populated from public information for the GitHub account (`@homesweetlove`), including the avatar, bio, public repositories, and used languages.
+## Source organization
 
-- `index.html` — page structure and text content
-- `assets/style.css` — colors, fonts, layout, and visual design
-- `assets/script.js` — GitHub API integration, interactions, and animation
-- `tools.html` — privacy-preserving productivity-tool hub
-- `assets/tools.css`, `assets/tools.js` — document editing/autosave, Hangul/Word-compatible export, PDF print, JSON/text/time utilities, focus timer
+- `assets/home.css`, `assets/home.js`, `assets/ramflow-chart.js` — portfolio presentation and measurements
+- `assets/style.css`, `assets/i18n.js` — shared styling and Korean/English switching
+- `tools.html`, `pdf-tools.html`, `readme-generator.html` — standalone browser tools
+- `PROFILE_README.md` — snapshot of the separate [GitHub profile README](https://github.com/homesweetlove/homesweetlove)
 
-### Document Studio
-
-The document studio in `tools.html` runs entirely in the browser on GitHub Pages without a separate server. Drafts are stored only in `localStorage` and can be exported as Hangul/Word-readable `.doc`-compatible files, HTML, Markdown, or TXT. To create a PDF, choose `Save as PDF` from the browser print dialog.
-
-`Open Document/HWP` can open HWP 5.0/5.1 documents in read-only preview mode without uploading the file to a server. Editing or re-saving HWP binary files is outside the scope of the browser viewer and is not supported.
-
-### Live GitHub Integration
-
-When the page opens, `assets/script.js` calls GitHub REST API endpoints such as `api.github.com/users/homesweetlove` and the repositories endpoint directly from the browser.
-
-The following sections are populated **in real time**, so new or updated repositories can appear without editing the site code:
-
-- `#projects` — recently updated public repository cards with language filters
-- Languages under `#skills` — automatically aggregated from repository language data
-- Statistics cards under `#about` — Public Repos / Languages Used / Year on GitHub
-- `#activity` — recently updated repositories
-- `#contributions` — [ghchart](https://github.com/RayHY/github-contribution-chart-generator) contribution graph
-
-If GitHub API requests fail, are rate-limited, or are slow, existing hard-coded markup in `index.html` is kept as fallback content. To keep fallback content synchronized after adding new repositories, update the static cards manually.
-
-## GitHub Profile README
-
-The public GitHub profile uses [`homesweetlove/homesweetlove`](https://github.com/homesweetlove/homesweetlove). `PROFILE_README.md` mirrors its current introduction and measured RamFlow results.
-
-The homepage project card and [`work.html#ramflow`](https://homesweetlove.github.io/work.html#ramflow) connect the user problem, implemented controller/queue/tray, paired Chrome/VS Code measurements, background processing cost, and source evidence.
-
-## Design / Interaction
-
-- Automatic dark/light mode detection + manual toggle
-- Minimal developer-oriented design with purple-to-cyan gradient accents
-- Inter / JetBrains Mono fonts
-- Reveal-on-scroll animation with `prefers-reduced-motion` support
-- 3D mouse-tilt effect on project cards
-- Project filtering by language
-- Pure HTML/CSS/JS with no build tool or installation required
+Last portfolio-content review: **November 16, 2026**.

@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css?v=14">
-<link rel="stylesheet" href="assets/home.css?v=7">
+<link rel="stylesheet" href="assets/home.css?v=8">
 <script src="assets/i18n.js?v=1"></script>
 <script>try{if(localStorage.getItem('skin')==='mac')document.documentElement.dataset.skin='mac';var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}document.documentElement.classList.add('js')</script>
 </head>
@@ -38,7 +38,7 @@
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#home" class="nav-logo">homesweetlove<span class="dot">.</span>dev</a>
+    <a href="#home" class="nav-logo">homesweetlove</a>
     <ul class="nav-links"><li><a href="#projects" data-en="Work">작업</a></li><li><a href="work.html#semg" data-en="Research">연구</a></li><li><a href="labs.html" data-en="Labs">실험실</a></li><li><a href="resume.html" data-en="Resume">이력서</a></li><li><a href="#contact" data-en="Contact">연락</a></li></ul>
     <div class="nav-actions">
       <button class="icon-btn lang-toggle" type="button">EN</button>
@@ -116,7 +116,7 @@
   <section id="projects" class="blk blk-alt">
     <div class="wrap">
       <h2 class="blk-title" data-words data-en="Focused work, not a repository count">프로젝트 수보다 문제 해결의 깊이</h2>
-      <p class="blk-intro" data-rv data-en="Four directions that show my systems focus and product breadth. Private projects are clearly labeled.">시스템 설계라는 중심축과 제품·연구로 확장한 시도를 골랐습니다. 비공개 프로젝트는 별도로 표기했습니다.</p>
+      <p class="blk-intro" data-rv data-en="Four selected directions, with public code and honest preview or research status.">시스템 설계를 중심으로 제품과 연구까지 확장한 대표 작업입니다. 공개 코드와 검증 범위를 구분해 안내합니다.</p>
 
       <article class="lead" data-rv data-glow>
         <div class="lead-copy">
@@ -173,11 +173,11 @@
             <rect class="c-btn" x="212" y="112" width="72" height="26" rx="13"/>
             <g class="c-ptr"><circle class="c-ping" cx="0" cy="0" r="10"/><path class="c-arrow" d="M0 0l0 20 5.5-5 4 9 4-2-4-8.5 7 0z"/></g>
           </svg>
-          <p class="kind"><span data-en="Desktop">데스크톱</span><span class="shut" data-en="Private source">소스 비공개</span></p>
+          <p class="kind"><span data-en="Desktop">데스크톱</span><span class="open" data-en="Public source preview">공개 소스 프리뷰</span></p>
           <h3>Luma</h3>
-          <p class="card-desc" data-en="A lightweight personal browser exploring visible, user-controlled automation on constrained Windows devices.">제한된 사양에서도 사용할 수 있는 개인 브라우저. 자동화 편의성과 사용자 통제 사이의 균형을 탐색합니다.</p>
+          <p class="card-desc" data-en="A public-source WinUI 3/WebView2 browser preview with user-approved automation and local Vault. No stable installer yet.">WinUI 3·WebView2 기반 개인용 브라우저 공개 프리뷰. 승인 기반 자동화와 로컬 Vault를 구현했으며 정식 설치 파일은 아직 없습니다.</p>
           <ul class="stack"><li>WinUI 3</li><li>WebView2</li><li data-en="Automation">자동화</li></ul>
-          <p class="links"><a href="work.html#luma"><span data-en="Design notes">설계 노트</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+          <p class="links"><a href="work.html#luma"><span data-en="Engineering case">기술 사례</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://github.com/homesweetlove/Luma" target="_blank" rel="noopener"><span data-en="Source">소스</span> ↗</a></p>
         </article>
 
         <article class="card" data-rv data-glow>
@@ -188,11 +188,11 @@
             <g class="c-stop"><circle cx="170" cy="86" r="9"/><text x="170" y="118" data-en="Sizes">사이즈</text></g>
             <g class="c-stop"><circle cx="284" cy="70" r="9"/><text x="284" y="100" data-en="Transit">이동</text></g>
           </svg>
-          <p class="kind"><span data-en="Mobile">모바일</span><span class="shut" data-en="Private source">소스 비공개</span></p>
+          <p class="kind"><span data-en="Mobile">모바일</span><span class="open" data-en="Public source preview">공개 소스 프리뷰</span></p>
           <h3>Subject Japan</h3>
-          <p class="card-desc" data-en="A travel companion addressing translation, personal size information, reminders and unreliable external data.">여행 중 흩어진 번역·사이즈·이동 정보를 연결하고 외부 데이터의 최신성과 실패 상황을 고려한 모바일 경험.</p>
+          <p class="card-desc" data-en="An offline-first travel app for reusable Japanese phrases, sizes and native translation/OCR. ARM64 test APK available.">여행 중 필요한 일본어 문장·의류 사이즈·번역/OCR을 로컬 중심으로 제공하는 앱. Android ARM64 테스트 APK를 공개했습니다.</p>
           <ul class="stack"><li data-en="Cross-platform">크로스 플랫폼</li><li data-en="Data">데이터</li><li data-en="UX">사용 경험</li></ul>
-          <p class="links"><a href="work.html#subject-japan"><span data-en="Design notes">설계 노트</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+          <p class="links"><a href="work.html#subject-japan"><span data-en="Engineering case">기술 사례</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://github.com/homesweetlove/Subject-Japan/releases" target="_blank" rel="noopener"><span data-en="Android test APK">Android 테스트 APK</span> ↗</a></p>
         </article>
 
         <article class="card" data-rv data-glow>
@@ -202,11 +202,23 @@
             <path class="c-raw" id="semg-raw" pathLength="1" d=""/>
           </svg>
           <p class="kind"><span data-en="Research">연구</span><span class="wip" data-en="In progress">진행 중</span></p>
-          <h3 data-en="sEMG Muscle Fatigue">sEMG 근피로 연구</h3>
-          <p class="card-desc" data-en="Undergraduate research investigating upper-arm muscle fatigue signals and individual variation; no classification outcome is claimed yet.">상완 근피로 신호의 특징과 개인차를 탐구하는 학부 연구. 아직 확정되지 않은 성능 결과는 주장하지 않습니다.</p>
+          <h3 data-en="sEMG Elbow-Angle Estimation">sEMG 팔꿈치 각도 추정</h3>
+          <p class="card-desc" data-en="Undergraduate research on continuous elbow-angle regression from biceps/triceps sEMG, focusing on cross-subject error and short calibration.">이두근·삼두근 sEMG로 팔꿈치 각도를 연속 추정하는 학부 연구. 피험자 간 일반화 오차와 짧은 보정 전략을 검토합니다.</p>
           <ul class="stack"><li>sEMG</li><li data-en="Signal processing">신호 처리</li><li data-en="Research">연구</li></ul>
           <p class="links"><a href="work.html#semg"><span data-en="Research questions">연구 질문</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
         </article>
+      </div>
+
+
+      <div class="public-mini-section" data-rv>
+        <h3 class="public-mini-title" data-en="More public work">다른 공개 프로젝트</h3>
+        <p class="public-mini-intro" data-en="Useful applications and focused demonstrations, clearly marked by release status.">사용 가능한 도구와 개발 프리뷰를 배포 상태에 맞춰 소개합니다.</p>
+        <div class="public-mini-grid">
+          <a class="public-mini" href="https://github.com/homesweetlove/YeaAnBus-OpenSource" target="_blank" rel="noopener"><span class="public-mini-tag">Android · Kotlin</span><strong>YeaAnBus</strong><span data-en="Andong–Yecheon bus information · open-source code, device verification pending">안동·예천 버스 정보 · 공개 소스, 실기기 검증 예정</span><span class="public-mini-cta" data-en="View repository ↗">저장소 보기 ↗</span></a>
+          <a class="public-mini" href="https://github.com/homesweetlove/MusicCut" target="_blank" rel="noopener"><span class="public-mini-tag">Android · Audio</span><strong>MusicCut</strong><span data-en="Multitrack audio editing and optional on-device separation · development preview">멀티트랙 오디오 편집·온디바이스 분리 · 개발 프리뷰</span><span class="public-mini-cta" data-en="View repository ↗">저장소 보기 ↗</span></a>
+          <a class="public-mini" href="https://ideonq-clinic.vercel.app/" target="_blank" rel="noopener"><span class="public-mini-tag">Web · Demo</span><strong>IDEONQ Clinic</strong><span data-en="Interactive clinic workflow showcase with fictional records only">가상 데이터로 구성한 클리닉 업무 흐름 인터랙티브 데모</span><span class="public-mini-cta" data-en="Try demo ↗">데모 체험 ↗</span></a>
+          <a class="public-mini" href="https://github.com/homesweetlove/paper-assistant" target="_blank" rel="noopener"><span class="public-mini-tag">Python · Research</span><strong>Paper Assistant</strong><span data-en="Offline writing checks for Korean academic documents">한국어 논문·보고서의 표현을 오프라인에서 점검</span><span class="public-mini-cta" data-en="View repository ↗">저장소 보기 ↗</span></a>
+        </div>
       </div>
 
       <p class="more" data-rv><a href="work.html" data-en="All case studies">모든 사례 보기</a><a href="labs.html" data-en="Labs & tools">실험실과 도구</a></p>

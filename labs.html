@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css?v=14">
-<link rel="stylesheet" href="assets/home.css?v=4">
+<link rel="stylesheet" href="assets/home.css?v=8">
 <script src="assets/i18n.js?v=1"></script>
 <script>try{if(localStorage.getItem('skin')==='mac')document.documentElement.dataset.skin='mac';var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}document.documentElement.classList.add('js')</script>
 </head>
@@ -25,7 +25,7 @@
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">homesweetlove<span class="dot">.</span>dev</a>
+    <a href="index.html" class="nav-logo">homesweetlove</a>
     <ul class="nav-links"><li><a href="index.html#projects" data-en="Work">작업</a></li><li><a href="work.html#semg" data-en="Research">연구</a></li><li><a href="labs.html" data-en="Labs">실험실</a></li><li><a href="resume.html" data-en="Resume">이력서</a></li><li><a href="index.html#contact" data-en="Contact">연락</a></li></ul>
     <div class="nav-actions">
       <button id="theme-toggle" class="icon-btn" aria-label="테마 전환" data-en-aria-label="Toggle theme">
@@ -51,17 +51,36 @@
 <li data-rv><a class="shot" href="readme-generator.html"><span class="shot-text"><b>README 생성기</b><span>몇 가지만 입력하면 GitHub 프로필 소개 글이 완성</span></span><img src="assets/shots/readme.webp" width="1120" height="700" loading="lazy" alt="README 생성기 화면"></a></li>
 <li data-rv><a class="shot" href="pdf-tools.html"><span class="shot-text"><b>PDF 도구</b><span>PPTX 변환과 PDF 합치기를 서버 전송 없이</span></span><img src="assets/shots/pdf.webp" width="1120" height="700" loading="lazy" alt="PDF 도구 화면"></a></li>
 </ul>
-<section class="detail-panel" data-rv><h2>도구</h2><div class="detail-grid">
-<div class="detail-mini"><h3>ClaudeCodexUsageWidget</h3><p>로컬 상태를 기반으로 사용량 정보를 보여주는 Windows 위젯. API 호출 없이 표시할 수 있는 정보의 한계를 문서화했습니다.</p><a href="https://github.com/homesweetlove/ClaudeCodexUsageWidget">GitHub ↗</a></div>
-<div class="detail-mini"><h3>Paper Assistant</h3><p>한국어 보고서·논문의 장문과 반복 표현을 오프라인에서 점검하는 도구.</p><a href="https://github.com/homesweetlove/paper-assistant">GitHub ↗</a></div>
-<div class="detail-mini"><h3>JP Play</h3><p>지역 제한 Android 앱의 검색·다운로드·기기 설치를 지원하는 개인용 도구.</p><a href="https://github.com/homesweetlove/jp_play">GitHub ↗</a></div>
-<div class="detail-mini"><h3>브라우저 도구</h3><p>문서 편집, HWP 보조 기능과 작은 웹 유틸리티 모음.</p><a href="tools.html">업무 도구 ↗</a> · <a href="hwp-editor.html">HWP 편집기 ↗</a></div></div></section>
-<section class="detail-panel" data-rv><h2>화면 실험</h2><div class="detail-grid">
-<div class="detail-mini"><h3>Wading</h3><p>세 가지 테마를 가진 반응형 디지털 청첩장.</p><a href="https://github.com/homesweetlove/wading">GitHub ↗</a></div>
-<div class="detail-mini"><h3>Nocturne Mail</h3><p>실제 메일 서버와 연결되지 않은 웹메일 UI 프로토타입.</p><a href="https://github.com/homesweetlove/open_web_mail">GitHub ↗</a></div>
-<div class="detail-mini"><h3>macos_dis</h3><p>Windows에서 사용하는 macOS 스타일 Rainmeter 스킨.</p><a href="https://github.com/homesweetlove/macos_dis">GitHub ↗</a></div>
-<div class="detail-mini"><h3>Antigravity Korean Pack</h3><p>IDE 한글화·도구 개선 실험.</p><a href="https://github.com/homesweetlove/antigravity-korean-langpack">GitHub ↗</a></div></div></section>
-<section class="detail-panel" data-rv><h2>글과 수업 코드</h2><p><a class="detail-link" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news">IT·보안 뉴스 노트 ↗</a> — 날짜별 기록</p><p><a class="detail-link" href="https://github.com/homesweetlove/java_archive">Java 수업 코드 ↗</a> · <a class="detail-link" href="https://github.com/homesweetlove/syspro">시스템 프로그래밍 수업 코드 ↗</a> — 현재 수업용 저장소는 분리 유지</p></section><p class="more" data-rv><a href="work.html">대표 사례</a><a href="resume.html">이력서</a></p>
+<section class="detail-panel" data-rv>
+<h2>앱과 유틸리티</h2>
+<div class="detail-grid">
+<div class="detail-mini"><h3>Paper Assistant</h3><p>한국어 논문·보고서의 장문과 반복 표현을 오프라인에서 찾아주는 검토 보조 도구.</p><a href="https://github.com/homesweetlove/paper-assistant">GitHub ↗</a></div>
+<div class="detail-mini"><h3>Music Magic</h3><p>음원 태그·표지·가사를 편집하는 Android 앱. 기존 릴리스는 디버그 서명 프리뷰입니다.</p><a href="https://github.com/homesweetlove/Music_Magic-">GitHub ↗</a></div>
+<div class="detail-mini"><h3>MusicCut</h3><p>멀티트랙 오디오 편집, DSP 효과와 선택적 온디바이스 음원 분리의 오픈소스 개발판.</p><a href="https://github.com/homesweetlove/MusicCut">GitHub ↗</a></div>
+<div class="detail-mini"><h3>HWP Desk</h3><p>HWP/HWPX·PDF·스프레드시트 로컬 문서 편집 실험. 설치는 GitHub Actions 디버그 아티팩트 기반입니다.</p><a href="https://github.com/homesweetlove/hwpapp">GitHub ↗</a></div>
+<div class="detail-mini"><h3>Payroll Manager</h3><p>근태 자료로 급여를 계산하고 Excel로 내보내는 웹 앱. 실제 급여 처리 전 법·세무 검증이 필요합니다.</p><a href="https://github.com/homesweetlove/payroll-manager">GitHub ↗</a></div>
+<div class="detail-mini"><h3>Antigravity Korean Pack</h3><p>IDE 한국어 UI 패치 및 복구 절차를 실험하는 Windows 도구.</p><a href="https://github.com/homesweetlove/antigravity-korean-langpack">GitHub ↗</a></div>
+</div></section>
+<section class="detail-panel" data-rv>
+<h2>인터페이스와 데모</h2>
+<div class="detail-grid">
+<div class="detail-mini"><h3>IDEONQ Clinic</h3><p>가상 환자·일정만 사용하는 정적 클리닉 업무 화면 데모. 실제 진료 시스템이 아닙니다.</p><a href="https://ideonq-clinic.vercel.app/">데모 ↗</a> · <a href="https://github.com/homesweetlove/ideonq-clinic">GitHub ↗</a></div>
+<div class="detail-mini"><h3>Wading</h3><p>서로 다른 세 가지 테마를 선택할 수 있는 반응형 디지털 청첩장.</p><a href="https://github.com/homesweetlove/wading">GitHub ↗</a></div>
+<div class="detail-mini"><h3>Nocturne Mail</h3><p>실제 IMAP/SMTP 서버와 연결되지 않은 웹메일 UI·UX 프로토타입.</p><a href="https://github.com/homesweetlove/nocturne-webmail-demo">GitHub ↗</a></div>
+<div class="detail-mini"><h3>Club Recruitment</h3><p>동아리 소개·모집 흐름과 개발 학습 아카이브를 정리한 정적 사이트.</p><a href="https://github.com/homesweetlove/club_recruitment">GitHub ↗</a></div>
+</div></section>
+<section class="detail-panel" data-rv>
+<h2>지역·여행 프로젝트</h2>
+<div class="detail-grid">
+<div class="detail-mini"><h3>YeaAnBus</h3><p>안동·예천 버스 정류장과 도착 정보 Android 앱의 공개 소스본. 실기기·승인 API 검증은 별도입니다.</p><a href="https://github.com/homesweetlove/YeaAnBus-OpenSource">GitHub ↗</a></div>
+<div class="detail-mini"><h3>Subject Japan</h3><p>일본 여행용 문장·사이즈·번역 기능. Android ARM64 테스트 APK를 제공합니다.</p><a href="https://github.com/homesweetlove/Subject-Japan">GitHub ↗</a> · <a href="https://github.com/homesweetlove/Subject-Japan/releases">테스트 APK ↗</a></div>
+</div></section>
+<section class="detail-panel" data-rv>
+<h2>글과 수업 코드</h2>
+<p><a class="detail-link" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news">IT·보안 뉴스 한국어판 ↗</a> · <a class="detail-link" href="https://github.com/homesweetlove/Daily_IT_News/tree/main/news/en">English edition ↗</a> — 발행된 50개 날짜의 한·영 기록</p>
+<p><a class="detail-link" href="https://github.com/homesweetlove/syspro">시스템 프로그래밍 ↗</a> · <a class="detail-link" href="https://github.com/homesweetlove/timetable-genie">시간표 추천 프로젝트 ↗</a> — 학습 및 과제 기록</p>
+</section>
+<p class="more" data-rv><a href="work.html">대표 사례</a><a href="resume.html">이력서</a></p>
 </div>
 </main>
 

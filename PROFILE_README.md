@@ -1,32 +1,43 @@
 # homesweetlove
 
-Computer Science undergraduate building reliable, resource-aware software.
-I focus on **systems engineering**, and extend that work into desktop automation, mobile products, and human-centered research.
+**Computer Science undergraduate · Undergraduate researcher**  
+Building practical software for **resource-constrained systems**, **mobile experiences**, and **everyday automation**.
 
-**What I care about:** understanding constraints, documenting trade-offs, protecting user work, and validating behavior instead of listing features.
+컴퓨터공학을 공부하며 직접 겪은 불편을 소프트웨어로 해결합니다. 구현뿐 아니라 성능 측정, 데이터 보호, 검증 범위를 중요하게 생각합니다.
 
-## Selected engineering work
+[**Portfolio**](https://homesweetlove.github.io/) · [Projects & case studies](https://homesweetlove.github.io/work.html) · [Resume](https://homesweetlove.github.io/resume.html) · [CV](https://homesweetlove.github.io/cv.html)
 
-| Project | Engineering question | Evidence |
+---
+
+## Featured projects
+
+| Project | Focus | Current state & evidence |
 | --- | --- | --- |
-| [RamFlow](https://github.com/homesweetlove/RamFlow) | How can a constrained Windows PC manage resources without disrupting active work? | [Case study](https://github.com/homesweetlove/RamFlow/blob/main/docs/ENGINEERING_CASE_STUDY.md) · [Validation](https://github.com/homesweetlove/RamFlow/blob/main/docs/VALIDATION.md) |
-| [Claude/Codex Usage Widget](https://github.com/homesweetlove/ClaudeCodexUsageWidget) | What can be displayed from local usage metadata without triggering model requests? | Local-first utility · unavailable-data handling |
-| [Payroll Manager](https://github.com/homesweetlove/payroll-manager) | How should attendance inputs and wage-calculation rules be organized in a web application? | React / TypeScript application |
+| **[RamFlow](https://github.com/homesweetlove/RamFlow)** · C# / WPF | Foreground-first resource orchestration for Windows, with explicit background controls and memory-aware job scheduling. | [Measured Chrome / VS Code study](https://github.com/homesweetlove/RamFlow/blob/main/docs/REAL_APP_STUDY.ko.md) · [Validation](https://github.com/homesweetlove/RamFlow/blob/main/docs/VALIDATION.md) |
+| **[Subject Japan](https://github.com/homesweetlove/Subject-Japan)** · React Native / TypeScript / Kotlin / Swift | Japan travel utilities: shopping phrases, saved sizes, offline-first information, and native translation/OCR integrations. | [Android ARM64 test APK](https://github.com/homesweetlove/Subject-Japan/releases/download/android-test-43793915298/Subject-Japan-android-test-arm64.apk) · [Device verification checklist](https://github.com/homesweetlove/Subject-Japan/blob/main/docs/device-validation.md) |
+| **[Luma](https://github.com/homesweetlove/Luma)** · C# / WinUI 3 / WebView2 | Lightweight personal Windows browser with local automation, a local vault, and human-approved AI handoffs. | [Architecture](https://github.com/homesweetlove/Luma/blob/main/docs/ARCHITECTURE.md) · Public **source preview** (no stable installer yet) |
+| **[MusicCut](https://github.com/homesweetlove/MusicCut)** · Kotlin / Android | Multitrack audio editing, recording, DSP effects, and optional on-device AI stem separation. | [Android CI](https://github.com/homesweetlove/MusicCut/actions/workflows/android.yml) · Open-source development preview |
 
-## RamFlow: from resource contention to measured response
+### Engineering in practice: RamFlow
 
-Implemented explicit background priority/EcoQoS control, a memory-aware job queue, and a lightweight tray that keeps the engine running after WPF closes.
+In a controlled **single-PC** study with synthetic background contention, four foreground Chrome / VS Code workflows showed **45–49% lower median p95 latency** across five paired blocks per workflow. The study covered **1,200 feature operations** and recorded the cost to background throughput. 
 
-In five paired sessions per app on one PC, a generated dashboard in real Chrome and a generated TypeScript document in real VS Code were exercised under fixed synthetic background CPU/memory contention. Feature p95 medians decreased **45–49%**, with improvements in **5/5 pairs for all four features**. Background processing rate decreased about **60%** as those jobs yielded resources to foreground work. All **1,200 feature operations** completed with correctness and resource restoration verified.
+[Study details](https://github.com/homesweetlove/RamFlow/blob/main/docs/REAL_APP_STUDY.ko.md) · [Raw trial data](https://github.com/homesweetlove/RamFlow/blob/main/docs/evidence/2026-11-10-real-apps/trials.csv)
 
-**[Measured results](https://github.com/homesweetlove/RamFlow/blob/main/docs/REAL_APP_STUDY.ko.md)** · [Per-block CSV](https://github.com/homesweetlove/RamFlow/blob/main/docs/evidence/2026-11-10-real-apps/trials.csv) · [Implementation and validation](https://github.com/homesweetlove/RamFlow/blob/main/docs/VALIDATION.md)
+## Other public work
 
-## Beyond the core
+- **[YeaAnBus Open Source](https://github.com/homesweetlove/YeaAnBus-OpenSource)** — Andong–Yecheon bus information Android app; portfolio-oriented public code without private API credentials.
+- **[IDEONQ Clinic](https://github.com/homesweetlove/ideonq-clinic)** — interactive clinic workflow UI showcase using **synthetic data only**. [Live demo](https://ideonq-clinic.vercel.app).
+- **[Daily IT News](https://github.com/homesweetlove/Daily_IT_News)** — sourced IT / AI / security news notes in Korean, with English editions for available dates.
+- **[Payroll Manager](https://github.com/homesweetlove/payroll-manager)** — TypeScript web app for attendance-based payroll calculations and spreadsheet exports.
+- **[Club Recruitment](https://github.com/homesweetlove/club_recruitment)** — static club introduction, recruitment, and study archive website.
 
-- **Desktop / AI automation:** [Luma design notes](https://homesweetlove.github.io/work.html#luma) (private project)
-- **Mobile UX / data reliability:** [Subject Japan design notes](https://homesweetlove.github.io/work.html#subject-japan) (private project)
-- **Biosignal research:** [sEMG fatigue analysis](https://homesweetlove.github.io/work.html#semg) (undergraduate research in progress)
+## Research in progress
 
-**[Portfolio](https://homesweetlove.github.io/)** · **[Case Studies](https://homesweetlove.github.io/work.html)** · **[Resume](https://homesweetlove.github.io/resume.html)** · **[CV](https://homesweetlove.github.io/cv.html)** · **[Labs & Tools](https://homesweetlove.github.io/labs.html)**
+Exploring **surface EMG-based elbow-angle estimation** with public datasets, focusing on cross-subject generalization, calibration requirements, and low-latency inference. This is ongoing undergraduate research, not a published performance claim.
 
-<sub>Featured work is selected for clear engineering decisions and verifiable evidence.</sub>
+[Research and project notes](https://homesweetlove.github.io/work.html#semg) · [Labs & tools](https://homesweetlove.github.io/labs.html)
+
+---
+
+<sub>I try to distinguish implemented features, automated test results, and real-device validation. Preview builds are labeled as previews.</sub>
