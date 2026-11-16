@@ -66,8 +66,8 @@
 
     const defs = node('defs', {}, svg);
     const g = node('linearGradient', { id: `rf-g${i}`, gradientUnits: 'userSpaceOnUse', x1: xOff, x2: xOn, y1: 0, y2: 0 }, defs);
-    node('stop', { offset: '0', 'stop-color': '#8e8e93' }, g);
-    node('stop', { offset: '1', 'stop-color': '#0a84ff' }, g);
+    node('stop', { offset: '0', class: 'rf-s-off' }, g);
+    node('stop', { offset: '1', class: 'rf-s-on' }, g);
 
     const axis = node('g', { class: 'rf-axis' }, svg);
     TICKS.forEach(t => {
